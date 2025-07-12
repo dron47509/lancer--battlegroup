@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkuii5nokbvcq"]
+
+[ext_resource type="Script" uid="uid://e2361rc72ifr" path="res://note.gd" id="1_wn01w"]
+[ext_resource type="Texture2D" uid="uid://bpl6vgoxx8kjw" path="res://icons/close-svgrepo-com.svg" id="2_lyp5m"]
+
+[node name="Note" type="VBoxContainer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wn01w")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+icon = ExtResource("2_lyp5m")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+wrap_mode = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]

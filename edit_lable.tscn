@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1mddtrwgus83"]
+
+[ext_resource type="Script" uid="uid://dqsapeyedo71x" path="res://edit_lable.gd" id="1_tsh7a"]
+
+[node name="Edit_label" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tsh7a")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="Label/Button" to="." method="_on_button_pressed"]
+[connection signal="focus_exited" from="LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_submitted" from="LineEdit" to="." method="_on_line_edit_text_submitted"]

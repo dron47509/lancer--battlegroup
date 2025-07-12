@@ -1,0 +1,183 @@
+[gd_scene load_steps=5 format=3 uid="uid://dl83y63tm3nca"]
+
+[ext_resource type="Script" uid="uid://blwdi6pyyge4a" path="res://options.gd" id="2_8iv2c"]
+[ext_resource type="PackedScene" uid="uid://bfox1wsfas3lb" path="res://option.tscn" id="3_8iv2c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tgw6a"]
+font_size = 14
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tgw6a"]
+load_path = "res://.godot/imported/CASPIAN SEA-CLASS FRIGATE.png-f17e086bfb37b8390d05b7a616f71e44.ctex"
+
+[node name="Hull" type="VBoxContainer"]
+
+[node name="Hulls_name" type="Label" parent="."]
+layout_mode = 2
+text = "CASPIAN SEA-CLASS FRIGATE"
+label_settings = SubResource("LabelSettings_tgw6a")
+
+[node name="Ship_image" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("CompressedTexture2D_tgw6a")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Очки"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "HP"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "16"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Защита"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Options" type="HBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("2_8iv2c")
+
+[node name="Superheavies" type="VBoxContainer" parent="Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Options/Superheavies"]
+layout_mode = 2
+text = "Сверхтяжёлое"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Options/Superheavies"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Primaries" type="VBoxContainer" parent="Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Options/Primaries"]
+layout_mode = 2
+text = "Основное"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Options/Primaries"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="Auxiliaries" type="VBoxContainer" parent="Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Options/Auxiliaries"]
+layout_mode = 2
+text = "Вспомогательное"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Options/Auxiliaries"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+
+[node name="Wings" type="VBoxContainer" parent="Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Options/Wings"]
+layout_mode = 2
+text = "Крылья"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Options/Wings"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Escorts" type="VBoxContainer" parent="Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Options/Escorts"]
+layout_mode = 2
+text = "Эскорты"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Options/Escorts"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Systems" type="VBoxContainer" parent="Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Options/Systems"]
+layout_mode = 2
+text = "Системы"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Options/Systems"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Option" parent="." instance=ExtResource("3_8iv2c")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить корпус"

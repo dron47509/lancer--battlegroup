@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bfox1wsfas3lb"]
+
+[node name="Option" type="VBoxContainer"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "СЕТЕВАЯ СИСТЕМА УПРАВЛЕНИЯ ОГНЁМ"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "Черта"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+text = "1 раз/раунд, когда союзная боевая группа в вашей полосе дистанции потребляет Захват в составе атаки, она может перебросить эту атаку, но обязана оставить второй результат.
+
+Кроме того, когда этот корабль назначен на Защитный экран, он может Захватить вражеский капитальный корабль или эскорт."
+fit_content = true

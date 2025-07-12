@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://ix2ab7sugt8r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pfit1"]
+font_size = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_4a0kh"]
+font_size = 50
+
+[node name="VBoxContainer" type="VBoxContainer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer2"]
+layout_mode = 2
+text = "Имя: "
+label_settings = SubResource("LabelSettings_pfit1")
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Положительные/отрицательные черты:"
+label_settings = SubResource("LabelSettings_pfit1")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(11, 100)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "Предыстория:"
+label_settings = SubResource("LabelSettings_4a0kh")
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+layout_mode = 2
+size_flags_vertical = 3

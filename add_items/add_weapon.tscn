@@ -1,0 +1,296 @@
+[gd_scene load_steps=2 format=3 uid="uid://q66eridpb0nn"]
+
+[ext_resource type="Script" uid="uid://dnndwworr6vsk" path="res://add_items/weapons_vbox.gd" id="1_edm8v"]
+
+[node name="Add_weapon" type="ScrollContainer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Weapon_vbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_edm8v")
+
+[node name="Weapon_label" type="Label" parent="Weapon_vbox"]
+layout_mode = 2
+text = "Орудие"
+
+[node name="Weapons_name_text_edit" type="TextEdit" parent="Weapon_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "Введите название орудия"
+
+[node name="Weapon_type_option_button" type="OptionButton" parent="Weapon_vbox"]
+layout_mode = 2
+selected = 2
+item_count = 3
+popup/item_0/text = "Сверхтяжёлое орудие"
+popup/item_0/id = 0
+popup/item_1/text = "Основное орудие"
+popup/item_1/id = 1
+popup/item_2/text = "Вспомогательное орудие"
+popup/item_2/id = 2
+
+[node name="Tags_text_edit" type="TextEdit" parent="Weapon_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "Введите теги"
+
+[node name="HSeparator2" type="HSeparator" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Stats_hbox" type="HBoxContainer" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Point_vbox" type="VBoxContainer" parent="Weapon_vbox/Stats_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Point_label" type="Label" parent="Weapon_vbox/Stats_hbox/Point_vbox"]
+layout_mode = 2
+text = "Очки"
+horizontal_alignment = 1
+
+[node name="Point_text_edit" type="TextEdit" parent="Weapon_vbox/Stats_hbox/Point_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Damage_vbox" type="VBoxContainer" parent="Weapon_vbox/Stats_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Damage_lable" type="Label" parent="Weapon_vbox/Stats_hbox/Damage_vbox"]
+layout_mode = 2
+text = "Урон"
+horizontal_alignment = 1
+
+[node name="Damage_text_edit" type="TextEdit" parent="Weapon_vbox/Stats_hbox/Damage_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Range_vbox" type="VBoxContainer" parent="Weapon_vbox/Stats_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Range_label" type="Label" parent="Weapon_vbox/Stats_hbox/Range_vbox"]
+layout_mode = 2
+text = "Дистанция"
+horizontal_alignment = 1
+
+[node name="Range_text_edit" type="TextEdit" parent="Weapon_vbox/Stats_hbox/Range_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="HSeparator3" type="HSeparator" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Effect_text_edit" type="TextEdit" parent="Weapon_vbox"]
+layout_mode = 2
+placeholder_text = "Свойства"
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="Discription_text_edit" type="TextEdit" parent="Weapon_vbox"]
+layout_mode = 2
+placeholder_text = "Описание"
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="HSeparator4" type="HSeparator" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Modification_label" type="Label" parent="Weapon_vbox"]
+layout_mode = 2
+text = "Модификации:"
+
+[node name="Stats_hbox2" type="HBoxContainer" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Point_vbox" type="VBoxContainer" parent="Weapon_vbox/Stats_hbox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Point_label" type="Label" parent="Weapon_vbox/Stats_hbox2/Point_vbox"]
+layout_mode = 2
+text = "Очки"
+horizontal_alignment = 1
+
+[node name="Point_text_edit" type="TextEdit" parent="Weapon_vbox/Stats_hbox2/Point_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="HP_vbox" type="VBoxContainer" parent="Weapon_vbox/Stats_hbox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HP_lable" type="Label" parent="Weapon_vbox/Stats_hbox2/HP_vbox"]
+layout_mode = 2
+text = "HP"
+horizontal_alignment = 1
+
+[node name="HP_text_edit" type="TextEdit" parent="Weapon_vbox/Stats_hbox2/HP_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Defense_vbox" type="VBoxContainer" parent="Weapon_vbox/Stats_hbox2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Defense_label" type="Label" parent="Weapon_vbox/Stats_hbox2/Defense_vbox"]
+layout_mode = 2
+text = "Защита"
+horizontal_alignment = 1
+
+[node name="Defense_text_edit" type="TextEdit" parent="Weapon_vbox/Stats_hbox2/Defense_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Options_hbox" type="HBoxContainer" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Superheavies_vbox" type="VBoxContainer" parent="Weapon_vbox/Options_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Superheavy_label" type="Label" parent="Weapon_vbox/Options_hbox/Superheavies_vbox"]
+layout_mode = 2
+text = "Сверхтяжёлое"
+horizontal_alignment = 1
+
+[node name="Superheavy_text_edit" type="TextEdit" parent="Weapon_vbox/Options_hbox/Superheavies_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Primaries_vbox" type="VBoxContainer" parent="Weapon_vbox/Options_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Primaries_label" type="Label" parent="Weapon_vbox/Options_hbox/Primaries_vbox"]
+layout_mode = 2
+text = "Основное"
+horizontal_alignment = 1
+
+[node name="Primaries_text_edit" type="TextEdit" parent="Weapon_vbox/Options_hbox/Primaries_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Auxiliaries_vbox" type="VBoxContainer" parent="Weapon_vbox/Options_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Auxiliaries_label" type="Label" parent="Weapon_vbox/Options_hbox/Auxiliaries_vbox"]
+layout_mode = 2
+text = "Вспомогательное"
+horizontal_alignment = 1
+
+[node name="Auxiliaries_text_edit" type="TextEdit" parent="Weapon_vbox/Options_hbox/Auxiliaries_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Options2_hbox" type="HBoxContainer" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Wings_vbox" type="VBoxContainer" parent="Weapon_vbox/Options2_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Wings_label" type="Label" parent="Weapon_vbox/Options2_hbox/Wings_vbox"]
+layout_mode = 2
+text = "Крылья"
+horizontal_alignment = 1
+
+[node name="Wings_text_edit" type="TextEdit" parent="Weapon_vbox/Options2_hbox/Wings_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Escorts_vbox" type="VBoxContainer" parent="Weapon_vbox/Options2_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Escorts_label" type="Label" parent="Weapon_vbox/Options2_hbox/Escorts_vbox"]
+layout_mode = 2
+text = "Эскорты"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Escorts_text_edit" type="TextEdit" parent="Weapon_vbox/Options2_hbox/Escorts_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Systems_vbox" type="VBoxContainer" parent="Weapon_vbox/Options2_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Systems_label" type="Label" parent="Weapon_vbox/Options2_hbox/Systems_vbox"]
+layout_mode = 2
+text = "Системы"
+horizontal_alignment = 1
+
+[node name="Systems_text_edit" type="TextEdit" parent="Weapon_vbox/Options2_hbox/Systems_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Options3_hbox" type="HBoxContainer" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Interdiction_vbox" type="VBoxContainer" parent="Weapon_vbox/Options3_hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Interdiction_label" type="Label" parent="Weapon_vbox/Options3_hbox/Interdiction_vbox"]
+layout_mode = 2
+text = "Перехват"
+horizontal_alignment = 1
+
+[node name="Interdiction_text_edit" type="TextEdit" parent="Weapon_vbox/Options3_hbox/Interdiction_vbox"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+
+[node name="Add_weapon_button" type="Button" parent="Weapon_vbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить орудие"
+
+[node name="HSeparator" type="HSeparator" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Weapons_vbox" type="VBoxContainer" parent="Weapon_vbox"]
+layout_mode = 2
+
+[node name="Exist_weapon_button" type="Button" parent="Weapon_vbox/Weapons_vbox"]
+layout_mode = 2
+text = "Название корпуса"

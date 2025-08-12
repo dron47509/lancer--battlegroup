@@ -1,16 +1,4 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://blrpjxg6vi07i"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8pyka"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://blrpjxg6vi07i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6t2u"]
 bg_color = Color(1, 1, 1, 1)
@@ -21,10 +9,4 @@ MarginContainer/constants/margin_bottom = 5
 MarginContainer/constants/margin_left = 5
 MarginContainer/constants/margin_right = 5
 MarginContainer/constants/margin_top = 5
-OptionButton/colors/font_color = Color(0, 0, 0, 1)
-OptionButton/colors/font_focus_color = Color(0, 0, 0, 1)
-OptionButton/colors/font_hover_color = Color(0, 0, 0, 1)
-OptionButton/styles/focus = SubResource("StyleBoxFlat_8pyka")
-OptionButton/styles/hover = SubResource("StyleBoxFlat_8pyka")
-OptionButton/styles/normal = SubResource("StyleBoxFlat_8pyka")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_b6t2u")

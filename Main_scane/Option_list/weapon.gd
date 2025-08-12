@@ -59,8 +59,8 @@ func populate(weapon):
 
 
 func _on_add_pressed() -> void:
-	BattlegroupData.ships[BattlegroupData.curent_ship]["option"].append(_src)
+	BattlegroupData.ships[BattlegroupData.current_ship]["option"].append(_src)
 
 
 func _on_remove_pressed() -> void:
-	BattlegroupData.ships[BattlegroupData.curent_ship]["option"].erase(_src)
+	BattlegroupData.ships[BattlegroupData.current_ship]["option"].erase(_src)

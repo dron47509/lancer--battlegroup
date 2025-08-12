@@ -137,7 +137,7 @@ func _on_flagman_toggled(on : bool) -> void:
 	BattlegroupData.emit_signal("battlegroup_change")
 
 func _on_option_pressed() -> void:
-	BattlegroupData.curent_ship = _index
+	BattlegroupData.current_ship = _index
 	BattlegroupData.change_on_option()
 
 # ───────────────────────────────────────────

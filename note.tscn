@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dkuii5nokbvcq"]
 
 [ext_resource type="Script" uid="uid://e2361rc72ifr" path="res://note.gd" id="1_wn01w"]
-[ext_resource type="Texture2D" uid="uid://bpl6vgoxx8kjw" path="res://icons/close-svgrepo-com.svg" id="2_lyp5m"]
+[ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://icons/close-svgrepo-com.svg" id="2_lyp5m"]
 
 [node name="Note" type="VBoxContainer"]
 anchors_preset = -1

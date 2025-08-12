@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c6uig71qwu7pr"]
 
-[ext_resource type="Script" uid="uid://j17ns6whrk8w" path="res://Main_scane/Hull_list/hulls_list.gd" id="1_k6by2"]
-[ext_resource type="Texture2D" uid="uid://bpl6vgoxx8kjw" path="res://icons/close-svgrepo-com.svg" id="2_k6by2"]
+[ext_resource type="Script" uid="uid://k0cog1a2p1w6" path="res://Main_scane/Hull_list/hulls_list.gd" id="1_k6by2"]
+[ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://icons/close-svgrepo-com.svg" id="2_k6by2"]
 
 [sub_resource type="Theme" id="Theme_k6by2"]
 Label/colors/font_color = Color(0, 0, 0, 1)

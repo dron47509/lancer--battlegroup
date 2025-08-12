@@ -1,10 +1,10 @@
 [gd_scene load_steps=28 format=3 uid="uid://1yxsler2mri0"]
 
-[ext_resource type="Script" uid="uid://ctcryjmjkhlrl" path="res://Main_scane/Commander/ship.gd" id="1_vlw5j"]
+[ext_resource type="Script" uid="uid://becsagq41grx5" path="res://Main_scane/Commander/ship.gd" id="1_vlw5j"]
 [ext_resource type="Theme" uid="uid://dt88e5xvcdgje" path="res://Main_scane/Commander/ship_box.tres" id="2_vybui"]
 [ext_resource type="ButtonGroup" uid="uid://padp71yc23j7" path="res://Main_scane/Commander/ship.tres" id="3_8tv7i"]
-[ext_resource type="Texture2D" uid="uid://bpl6vgoxx8kjw" path="res://icons/close-svgrepo-com.svg" id="3_dp0u4"]
-[ext_resource type="Texture2D" uid="uid://b3shij3e7c0d7" path="res://hulls/FKS CALENDULA-CLASS BATTLECRUISER.png" id="4_b4r53"]
+[ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://icons/close-svgrepo-com.svg" id="3_dp0u4"]
+[ext_resource type="Texture2D" uid="uid://bemeorqrhn30m" path="res://hulls/FKS CALENDULA-CLASS BATTLECRUISER.png" id="4_b4r53"]
 [ext_resource type="Script" uid="uid://bim2b1qvnrks6" path="res://support_scanes/options.gd" id="4_keu25"]
 [ext_resource type="Script" uid="uid://bkkq8nsqfgcbv" path="res://Main_scane/Commander/feat_label.gd" id="7_k5gai"]
 [ext_resource type="Script" uid="uid://cybph6u1w2wf0" path="res://Main_scane/Commander/superheavy_label.gd" id="8_vtu8k"]

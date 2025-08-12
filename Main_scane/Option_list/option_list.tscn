@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://cedyksf1fnxbb"]
 
 [ext_resource type="Theme" uid="uid://blrpjxg6vi07i" path="res://Main_scane/Option_list/Option_list.tres" id="1_axrc0"]
-[ext_resource type="Script" uid="uid://cf0xjkphie5ij" path="res://Main_scane/Option_list/option_list.gd" id="2_3li8n"]
-[ext_resource type="Texture2D" uid="uid://bpl6vgoxx8kjw" path="res://icons/close-svgrepo-com.svg" id="3_t0xno"]
+[ext_resource type="Script" uid="uid://c1i045nnr45d" path="res://Main_scane/Option_list/option_list.gd" id="2_3li8n"]
+[ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://icons/close-svgrepo-com.svg" id="3_t0xno"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3li8n"]
 font_size = 26

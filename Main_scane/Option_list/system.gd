@@ -25,9 +25,9 @@ const SlotUtils = preload("res://slot_utils.gd")
 var _src: Dictionary    
 
 func _process(delta: float) -> void:
-	if _src.size() != 0 and BattlegroupData.curent_ship != -1:
-		var ship = BattlegroupData.ships[BattlegroupData.curent_ship]
-		if BattlegroupData.ships[BattlegroupData.curent_ship]["option"].size() != 0:
+	if _src.size() != 0 and BattlegroupData.current_ship != -1:
+		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
+		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
 			var sum = SlotUtils.get_slot_sums(ship)
 			if sum["system"] <= 0:
 				_add.hide()

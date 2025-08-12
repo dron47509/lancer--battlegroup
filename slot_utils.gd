@@ -1,7 +1,7 @@
 class_name SlotUtils
 
 static func get_slot_sums(ship: Dictionary) -> Dictionary:
-	var sum := {
+	var sum = {
 		"auxiliary": int(ship["weapon_slots"]["auxiliaries"]),
 		"escort": int(ship["support_slots"]["escorts"]),
 		"primary": int(ship["weapon_slots"]["primaries"]),
@@ -10,7 +10,7 @@ static func get_slot_sums(ship: Dictionary) -> Dictionary:
 		"wing": int(ship["support_slots"]["wings"]),
 	}
 	for option in ship.get("option", []):
-		var mod := option.get("modification", {})
+		var mod = option.get("modification", {})
 		sum["auxiliary"] += int(mod.get("auxiliary", 0))
 		sum["escort"] += int(mod.get("escort", 0))
 		sum["primary"] += int(mod.get("primary", 0))

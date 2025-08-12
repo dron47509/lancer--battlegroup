@@ -21,7 +21,7 @@ var class_counts := {
 	ShipClass.BATTLESHIP: 0,
 }
 
-var curent_ship = -1
+var current_ship = -1
 
 var ships: Array = []     # хранит сами словари-корпуса
 

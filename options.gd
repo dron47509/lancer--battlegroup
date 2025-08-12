@@ -3,6 +3,7 @@ extends HBoxContainer
 const SlotUtils = preload("res://slot_utils.gd")
 
 @onready var _labels := {
+	"point":$Points/Point,
 	"superheavy": $Superheavies/Superheavy,
 	"primaries": $Primaries/Primary,
 	"auxiliaries": $Auxiliaries/Auxiliary,
@@ -23,6 +24,7 @@ func _update_from_ship() -> void:
 		var ship = BattlegroupData.ships[idx]
 		var sum = SlotUtils.get_slot_total(ship)
 		var used = SlotUtils.get_slot_usage(ship)
+		_labels["point"].text = "%d/20" % BattlegroupData.point
 		_labels["superheavy"].text = "%d/%d" % [used["superheavy"], sum["superheavy"]]
 		_labels["primaries"].text = "%d/%d" % [used["primary"], sum["primary"]]
 		_labels["auxiliaries"].text = "%d/%d" % [used["auxiliary"], sum["auxiliary"]]

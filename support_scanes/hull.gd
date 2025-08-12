@@ -35,14 +35,14 @@ func populate(data: Dictionary) -> void:
 	_src = data.duplicate(true)
 	_name.text     = data.get("name")
 	_image.texture = load("res://hulls/" + data.get("name").replace("\n", " ") + ".png")
-	match str(data.get("class")):
-		"0.0":
+	match int(data.get("class")):
+		BattlegroupData.ShipClass.FRIGATE:
 			_type.text = "Фрегат"
-		"1.0":
+		BattlegroupData.ShipClass.CARRIER:
 			_type.text = "Авианосец"
-		"2.0":
+		BattlegroupData.ShipClass.BATTLESHIP:
 			_type.text = "Эсминец"
-			
+
 	_points.text     = str(data.get("points"))
 	_hp.text         = str(data.get("hp"))
 	_defense.text    = str(data.get("defense"))
@@ -56,7 +56,7 @@ func populate(data: Dictionary) -> void:
 	# описание и черта (feats[0])
 	for x in data.get("feats"):
 		_spawn_feat(x)
-	
+
 	_option_1.refresh_visibility()
 	_connect_buttons()           # см. ниже
 	_update_buttons()            # выставляем видимость
@@ -72,7 +72,7 @@ func _update_buttons() -> void:
 	var cls: int = _src["class"]
 	var already_added := _count_added()
 	var reached_limit := not BattlegroupData.can_add(cls)
-	
+
 	_remove_btn.visible = already_added > 0
 	_add_btn.visible    = not reached_limit \
 						  and BattlegroupData.point + int(_src.get("points")) <= 20
@@ -93,7 +93,7 @@ func _on_remove_pressed() -> void:
 func _spawn_feat(feat_data) -> void:
 	var feat := FEAT_SCENE.instantiate()
 	_feat_box.add_child(feat)
-	feat.populate(feat_data) 
+	feat.populate(feat_data)
 
 func _is_same_template(h: Dictionary) -> bool:
 	# сравниваем по «базовому» имени корпуса, остальные поля (ship_name/option/flagman) игнорируем

@@ -1,6 +1,7 @@
 extends PanelContainer
 
 const SlotUtils = preload("res://slot_utils.gd")
+const Opt = preload("res://option_types.gd")
 
 @onready var _name: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Name
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
@@ -16,11 +17,11 @@ func _process(delta: float) -> void:
 		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
 		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
 			var sum = SlotUtils.get_slot_sums(ship)
-			if _src["type"] == 0.0 and sum["superheavy"] <= 0:
+			if _src["type"] == Opt.Weapon.SUPERHEAVY and sum["superheavy"] <= 0:
 				_add.hide()
-			elif _src["type"] == 1.0 and sum["primary"] <= 0:
+			elif _src["type"] == Opt.Weapon.PRIMARY and sum["primary"] <= 0:
 				_add.hide()
-			elif _src["type"] == 2.0 and sum["auxiliary"] <= 0:
+			elif _src["type"] == Opt.Weapon.AUXILIARY and sum["auxiliary"] <= 0:
 				_add.hide()
 			if _src in ship["option"]:
 				_remove.show()
@@ -37,11 +38,11 @@ func _process(delta: float) -> void:
 func populate(weapon):
 	_src = weapon.duplicate(true)
 	_name.text = weapon.get("name")
-	if weapon.get("type") == 0.0:
+	if weapon.get("type") == Opt.Weapon.SUPERHEAVY:
 		_tags.text = "Серхтяжелое, " + weapon.get("tags")
-	elif weapon.get("type") == 1.0:
+	elif weapon.get("type") == Opt.Weapon.PRIMARY:
 		_tags.text = "Основное, " + weapon.get("tags")
-	elif weapon.get("type") == 2.0:
+	elif weapon.get("type") == Opt.Weapon.AUXILIARY:
 		_tags.text = "Вспомогательное"
 		if weapon.get("tags") != "":
 			_tags.text += ", " + weapon.get("tags")

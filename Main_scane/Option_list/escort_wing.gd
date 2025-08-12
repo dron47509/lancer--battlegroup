@@ -20,7 +20,7 @@ extends PanelContainer
 @onready var _add: MarginContainer = $VBoxContainer/Button
 @onready var _remove: MarginContainer = $VBoxContainer/Button2
 
-var _src: Dictionary    
+var _src: Dictionary	
 
 func _process(delta: float) -> void:
 	if _src.size() != 0 and BattlegroupData.curent_ship != -1:
@@ -73,7 +73,7 @@ func populate(system):
 	_param.text += "[Очки " + str(int(system.get("points"))) + "]"
 	_effect.text = system.get("effect")
 	_discription.text = "[i]" + system.get("discription") + "[/i]"
-	if len(system.get("feats")) > 0:
+	if system.get("feats").size() > 0:
 		var feat1 = system.get("feats").get(0)
 		if feat1.get("type") == 2.0:
 			_tactic1.visible = true
@@ -85,7 +85,7 @@ func populate(system):
 			_maneveue1_name.text = feat1.get("name")
 			_maneveue1_tag.text = feat1.get("tags")
 			_maneveue1_effect.text = feat1.get("effect")
-	if len(system.get("feats")) > 1:
+	if system.get("feats").size() > 1:
 		var feat1 = system.get("feats").get(1)
 		if feat1.get("type") == 2.0:
 			_tactic2.visible = true

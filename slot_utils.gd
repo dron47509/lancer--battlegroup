@@ -11,41 +11,42 @@ static func get_slot_sums(ship: Dictionary) -> Dictionary:
 		"system": int(ship["support_slots"]["systems"]),
 		"wing": int(ship["support_slots"]["wings"]),
 	}
-        for option in ship.get("option", []):
-                var mod = option.get("modification", {})
-                sum["auxiliary"] += int(mod.get("auxiliary", 0))
-                sum["escort"] += int(mod.get("escort", 0))
-                sum["primary"] += int(mod.get("primary", 0))
-                sum["superheavy"] += int(mod.get("superheavy", 0))
-                sum["system"] += int(mod.get("system", 0))
-                sum["wing"] += int(mod.get("wing", 0))
-        return sum
+	for option in ship.get("option", []):
+		var mod = option.get("modification", {})
+		sum["auxiliary"] += int(mod.get("auxiliary", 0))
+		sum["escort"] += int(mod.get("escort", 0))
+		sum["primary"] += int(mod.get("primary", 0))
+		sum["superheavy"] += int(mod.get("superheavy", 0))
+		sum["system"] += int(mod.get("system", 0))
+		sum["wing"] += int(mod.get("wing", 0))
+	return sum
+
 
 static func get_slot_usage(ship: Dictionary) -> Dictionary:
-        var used = {
-                "auxiliary": 0,
-                "escort": 0,
-                "primary": 0,
-                "superheavy": 0,
-                "system": 0,
-                "wing": 0,
-        }
-        for option in ship.get("option", []):
-                if option.has("type"):
-                        if option.has("hp"):
-                                match int(option["type"]):
-                                        Opt.Support.ESCORT:
-                                                used["escort"] += 1
-                                        Opt.Support.WING:
-                                                used["wing"] += 1
-                        else:
-                                match int(option["type"]):
-                                        Opt.Weapon.SUPERHEAVY:
-                                                used["superheavy"] += 1
-                                        Opt.Weapon.PRIMARY:
-                                                used["primary"] += 1
-                                        Opt.Weapon.AUXILIARY:
-                                                used["auxiliary"] += 1
-                else:
-                        used["system"] += 1
-        return used
+	var used = {
+			"auxiliary": 0,
+			"escort": 0,
+			"primary": 0,
+			"superheavy": 0,
+			"system": 0,
+			"wing": 0,
+	}
+	for option in ship.get("option", []):
+		if option.has("type"):
+			if option.has("hp"):
+				match int(option["type"]):
+					Opt.Support.ESCORT:
+						used["escort"] += 1
+					Opt.Support.WING:
+						used["wing"] += 1
+			else:
+				match int(option["type"]):
+					Opt.Weapon.SUPERHEAVY:
+						used["superheavy"] += 1
+					Opt.Weapon.PRIMARY:
+						used["primary"] += 1
+					Opt.Weapon.AUXILIARY:
+						used["auxiliary"] += 1
+		else:
+			used["system"] += 1
+	return used

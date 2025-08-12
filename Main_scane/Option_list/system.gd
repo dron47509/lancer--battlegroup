@@ -1,5 +1,7 @@
 extends PanelContainer
 
+const OptionTypes = preload("res://option_types.gd")
+
 @onready var _name: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Name
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
 @onready var _param: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Param
@@ -67,7 +69,7 @@ func populate(system):
 	_discription.text = "[i]" + system.get("discription") + "[/i]"
 	if len(system.get("feats")) > 0:
 		var feat1 = system.get("feats").get(0)
-		if feat1.get("type") == 2.0:
+		if feat1.get("type") == OptionTypes.FEAT_TACTIC:
 			_tactic1.visible = true
 			_tactic1_name.text = feat1.get("name")
 			_tactic1_tag.text = feat1.get("tags")
@@ -79,7 +81,7 @@ func populate(system):
 			_maneveue1_effect.text = feat1.get("effect")
 	if len(system.get("feats")) > 1:
 		var feat1 = system.get("feats").get(1)
-		if feat1.get("type") == 2.0:
+		if feat1.get("type") == OptionTypes.FEAT_TACTIC:
 			_tactic2.visible = true
 			_tactic2_name.text = feat1.get("name")
 			_tactic2_tag.text = feat1.get("tags")

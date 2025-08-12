@@ -1,5 +1,7 @@
 extends PanelContainer
 
+const OptionTypes = preload("res://option_types.gd")
+
 @onready var _name: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Name
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
 @onready var _param: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Param
@@ -28,11 +30,11 @@ func _process(delta: float) -> void:
 				sum["superheavy"] += int(x["modification"]["superheavy"])
 				sum["system"] += int(x["modification"]["system"])
 				sum["wing"] += int(x["modification"]["wing"])
-			if _src["type"] == 0.0 and sum["superheavy"] <= 0:
+			if _src["type"] == OptionTypes.WEAPON_SUPERHEAVY and sum["superheavy"] <= 0:
 				_add.hide()
-			elif _src["type"] == 1.0 and sum["primary"] <= 0:
+			elif _src["type"] == OptionTypes.WEAPON_PRIMARY and sum["primary"] <= 0:
 				_add.hide()
-			elif _src["type"] == 2.0 and sum["auxiliary"] <= 0:
+			elif _src["type"] == OptionTypes.WEAPON_AUXILIARY and sum["auxiliary"] <= 0:
 				_add.hide()
 			if _src in ship["option"]:
 				_remove.show()
@@ -50,11 +52,11 @@ func _process(delta: float) -> void:
 func populate(weapon):
 	_src = weapon.duplicate(true)
 	_name.text = weapon.get("name")
-	if weapon.get("type") == 0.0:
+	if weapon.get("type") == OptionTypes.WEAPON_SUPERHEAVY:
 		_tags.text = "Серхтяжелое, " + weapon.get("tags")
-	elif weapon.get("type") == 1.0:
+	elif weapon.get("type") == OptionTypes.WEAPON_PRIMARY:
 		_tags.text = "Основное, " + weapon.get("tags")
-	elif weapon.get("type") == 2.0:
+	elif weapon.get("type") == OptionTypes.WEAPON_AUXILIARY:
 		_tags.text = "Вспомогательное"
 		if weapon.get("tags") != "":
 			_tags.text += ", " + weapon.get("tags")

@@ -1,5 +1,7 @@
 extends PanelContainer
 
+const OptionTypes = preload("res://option_types.gd")
+
 ## ───────────────────────────────────────────────────────────────────
 ## 1.  Экспортируемые ресурсы и пути
 ## ───────────────────────────────────────────────────────────────────
@@ -54,16 +56,16 @@ func _populate_all() -> void:
 	# эскорты / крылья
 	for e in raw.get("escorts_wings", []):
 		var n := eswg_scene.instantiate()
-		var idx := 4 if e.get("type") == 0.0 else 5   # 0=escort, 1=wing
+		var idx := 4 if e.get("type") == OptionTypes.SUPPORT_ESCORT else 5   # см. OptionTypes.SUPPORT_ESCORT/SUPPORT_WING
 		_slot_info[idx].node.add_child(n)
 		n.populate(e)
 
 func _type_to_index(t: float) -> int:
 	var x
 	match int(t):
-		0: x = 0     # superheavy
-		1: x = 1     # primaries
-		2: x = 2     # auxiliaries
+		OptionTypes.WEAPON_SUPERHEAVY: x = 0     # superheavy
+		OptionTypes.WEAPON_PRIMARY:    x = 1     # primaries
+		OptionTypes.WEAPON_AUXILIARY:  x = 2     # auxiliaries
 		_: x = -1
 	return x
 ## ───────────────────────────────────────────────────────────────────

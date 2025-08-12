@@ -110,21 +110,21 @@ func _apply_filters() -> void:
 	# фильтр по тегу
 	var tag_text := _tag_button.get_item_text(_tag_button.selected)
 	if tag_text != "Все":
-	for d in _slot_info.values():
-		if d["node"].visible:
-		for c in d["node"].get_children():
-			var has := false
-			for t in c._src.get("tags", "").split(",", false):
-			if _clean_tag(t) == tag_text:
-				has = true
-				break
-			c.visible = has
-		var any := false
-		for c in d["node"].get_children():
-			if c.visible:
-			any = true
-			break
-		d["node"].visible = any
+		for d in _slot_info.values():
+			if d["node"].visible:
+				for c in d["node"].get_children():
+					var has := false
+					for t in c._src.get("tags", "").split(",", false):
+						if _clean_tag(t) == tag_text:
+							has = true
+							break
+					c.visible = has
+			var any := false
+			for c in d["node"].get_children():
+				if c.visible:
+					any = true
+					break
+			d["node"].visible = any
 
 ## ───────────────────────────────────────────────────────────────────
 ## 5.  Реакция на выбор в OptionButton

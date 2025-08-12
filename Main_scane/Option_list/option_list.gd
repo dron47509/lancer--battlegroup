@@ -5,7 +5,7 @@ const Opt = preload("res://option_types.gd")
 ## ───────────────────────────────────────────────────────────────────
 ## 1.  Экспортируемые ресурсы и пути
 ## ───────────────────────────────────────────────────────────────────
-@export var json_path      := "user://battlegroup_data.json"
+@export var json_path      := "res://battlegroup_data.json"
 @export var weapon_scene   := preload("res://Main_scane/Option_list/weapon.tscn")
 @export var system_scene   := preload("res://Main_scane/Option_list/system.tscn")
 @export var eswg_scene     := preload("res://Main_scane/Option_list/escort_wing.tscn")

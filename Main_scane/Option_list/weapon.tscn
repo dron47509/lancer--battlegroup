@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://b3luguxwg7daa" path="res://Main_scane/Hull_list/Themes/Weapon.tres" id="1_0srrn"]
 [ext_resource type="Theme" uid="uid://g1g15wtayaql" path="res://Main_scane/Hull_list/Themes/Weapon_header.tres" id="2_627df"]
-[ext_resource type="Script" uid="uid://bsewkfg83h67e" path="res://Main_scane/Option_list/weapon.gd" id="2_luaq8"]
+[ext_resource type="Script" uid="uid://drrute6qeqpkc" path="res://Main_scane/Option_list/weapon.gd" id="2_luaq8"]
 [ext_resource type="Theme" uid="uid://qqtlvkypad6c" path="res://Main_scane/Option_list/Theme/for_label.tres" id="4_luaq8"]
 
 [node name="Weapon" type="PanelContainer"]

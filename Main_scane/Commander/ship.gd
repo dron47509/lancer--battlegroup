@@ -49,12 +49,12 @@ const FLAGSHIP_OPTION := {
 	# "systems" — счётчик рендерится внутри _systems_container
 }
 @onready var _slot_containers := {
-	1: $Ship_box/Superheavy,   # Superheavy
-	2: $Ship_box/Primary,      # Primaries
-	3: $Ship_box/Auxiliary,    # Auxiliaries
-	4: $Ship_box/Wing,          # Wings
-	5: $Ship_box/Escort,        # Escorts
-	6: $Ship_box/System,        # Systems
+	0.0: $Ship_box/Superheavy,   # Superheavy
+	1.0: $Ship_box/Primary,      # Primaries
+	2.0: $Ship_box/Auxiliary,    # Auxiliaries
+	4.0: $Ship_box/Wing,          # Wings
+	5.0: $Ship_box/Escort,        # Escorts
+	3.0: $Ship_box/System,        # Systems
 }
 
 @onready var _systems_container : Control      = $Ship_box/Options/Systems
@@ -72,6 +72,9 @@ const FLAGSHIP_OPTION := {
 var _dict  : Dictionary = {}   # ссылка на словарь корабля
 var _index : int        = -1   # позиция в BattlegroupData.ships
 var _base_system_slots : int   = 0   # базовое число системных слотов
+
+func _process(delta: float) -> void:
+	_refresh_option_buttons()
 
 # ───────────────────────────────────────────
 # 3.  Public — populate
@@ -201,7 +204,6 @@ func _recalc_and_update_display() -> void:
 	_system_count_lbl.text      = support["systems"]
 
 	# 🔄 обновляем кнопки всех слотов
-	_refresh_option_buttons()
 # ───────────────────────────────────────────
 # 7.  Кнопки Systems
 # ───────────────────────────────────────────

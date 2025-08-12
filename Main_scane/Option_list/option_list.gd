@@ -105,13 +105,19 @@ func _apply_filters() -> void:
 	var cat_idx = $MarginContainer/VBoxContainer/OptionButton.selected
 	if cat_idx != Opt.SlotIndex.ALL:
 		for i in _slot_info:
-			_slot_info[i]["node"].visible = (i == cat_idx) and _slot_info[i]["node"].visible
+			var n = _slot_info[i]["node"]
+			var vis = (i == cat_idx) and n.visible
+			n.visible = vis
+			if not vis:
+				for c in n.get_children():
+					c.visible = false
 
 	# фильтр по тегу
 	var tag_text := _tag_button.get_item_text(_tag_button.selected)
 	if tag_text != "Все":
 		for d in _slot_info.values():
 			if d["node"].visible:
+				var any := false
 				for c in d["node"].get_children():
 					var has := false
 					for t in c._src.get("tags", "").split(",", false):
@@ -119,12 +125,9 @@ func _apply_filters() -> void:
 							has = true
 							break
 					c.visible = has
-			var any := false
-			for c in d["node"].get_children():
-				if c.visible:
-					any = true
-					break
-			d["node"].visible = any
+					if has:
+						any = true
+				d["node"].visible = any
 
 ## ───────────────────────────────────────────────────────────────────
 ## 5.  Реакция на выбор в OptionButton

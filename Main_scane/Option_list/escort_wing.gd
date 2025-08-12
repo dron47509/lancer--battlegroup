@@ -1,5 +1,7 @@
 extends PanelContainer
 
+const SlotUtils = preload("res://slot_utils.gd")
+
 @onready var _name: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Name
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
 @onready var _param: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Param
@@ -26,21 +28,7 @@ func _process(delta: float) -> void:
 	if _src.size() != 0 and BattlegroupData.curent_ship != -1:
 		var ship = BattlegroupData.ships[BattlegroupData.curent_ship]
 		if BattlegroupData.ships[BattlegroupData.curent_ship]["option"].size() != 0:
-			var sum = {
-				"auxiliary": int(ship["weapon_slots"]["auxiliaries"]),
-				"escort": int(ship["support_slots"]["escorts"]),
-				"primary": int(ship["weapon_slots"]["primaries"]),
-				"superheavy": int(ship["weapon_slots"]["superheavy"]),
-				"system": int(ship["support_slots"]["systems"]),
-				"wing": int(ship["support_slots"]["wings"])
-			}
-			for x in BattlegroupData.ships[BattlegroupData.curent_ship]["option"]:
-				sum["auxiliary"] += int(x["modification"]["auxiliary"])
-				sum["escort"] += int(x["modification"]["escort"])
-				sum["primary"] += int(x["modification"]["primary"])
-				sum["superheavy"] += int(x["modification"]["superheavy"])
-				sum["system"] += int(x["modification"]["system"])
-				sum["wing"] += int(x["modification"]["wing"])
+			var sum = SlotUtils.get_slot_sums(ship)
 			if _src["type"] == 0.0 and sum["escort"] <= 0:
 				_add.hide()
 			elif _src["type"] == 1.0 and sum["wing"] <= 0:

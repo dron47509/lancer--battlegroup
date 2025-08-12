@@ -42,20 +42,20 @@ func _populate_all() -> void:
 	# оружие
 	for w in raw.get("weapons", []):
 		var n := weapon_scene.instantiate()
-		_slot_info[_type_to_index(w.get("type", -1))].node.add_child(n)
+		_slot_info[_type_to_index(w.get("type", -1))]["node"].add_child(n)
 		n.populate(w)
 
 	# системы
 	for s in raw.get("systems", []):
 		var n := system_scene.instantiate()
-		_slot_info[3].node.add_child(n)     # 3 → systems
+		_slot_info[3]["node"].add_child(n)     # 3 → systems
 		n.populate(s)
 
 	# эскорты / крылья
 	for e in raw.get("escorts_wings", []):
 		var n := eswg_scene.instantiate()
 		var idx := 4 if e.get("type") == 0.0 else 5   # 0=escort, 1=wing
-		_slot_info[idx].node.add_child(n)
+		_slot_info[idx]["node"].add_child(n)
 		n.populate(e)
 
 func _type_to_index(t: float) -> int:
@@ -72,7 +72,7 @@ func _type_to_index(t: float) -> int:
 func _apply_ship_filter() -> void:
 	# скрыть всё по умолчанию
 	for d in _slot_info.values():
-		d.node.visible = false
+		d["node"].visible = false
 
 	var idx := int(BattlegroupData.current_ship)
 	if idx < 0 or idx >= BattlegroupData.ships.size():
@@ -84,10 +84,10 @@ func _apply_ship_filter() -> void:
 
 	# показываем только те категории, где есть слоты (>0)
 	for i in _slot_info:
-		var k = _slot_info[i].key
+		var k = _slot_info[i]["key"]
 		var cnt := int(weapon.get(k, "0")) if k in weapon else int(support.get(k, "0"))
 		if cnt > 0:
-			_slot_info[i].node.visible = true
+			_slot_info[i]["node"].visible = true
 
 ## ───────────────────────────────────────────────────────────────────
 ## 5.  Реакция на выбор в OptionButton
@@ -101,7 +101,7 @@ func _on_option_button_item_selected(index: int) -> void:
 
 	# иначе скрываем всё, кроме нужного индекса
 	for i in _slot_info:
-		_slot_info[i].node.visible = (i == index) and _slot_info[i].node.visible
+		_slot_info[i]["node"].visible = (i == index) and _slot_info[i]["node"].visible
 
 ## ───────────────────────────────────────────────────────────────────
 ## 6.  JSON utils

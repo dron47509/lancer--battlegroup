@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cedyksf1fnxbb"]
+[gd_scene load_steps=12 format=3 uid="uid://cedyksf1fnxbb"]
 
 [ext_resource type="Theme" uid="uid://blrpjxg6vi07i" path="res://Main_scane/Option_list/Option_list.tres" id="1_axrc0"]
 [ext_resource type="Script" uid="uid://c1i045nnr45d" path="res://Main_scane/Option_list/option_list.gd" id="2_3li8n"]
 [ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://icons/close-svgrepo-com.svg" id="3_t0xno"]
+[ext_resource type="Script" uid="uid://drso1g4pd7rm0" path="res://options.gd" id="4_knkwd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3li8n"]
 font_size = 26
@@ -88,6 +89,98 @@ selected = 0
 item_count = 1
 popup/item_0/text = "Все"
 popup/item_0/id = 0
+
+[node name="Options" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("4_knkwd")
+
+[node name="Superheavies" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options/Superheavies"]
+layout_mode = 2
+text = "Сверхтяжёлое"
+horizontal_alignment = 1
+
+[node name="Superheavy" type="Label" parent="MarginContainer/VBoxContainer/Options/Superheavies"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Primaries" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options/Primaries"]
+layout_mode = 2
+text = "Основное"
+horizontal_alignment = 1
+
+[node name="Primary" type="Label" parent="MarginContainer/VBoxContainer/Options/Primaries"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Auxiliaries" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options/Auxiliaries"]
+layout_mode = 2
+text = "Вспом."
+horizontal_alignment = 1
+
+[node name="Auxiliary" type="Label" parent="MarginContainer/VBoxContainer/Options/Auxiliaries"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Wings" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options/Wings"]
+layout_mode = 2
+text = "Крылья"
+horizontal_alignment = 1
+
+[node name="Wing" type="Label" parent="MarginContainer/VBoxContainer/Options/Wings"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Escorts" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options/Escorts"]
+layout_mode = 2
+text = "Эскорты"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Escort" type="Label" parent="MarginContainer/VBoxContainer/Options/Escorts"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Systems" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options/Systems"]
+layout_mode = 2
+text = "Системы"
+horizontal_alignment = 1
+
+[node name="System" type="Label" parent="MarginContainer/VBoxContainer/Options/Systems"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

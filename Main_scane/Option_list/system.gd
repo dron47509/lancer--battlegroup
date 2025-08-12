@@ -1,6 +1,7 @@
 extends PanelContainer
 
 const SlotUtils = preload("res://slot_utils.gd")
+const Opt = preload("res://option_types.gd")
 
 @onready var _name: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Name
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
@@ -22,7 +23,7 @@ const SlotUtils = preload("res://slot_utils.gd")
 @onready var _add: MarginContainer = $VBoxContainer/Button
 @onready var _remove: MarginContainer = $VBoxContainer/Button2
 
-var _src: Dictionary	
+var _src: Dictionary
 
 func _process(delta: float) -> void:
 	if _src.size() != 0 and BattlegroupData.current_ship != -1:
@@ -55,7 +56,7 @@ func populate(system):
 	_discription.text = "[i]" + system.get("discription") + "[/i]"
 	if system.get("feats").size() > 0:
 		var feat1 = system.get("feats").get(0)
-		if feat1.get("type") == 2.0:
+		if feat1.get("type") == Opt.FEAT_TACTIC:
 			_tactic1.visible = true
 			_tactic1_name.text = feat1.get("name")
 			_tactic1_tag.text = feat1.get("tags")
@@ -67,7 +68,7 @@ func populate(system):
 			_maneveue1_effect.text = feat1.get("effect")
 	if system.get("feats").size() > 1:
 		var feat1 = system.get("feats").get(1)
-		if feat1.get("type") == 2.0:
+		if feat1.get("type") == Opt.FEAT_TACTIC:
 			_tactic2.visible = true
 			_tactic2_name.text = feat1.get("name")
 			_tactic2_tag.text = feat1.get("tags")

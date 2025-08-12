@@ -1,6 +1,7 @@
 extends PanelContainer
 
 const SlotUtils = preload("res://slot_utils.gd")
+const Opt = preload("res://option_types.gd")
 
 @onready var _name: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Name
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
@@ -22,16 +23,16 @@ const SlotUtils = preload("res://slot_utils.gd")
 @onready var _add: MarginContainer = $VBoxContainer/Button
 @onready var _remove: MarginContainer = $VBoxContainer/Button2
 
-var _src: Dictionary	
+var _src: Dictionary
 
 func _process(delta: float) -> void:
 	if _src.size() != 0 and BattlegroupData.current_ship != -1:
 		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
 		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
 			var sum = SlotUtils.get_slot_sums(ship)
-			if _src["type"] == 0.0 and sum["escort"] <= 0:
+			if _src["type"] == Opt.Support.ESCORT and sum["escort"] <= 0:
 				_add.hide()
-			elif _src["type"] == 1.0 and sum["wing"] <= 0:
+			elif _src["type"] == Opt.Support.WING and sum["wing"] <= 0:
 				_add.hide()
 			if _src in ship["option"]:
 				_remove.show()
@@ -47,9 +48,9 @@ func _process(delta: float) -> void:
 func populate(system):
 	_src = system.duplicate(true)
 	_name.text = system.get("name")
-	if system.get("type") == 0.0:
+	if system.get("type") == Opt.Support.ESCORT:
 		_tags.text = "Эскорт"
-	elif system.get("type") == 1.0:
+	elif system.get("type") == Opt.Support.WING:
 		_tags.text = "Крыло"
 	if system.get("tags") != "":
 		_tags.text += ", " + system.get("tags")
@@ -63,7 +64,7 @@ func populate(system):
 	_discription.text = "[i]" + system.get("discription") + "[/i]"
 	if system.get("feats").size() > 0:
 		var feat1 = system.get("feats").get(0)
-		if feat1.get("type") == 2.0:
+		if feat1.get("type") == Opt.FEAT_TACTIC:
 			_tactic1.visible = true
 			_tactic1_name.text = feat1.get("name")
 			_tactic1_tag.text = feat1.get("tags")
@@ -75,7 +76,7 @@ func populate(system):
 			_maneveue1_effect.text = feat1.get("effect")
 	if system.get("feats").size() > 1:
 		var feat1 = system.get("feats").get(1)
-		if feat1.get("type") == 2.0:
+		if feat1.get("type") == Opt.FEAT_TACTIC:
 			_tactic2.visible = true
 			_tactic2_name.text = feat1.get("name")
 			_tactic2_tag.text = feat1.get("tags")

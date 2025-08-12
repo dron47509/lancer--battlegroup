@@ -1,5 +1,7 @@
 extends PanelContainer
 
+const Opt = preload("res://option_types.gd")
+
 ## ───────────────────────────────────────────────────────────────────
 ## 1.  Экспортируемые ресурсы и пути
 ## ───────────────────────────────────────────────────────────────────
@@ -12,12 +14,12 @@ extends PanelContainer
 ## 2.  Контейнеры категорий
 ## ───────────────────────────────────────────────────────────────────
 @onready var _slot_info := {          # индекс OptionButton → {key, node}
-	0: { "key":"superheavy", "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Superheavy },
-	1: { "key":"primaries",  "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Primary   },
-	2: { "key":"auxiliaries","node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Auxiliry  },
-	3: { "key":"systems",    "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/System    },
-	4: { "key":"escorts",    "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Escort    },
-	5: { "key":"wings",      "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Wing      },
+	Opt.SlotIndex.SUPERHEAVY:  { "key":"superheavy",  "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Superheavy },
+	Opt.SlotIndex.PRIMARIES:   { "key":"primaries",   "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Primary   },
+	Opt.SlotIndex.AUXILIARIES:{ "key":"auxiliaries","node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Auxiliry  },
+	Opt.SlotIndex.SYSTEMS:     { "key":"systems",     "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/System    },
+	Opt.SlotIndex.ESCORTS:     { "key":"escorts",     "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Escort    },
+	Opt.SlotIndex.WINGS:       { "key":"wings",       "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Wing      },
 }
 
 @onready var _close : Button = $MarginContainer/VBoxContainer/HBoxContainer/Button
@@ -31,8 +33,8 @@ func _ready() -> void:
 	BattlegroupData.option_change.connect(_apply_ship_filter)
 	# сразу применяем фильтр для первого выбранного корабля (если есть)
 	_apply_ship_filter()
-	
-	
+
+
 
 func _populate_all() -> void:
 	var raw := _load_json(json_path)
@@ -48,22 +50,22 @@ func _populate_all() -> void:
 	# системы
 	for s in raw.get("systems", []):
 		var n := system_scene.instantiate()
-		_slot_info[3]["node"].add_child(n)     # 3 → systems
+		_slot_info[Opt.SlotIndex.SYSTEMS]["node"].add_child(n)     # systems
 		n.populate(s)
 
 	# эскорты / крылья
 	for e in raw.get("escorts_wings", []):
 		var n := eswg_scene.instantiate()
-		var idx := 4 if e.get("type") == 0.0 else 5   # 0=escort, 1=wing
+		var idx := Opt.SlotIndex.ESCORTS if e.get("type") == Opt.Support.ESCORT else Opt.SlotIndex.WINGS   # support type
 		_slot_info[idx]["node"].add_child(n)
 		n.populate(e)
 
 func _type_to_index(t: float) -> int:
 	var x
 	match int(t):
-		0: x = 0     # superheavy
-		1: x = 1     # primaries
-		2: x = 2     # auxiliaries
+		Opt.Weapon.SUPERHEAVY: x = Opt.SlotIndex.SUPERHEAVY
+		Opt.Weapon.PRIMARY:    x = Opt.SlotIndex.PRIMARIES
+		Opt.Weapon.AUXILIARY:  x = Opt.SlotIndex.AUXILIARIES
 		_: x = -1
 	return x
 ## ───────────────────────────────────────────────────────────────────
@@ -95,8 +97,8 @@ func _apply_ship_filter() -> void:
 func _on_option_button_item_selected(index: int) -> void:
 	_apply_ship_filter()   # актуализируем visibile = true/false
 
-	# если выбран «Все» (6) — оставляем как есть
-	if index == 6:
+	# если выбран «Все» — оставляем как есть
+	if index == Opt.SlotIndex.ALL:
 		return
 
 	# иначе скрываем всё, кроме нужного индекса

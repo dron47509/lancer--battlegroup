@@ -3,6 +3,7 @@ extends VBoxContainer                        # навесьте на узел Hu
 
 @export var json_path := "user://battlegroup_data.json"
 @export var hull_scene:= preload("res://support_scanes/hull.tscn")    # drag-and-drop Hull.tscn в инспекторе
+const Opt = preload("res://option_types.gd")
 
 @onready var _frigate: VBoxContainer = $Hulls_list/VBoxContainer/Frigate
 @onready var _carrier: VBoxContainer = $Hulls_list/VBoxContainer/Carrier
@@ -21,11 +22,11 @@ func _ready() -> void:
 
 func _spawn_hull(hull_data: Dictionary) -> void:
 	var hull := hull_scene.instantiate()
-	if hull_data["class"] == 0.0:
+	if int(hull_data["class"]) == BattlegroupData.ShipClass.FRIGATE:
 		_frigate.add_child(hull)
-	elif hull_data["class"] == 1.0:
+	elif int(hull_data["class"]) == BattlegroupData.ShipClass.CARRIER:
 		_carrier.add_child(hull)
-	elif hull_data["class"] == 2.0:
+	elif int(hull_data["class"]) == BattlegroupData.ShipClass.BATTLESHIP:
 		_battleship.add_child(hull)
 	hull.get_child(0).populate(hull_data)
 	#hull.get_child(0).hull_added.connect(BattlegroupData.add_hull)
@@ -48,13 +49,13 @@ func _on_option_button_item_selected(index: int) -> void:
 	_frigate.hide()
 	_carrier.hide()
 	_battleship.hide()
-	if  _options.selected == 1:
+	if  _options.selected == Opt.HullFilter.FRIGATE:
 		_frigate.show()
-	elif  _options.selected == 2:
+	elif  _options.selected == Opt.HullFilter.CARRIER:
 		_carrier.show()
-	elif  _options.selected == 3:
+	elif  _options.selected == Opt.HullFilter.BATTLESHIP:
 		_battleship.show()
-	elif _options.selected == 0:
+	elif _options.selected == Opt.HullFilter.ALL:
 		_frigate.show()
 		_carrier.show()
 		_battleship.show()

@@ -23,9 +23,9 @@ extends PanelContainer
 var _src: Dictionary    
 
 func _process(delta: float) -> void:
-        if _src.size() != 0 and BattlegroupData.current_ship != -1:
-                var ship = BattlegroupData.ships[BattlegroupData.current_ship]
-                if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
+	if _src.size() != 0 and BattlegroupData.current_ship != -1:
+		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
+		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
 			var sum = {
 				"auxiliary": int(ship["weapon_slots"]["auxiliaries"]),
 				"escort": int(ship["support_slots"]["escorts"]),
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 				"system": int(ship["support_slots"]["systems"]),
 				"wing": int(ship["support_slots"]["wings"])
 			}
-                        for x in BattlegroupData.ships[BattlegroupData.current_ship]["option"]:
+			for x in BattlegroupData.ships[BattlegroupData.current_ship]["option"]:
 				sum["auxiliary"] += int(x["modification"]["auxiliary"])
 				sum["escort"] += int(x["modification"]["escort"])
 				sum["primary"] += int(x["modification"]["primary"])
@@ -99,8 +99,8 @@ func populate(system):
 			_maneveue1_effect.text = feat1.get("effect")
 
 func _on_add_pressed() -> void:
-        BattlegroupData.ships[BattlegroupData.current_ship]["option"].append(_src)
+	BattlegroupData.ships[BattlegroupData.current_ship]["option"].append(_src)
 
 
 func _on_remove_pressed() -> void:
-        BattlegroupData.ships[BattlegroupData.current_ship]["option"].erase(_src)
+	BattlegroupData.ships[BattlegroupData.current_ship]["option"].erase(_src)

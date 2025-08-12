@@ -74,7 +74,7 @@ func _apply_ship_filter() -> void:
 	for d in _slot_info.values():
 		d.node.visible = false
 
-        var idx := int(BattlegroupData.current_ship)
+	var idx := int(BattlegroupData.current_ship)
 	if idx < 0 or idx >= BattlegroupData.ships.size():
 		return                                     # корабль не выбран
 

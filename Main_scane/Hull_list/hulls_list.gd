@@ -1,7 +1,7 @@
 ###  HullList.gd  ###
 extends VBoxContainer                        # навесьте на узел Hull_list
 
-@export var json_path := "user://battlegroup_data.json"
+@export var json_path := "res://battlegroup_data.json"
 @export var hull_scene:= preload("res://support_scanes/hull.tscn")    # drag-and-drop Hull.tscn в инспекторе
 const Opt = preload("res://option_types.gd")
 

@@ -28,6 +28,15 @@ var ships: Array = []     # хранит сами словари-корпуса
 # Добавление.  ➜ true — успех, false — отказ (лимит/неизвестный класс/уже есть).
 func add_hull(hull: Dictionary) -> bool:
 	var cls := int(hull.get("class", -1))
+	
+	if not MAX_COUNTS.has(cls):
+		push_error("Unknown ship class: %s" % cls)
+		return false
+	
+	if not class_counts.has(cls):
+		push_error("class_counts missing class: %s" % cls)
+		return false
+	
 	if class_counts[cls] >= MAX_COUNTS[cls] or point + int(hull.get("points")) > 20:
 		return false
 

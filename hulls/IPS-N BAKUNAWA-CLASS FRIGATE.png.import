@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://b146m6j700hn3"
+path="res://.godot/imported/IPS-N BAKUNAWA-CLASS FRIGATE.png-3864a9e5720513e7c8c424a9d2dbe1cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/IPS-N BAKUNAWA-CLASS FRIGATE.png"
+dest_files=["res://.godot/imported/IPS-N BAKUNAWA-CLASS FRIGATE.png-3864a9e5720513e7c8c424a9d2dbe1cd.ctex"]
 
 [params]
 

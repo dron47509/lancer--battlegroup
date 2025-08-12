@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://dg7dxtw53lmf1"
+path="res://.godot/imported/IPS-N LAHO-CLASS FRIGATE.png-66be7fc701dbff4abf14f9ed3738eb63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/IPS-N LAHO-CLASS FRIGATE.png"
+dest_files=["res://.godot/imported/IPS-N LAHO-CLASS FRIGATE.png-66be7fc701dbff4abf14f9ed3738eb63.ctex"]
 
 [params]
 

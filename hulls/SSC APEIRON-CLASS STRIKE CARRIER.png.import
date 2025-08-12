@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://c6gfd5dn23mwm"
+path="res://.godot/imported/SSC APEIRON-CLASS STRIKE CARRIER.png-38d0799b068368a0fe2816938fbca100.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/SSC APEIRON-CLASS STRIKE CARRIER.png"
+dest_files=["res://.godot/imported/SSC APEIRON-CLASS STRIKE CARRIER.png-38d0799b068368a0fe2816938fbca100.ctex"]
 
 [params]
 

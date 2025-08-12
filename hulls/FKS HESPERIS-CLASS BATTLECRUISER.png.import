@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://rmra6deamfq3"
+path="res://.godot/imported/FKS HESPERIS-CLASS BATTLECRUISER.png-6a29bc5a511199b49bb157a060978917.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/FKS HESPERIS-CLASS BATTLECRUISER.png"
+dest_files=["res://.godot/imported/FKS HESPERIS-CLASS BATTLECRUISER.png-6a29bc5a511199b49bb157a060978917.ctex"]
 
 [params]
 

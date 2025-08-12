@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://b3shij3e7c0d7"
+path="res://.godot/imported/FKS CALENDULA-CLASS BATTLECRUISER.png-5a6e3a200f3ce55a12684a41d36652c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/FKS CALENDULA-CLASS BATTLECRUISER.png"
+dest_files=["res://.godot/imported/FKS CALENDULA-CLASS BATTLECRUISER.png-5a6e3a200f3ce55a12684a41d36652c6.ctex"]
 
 [params]
 

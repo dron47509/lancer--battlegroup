@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://by7sc5b5a2cmq"
+path="res://.godot/imported/IPS-N EILAND-CLASS COMMAND CARRIER.png-3c0ece67ef4496a0e50b28b57e422f53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/IPS-N EILAND-CLASS COMMAND CARRIER.png"
+dest_files=["res://.godot/imported/IPS-N EILAND-CLASS COMMAND CARRIER.png-3c0ece67ef4496a0e50b28b57e422f53.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://dyo4vqhlpm7mq"
+path="res://.godot/imported/HA CREIGHTON-CLASS FRIGATE (VEGA).png-16584e2099e61d9237a9a2bd8126a475.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/HA CREIGHTON-CLASS FRIGATE (VEGA).png"
+dest_files=["res://.godot/imported/HA CREIGHTON-CLASS FRIGATE (VEGA).png-16584e2099e61d9237a9a2bd8126a475.ctex"]
 
 [params]
 

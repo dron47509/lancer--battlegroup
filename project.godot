@@ -15,6 +15,10 @@ run/main_scene="uid://cpb3nqlbj36ba"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+BattlegroupData="*res://battlegroup_data.gd"
+
 [display]
 
 window/size/viewport_width=400

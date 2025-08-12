@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://ihkj5ctm6n8p"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_31lad"]
+bg_color = Color(0.560784, 0.00392157, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
+[resource]
+Label/colors/font_color = Color(1, 1, 1, 1)
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_31lad")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)

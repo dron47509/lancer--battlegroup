@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://y65o1fbeqtob"
+path="res://.godot/imported/FKS TOLUMNIA-CLASS FRIGATE.png-fc4a9b837a98a191270f25890776968c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/FKS TOLUMNIA-CLASS FRIGATE.png"
+dest_files=["res://.godot/imported/FKS TOLUMNIA-CLASS FRIGATE.png-fc4a9b837a98a191270f25890776968c.ctex"]
 
 [params]
 

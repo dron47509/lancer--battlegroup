@@ -1,0 +1,166 @@
+[gd_scene load_steps=11 format=3 uid="uid://cedyksf1fnxbb"]
+
+[ext_resource type="Theme" uid="uid://blrpjxg6vi07i" path="res://Main_scane/Option_list/Option_list.tres" id="1_axrc0"]
+[ext_resource type="Script" uid="uid://cf0xjkphie5ij" path="res://Main_scane/Option_list/option_list.gd" id="2_3li8n"]
+[ext_resource type="Texture2D" uid="uid://bpl6vgoxx8kjw" path="res://icons/close-svgrepo-com.svg" id="3_t0xno"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3li8n"]
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_t0xno"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_knkwd"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8ckod"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p8owa"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ow11d"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2suni"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Option_list" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_axrc0")
+script = ExtResource("2_3li8n")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Компоненты:"
+label_settings = SubResource("LabelSettings_3li8n")
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 10
+icon = ExtResource("3_t0xno")
+flat = true
+expand_icon = true
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+selected = 6
+item_count = 7
+popup/item_0/text = "Сверхтяжелые"
+popup/item_0/id = 0
+popup/item_1/text = "Основные"
+popup/item_1/id = 1
+popup/item_2/text = "Вспомогательные"
+popup/item_2/id = 2
+popup/item_3/text = "Системы"
+popup/item_3/id = 3
+popup/item_4/text = "Эскорты"
+popup/item_4/id = 4
+popup/item_5/text = "Крылья"
+popup/item_5/id = 5
+popup/item_6/text = "Все"
+popup/item_6/id = 6
+
+[node name="OptionButton2" type="OptionButton" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+selected = 6
+item_count = 7
+popup/item_0/text = "Сверхтяжелые"
+popup/item_0/id = 0
+popup/item_1/text = "Основные"
+popup/item_1/id = 1
+popup/item_2/text = "Вспомогательные"
+popup/item_2/id = 2
+popup/item_3/text = "Крылья"
+popup/item_3/id = 3
+popup/item_4/text = "Эскорты"
+popup/item_4/id = 4
+popup/item_5/text = "Системы"
+popup/item_5/id = 5
+popup/item_6/text = "Все"
+popup/item_6/id = 6
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Superheavy" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Superheavy"]
+layout_mode = 2
+text = "Сверхтяжелые орудия:"
+label_settings = SubResource("LabelSettings_t0xno")
+
+[node name="Primary" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Primary"]
+layout_mode = 2
+text = "Основные орудия:"
+label_settings = SubResource("LabelSettings_knkwd")
+
+[node name="Auxiliry" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Auxiliry"]
+layout_mode = 2
+text = "Вспомогательные орудия:"
+label_settings = SubResource("LabelSettings_8ckod")
+
+[node name="System" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/System"]
+layout_mode = 2
+text = "Системы:"
+label_settings = SubResource("LabelSettings_p8owa")
+
+[node name="Escort" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Escort"]
+layout_mode = 2
+text = "Эскорты:"
+label_settings = SubResource("LabelSettings_ow11d")
+
+[node name="Wing" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Wing"]
+layout_mode = 2
+text = "Крылья:"
+label_settings = SubResource("LabelSettings_2suni")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]

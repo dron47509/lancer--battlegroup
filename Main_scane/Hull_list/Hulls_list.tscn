@@ -1,0 +1,103 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6uig71qwu7pr"]
+
+[ext_resource type="Script" uid="uid://j17ns6whrk8w" path="res://Main_scane/Hull_list/hulls_list.gd" id="1_k6by2"]
+[ext_resource type="Texture2D" uid="uid://bpl6vgoxx8kjw" path="res://icons/close-svgrepo-com.svg" id="2_k6by2"]
+
+[sub_resource type="Theme" id="Theme_k6by2"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k6by2"]
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6fcho"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nved2"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jx8cl"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Hulls_box" type="VBoxContainer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_k6by2")
+script = ExtResource("1_k6by2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Корабли:"
+label_settings = SubResource("LabelSettings_k6by2")
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+icon = ExtResource("2_k6by2")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "Все"
+popup/item_0/id = 0
+popup/item_1/text = "Фрегаты"
+popup/item_1/id = 1
+popup/item_2/text = "Авианосцы"
+popup/item_2/id = 2
+popup/item_3/text = "Линкоры"
+popup/item_3/id = 3
+
+[node name="Hulls_list" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hulls_list"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Battleship" type="VBoxContainer" parent="Hulls_list/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hulls_list/VBoxContainer/Battleship"]
+layout_mode = 2
+text = "Линкоры:"
+label_settings = SubResource("LabelSettings_6fcho")
+
+[node name="Carrier" type="VBoxContainer" parent="Hulls_list/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hulls_list/VBoxContainer/Carrier"]
+layout_mode = 2
+text = "Авианосцы:"
+label_settings = SubResource("LabelSettings_nved2")
+
+[node name="Frigate" type="VBoxContainer" parent="Hulls_list/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Hulls_list/VBoxContainer/Frigate"]
+layout_mode = 2
+text = "Фрегаты:"
+label_settings = SubResource("LabelSettings_jx8cl")
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="item_selected" from="OptionButton" to="." method="_on_option_button_item_selected"]

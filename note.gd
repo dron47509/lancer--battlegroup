@@ -6,7 +6,7 @@ var text
 
 func _on_button_pressed() -> void:
 	parent_node.text = $TextEdit.text
-	$"../ScrollContainer".visible = true
+	$"../Commander_interface".visible = true
 	visible = false
 
 

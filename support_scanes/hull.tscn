@@ -1,0 +1,206 @@
+[gd_scene load_steps=6 format=3 uid="uid://dl83y63tm3nca"]
+
+[ext_resource type="Script" uid="uid://gg34snppjj3t" path="res://support_scanes/hull.gd" id="1_j70ce"]
+[ext_resource type="Theme" uid="uid://d31dmyser3qbo" path="res://support_scanes/Hull_theme.tres" id="1_x6ilt"]
+[ext_resource type="Script" uid="uid://bim2b1qvnrks6" path="res://support_scanes/options.gd" id="3_j70ce"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_j70ce"]
+font_color = Color(0.713726, 0.12549, 0.145098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tgw6a"]
+font_size = 14
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_x6ilt")
+
+[node name="Hull" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_x6ilt")
+script = ExtResource("1_j70ce")
+
+[node name="Name" type="Label" parent="Hull"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_j70ce")
+horizontal_alignment = 1
+
+[node name="Image" type="TextureRect" parent="Hull"]
+layout_mode = 2
+expand_mode = 5
+
+[node name="Type" type="Label" parent="Hull"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_tgw6a")
+
+[node name="HSeparator2" type="HSeparator" parent="Hull"]
+layout_mode = 2
+
+[node name="Paramets" type="HBoxContainer" parent="Hull"]
+layout_mode = 2
+
+[node name="Point_Container" type="VBoxContainer" parent="Hull/Paramets"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Paramets/Point_Container"]
+layout_mode = 2
+text = "Очки"
+horizontal_alignment = 1
+
+[node name="Point" type="Label" parent="Hull/Paramets/Point_Container"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HP_Container" type="VBoxContainer" parent="Hull/Paramets"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Paramets/HP_Container"]
+layout_mode = 2
+text = "HP"
+horizontal_alignment = 1
+
+[node name="HP" type="Label" parent="Hull/Paramets/HP_Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+
+[node name="Defence_Container" type="VBoxContainer" parent="Hull/Paramets"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Paramets/Defence_Container"]
+layout_mode = 2
+text = "Защита"
+horizontal_alignment = 1
+
+[node name="Defence" type="Label" parent="Hull/Paramets/Defence_Container"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Hull"]
+layout_mode = 2
+
+[node name="Options" type="HBoxContainer" parent="Hull"]
+layout_mode = 2
+script = ExtResource("3_j70ce")
+
+[node name="Superheavies" type="VBoxContainer" parent="Hull/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Options/Superheavies"]
+layout_mode = 2
+text = "Сверхтяжёлое"
+horizontal_alignment = 1
+
+[node name="Superheavy" type="Label" parent="Hull/Options/Superheavies"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Primaries" type="VBoxContainer" parent="Hull/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Options/Primaries"]
+layout_mode = 2
+text = "Основное"
+horizontal_alignment = 1
+
+[node name="Primary" type="Label" parent="Hull/Options/Primaries"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Auxiliaries" type="VBoxContainer" parent="Hull/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Options/Auxiliaries"]
+layout_mode = 2
+text = "Вспом."
+horizontal_alignment = 1
+
+[node name="Auxiliary" type="Label" parent="Hull/Options/Auxiliaries"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Wings" type="VBoxContainer" parent="Hull/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Options/Wings"]
+layout_mode = 2
+text = "Крылья"
+horizontal_alignment = 1
+
+[node name="Wing" type="Label" parent="Hull/Options/Wings"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Escorts" type="VBoxContainer" parent="Hull/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Options/Escorts"]
+layout_mode = 2
+text = "Эскорты"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Escort" type="Label" parent="Hull/Options/Escorts"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Systems" type="VBoxContainer" parent="Hull/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Options/Systems"]
+layout_mode = 2
+text = "Системы"
+horizontal_alignment = 1
+
+[node name="System" type="Label" parent="Hull/Options/Systems"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="Hull"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Hull"]
+layout_mode = 2
+
+[node name="Feats_container" type="VBoxContainer" parent="Hull/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Hull"]
+layout_mode = 2
+
+[node name="Discription" type="RichTextLabel" parent="Hull/MarginContainer2"]
+layout_mode = 2
+fit_content = true
+
+[node name="Button" type="Button" parent="Hull"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить корпус"
+
+[node name="Button2" type="Button" parent="Hull"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Убрать корпус"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Hull"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2

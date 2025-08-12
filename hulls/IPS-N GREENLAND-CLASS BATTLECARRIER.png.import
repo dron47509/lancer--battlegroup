@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://bgnq6gedtirsj"
+path="res://.godot/imported/IPS-N GREENLAND-CLASS BATTLECARRIER.png-49aac0f82e459346c3d57dd24123136f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/IPS-N GREENLAND-CLASS BATTLECARRIER.png"
+dest_files=["res://.godot/imported/IPS-N GREENLAND-CLASS BATTLECARRIER.png-49aac0f82e459346c3d57dd24123136f.ctex"]
 
 [params]
 

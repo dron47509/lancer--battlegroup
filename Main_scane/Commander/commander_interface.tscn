@@ -1,0 +1,165 @@
+[gd_scene load_steps=5 format=3 uid="uid://bk4l31w0lm0by"]
+
+[ext_resource type="PackedScene" uid="uid://ffwqq2icwm4n" path="res://Main_scane/Commander/commander.tscn" id="1_sm655"]
+[ext_resource type="PackedScene" uid="uid://1yxsler2mri0" path="res://Main_scane/Commander/ship.tscn" id="2_qtobk"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ytbto"]
+color = Color(0.408329, 0.408329, 0.408329, 1)
+thickness = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_7nqf6"]
+font_size = 20
+
+[node name="Commander_interface" type="ScrollContainer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="Main" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Commander" parent="Main" instance=ExtResource("1_sm655")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Main"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ytbto")
+
+[node name="Battlegroup" type="VBoxContainer" parent="Main"]
+layout_mode = 2
+
+[node name="Battlegroup_label" type="Label" parent="Main/Battlegroup"]
+layout_mode = 2
+text = "Боевая группа:"
+label_settings = SubResource("LabelSettings_7nqf6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Battlegroup"]
+layout_mode = 2
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Main/Battlegroup/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+text = "Очки:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Battlegroup/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0 /"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Main/Battlegroup/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Фрегаты:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Battlegroup/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "/"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Main/Battlegroup/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Авианосцы:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Battlegroup/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "/"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Main/Battlegroup/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Эсминцы:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main/Battlegroup/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+text = "/"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Main/Battlegroup/HBoxContainer/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+
+[node name="Ship" parent="Main/Battlegroup" instance=ExtResource("2_qtobk")]
+layout_mode = 2
+
+[node name="Add_hull" type="Button" parent="Main/Battlegroup"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить корпус +"
+
+[editable path="Main/Commander"]
+[editable path="Main/Commander/VBoxContainer/Edit_label"]
+[editable path="Main/Commander/VBoxContainer/HBoxContainer/Edit_label2"]
+[editable path="Main/Commander/VBoxContainer/HBoxContainer/Edit_label3"]
+[editable path="Main/Commander/VBoxContainer/HBoxContainer3/Edit_label3"]

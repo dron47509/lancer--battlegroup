@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cxls2uqga2v61"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vybui"]
+bg_color = Color(0.580874, 0.49449, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4r53"]
+bg_color = Color(0.666667, 0.568627, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5gai"]
+bg_color = Color(0.518075, 0.440222, 2.88785e-07, 1)
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_vybui")
+Button/styles/hover = SubResource("StyleBoxFlat_vybui")
+Button/styles/normal = SubResource("StyleBoxFlat_b4r53")
+Button/styles/pressed = SubResource("StyleBoxFlat_k5gai")

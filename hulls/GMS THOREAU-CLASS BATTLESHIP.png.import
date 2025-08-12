@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://3s3dklw6r1v"
+path="res://.godot/imported/GMS THOREAU-CLASS BATTLESHIP.png-6bc07e17b18cb5973234d1c4189e82b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/GMS THOREAU-CLASS BATTLESHIP.png"
+dest_files=["res://.godot/imported/GMS THOREAU-CLASS BATTLESHIP.png-6bc07e17b18cb5973234d1c4189e82b7.ctex"]
 
 [params]
 

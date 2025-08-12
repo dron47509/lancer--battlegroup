@@ -1,0 +1,136 @@
+[gd_scene load_steps=3 format=3 uid="uid://m2w268pvfcue"]
+
+[ext_resource type="Script" uid="uid://d372ba2h6acfe" path="res://Main_scane/Commander/battlegroup.gd" id="1_a6mfk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7nqf6"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Battlegroup" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a6mfk")
+
+[node name="Battlegroup_label" type="Label" parent="."]
+layout_mode = 2
+text = "Боевая группа:"
+label_settings = SubResource("LabelSettings_7nqf6")
+
+[node name="Inform_panel" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Point_container" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Inform_panel/Point_container"]
+layout_mode = 2
+text = "Очки:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Inform_panel/Point_container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inform_panel/Point_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0 /"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="Inform_panel/Point_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "20"
+
+[node name="Frigate_container" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Inform_panel/Frigate_container"]
+layout_mode = 2
+text = "Фрегаты:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Inform_panel/Frigate_container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inform_panel/Frigate_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Inform_panel/Frigate_container/HBoxContainer"]
+layout_mode = 2
+text = "/"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Inform_panel/Frigate_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+
+[node name="Carrier_container" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Inform_panel/Carrier_container"]
+layout_mode = 2
+text = "Авианосцы:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Inform_panel/Carrier_container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inform_panel/Carrier_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Inform_panel/Carrier_container/HBoxContainer"]
+layout_mode = 2
+text = "/"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Inform_panel/Carrier_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+
+[node name="Battleship_container" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Inform_panel/Battleship_container"]
+layout_mode = 2
+text = "Эсминцы:"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Inform_panel/Battleship_container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inform_panel/Battleship_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 2
+
+[node name="Label2" type="Label" parent="Inform_panel/Battleship_container/HBoxContainer"]
+layout_mode = 2
+text = "/"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Inform_panel/Battleship_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="Ship_list" type="VBoxContainer" parent="."]
+layout_mode = 2

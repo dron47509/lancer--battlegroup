@@ -1,0 +1,199 @@
+[gd_scene load_steps=9 format=3 uid="uid://cuh24skqavw1q"]
+
+[ext_resource type="Theme" uid="uid://bd12b47v8mtru" path="res://Main_scane/Option_list/Theme/Escort_Wing.tres" id="1_urvui"]
+[ext_resource type="Theme" uid="uid://cxk0yo6uun4hc" path="res://Main_scane/Option_list/Theme/Escort_Wing_head.tres" id="2_ea7tr"]
+[ext_resource type="Script" uid="uid://b8ce4vrlkyvrp" path="res://Main_scane/Option_list/escort_wing.gd" id="2_sujst"]
+[ext_resource type="Theme" uid="uid://bv15hsbarh0ee" path="res://Main_scane/Option_list/Theme/maneveue.tres" id="3_ylkxv"]
+[ext_resource type="Theme" uid="uid://qqtlvkypad6c" path="res://Main_scane/Option_list/Theme/for_label.tres" id="4_jxlbm"]
+[ext_resource type="Theme" uid="uid://ihkj5ctm6n8p" path="res://Main_scane/Option_list/Theme/maneveue_head.tres" id="4_sujst"]
+[ext_resource type="Theme" uid="uid://clf85mpqe5p0v" path="res://tactic.tres" id="5_m1bvk"]
+[ext_resource type="Theme" uid="uid://dduae04ub3q8p" path="res://Main_scane/Option_list/Theme/tactic_head.tres" id="6_isvnc"]
+
+[node name="Escort_wing" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_urvui")
+script = ExtResource("2_sujst")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Head" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_ea7tr")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Head"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Head/MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_jxlbm")
+text = "Теги"
+fit_content = true
+
+[node name="Tags" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Теги"
+fit_content = true
+
+[node name="Param" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "[Дистанция 4-0] [Урон 1d6+2] [Упорство 12]
+[Очки 4]"
+fit_content = true
+
+[node name="Effect" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Effect"]
+layout_mode = 2
+text = "Большое описание Большое описание Большое описание"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Discription" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Discription" type="RichTextLabel" parent="VBoxContainer/Discription"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[i]Большое описание Большое описание Большое описание "
+fit_content = true
+
+[node name="Maneveue1" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_ylkxv")
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Maneveue1"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Maneveue1/PanelContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_sujst")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Описание"
+fit_content = true
+
+[node name="Tactic1" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_m1bvk")
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Tactic1"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tactic1/PanelContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_isvnc")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Описание"
+fit_content = true
+
+[node name="Tactic2" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("5_m1bvk")
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Tactic2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tactic2/PanelContainer2"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_isvnc")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Описание"
+fit_content = true
+
+[node name="Button" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="VBoxContainer/Button"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить"
+
+[node name="Button2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/Button2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Убрать"
+
+[connection signal="pressed" from="VBoxContainer/Button/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2/Remove" to="." method="_on_remove_pressed"]

@@ -1,0 +1,179 @@
+[gd_scene load_steps=22 format=3 uid="uid://cpb3nqlbj36ba"]
+
+[ext_resource type="Script" uid="uid://csp5ojh14irwf" path="res://Main_scane/main.gd" id="1_fos0i"]
+[ext_resource type="PackedScene" uid="uid://ffwqq2icwm4n" path="res://Main_scane/Commander/commander.tscn" id="2_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://m2w268pvfcue" path="res://Main_scane/Commander/battlegroup.tscn" id="3_lgr22"]
+[ext_resource type="PackedScene" uid="uid://dkuii5nokbvcq" path="res://note.tscn" id="4_trn2v"]
+[ext_resource type="PackedScene" uid="uid://c6uig71qwu7pr" path="res://Main_scane/Hull_list/Hulls_list.tscn" id="5_03owx"]
+[ext_resource type="PackedScene" uid="uid://cedyksf1fnxbb" path="res://Main_scane/Option_list/option_list.tscn" id="6_hx7mi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ic1s"]
+bg_color = Color(0.560784, 0.00392157, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.560784, 0.00392157, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80e7i"]
+bg_color = Color(0.713726, 0.12549, 0.145098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.713726, 0.12549, 0.145098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qang5"]
+bg_color = Color(0.419608, 0.00392157, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.419608, 0.00392157, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_80e7i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nh136"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hpybd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exakp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hx7mi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_522w0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exakp"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 3
+border_color = Color(0.713726, 0.12549, 0.145098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_522w0"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hx7mi"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpybd"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_hx7mi"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_0ic1s")
+Button/styles/normal = SubResource("StyleBoxFlat_80e7i")
+Button/styles/pressed = SubResource("StyleBoxFlat_qang5")
+CheckBox/styles/disabled = SubResource("StyleBoxEmpty_80e7i")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_nh136")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_hpybd")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_exakp")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_hx7mi")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_522w0")
+Label/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.631373)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/selection_color = Color(0.713726, 0.12549, 0.145098, 1)
+LineEdit/styles/focus = SubResource("StyleBoxFlat_exakp")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_522w0")
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_hx7mi")
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_hover_color = Color(1, 1, 1, 1)
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_80e7i")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_hpybd")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ytbto"]
+color = Color(0.408329, 0.408329, 0.408329, 1)
+thickness = 4
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_hx7mi")
+script = ExtResource("1_fos0i")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Commander_interface" type="ScrollContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Main" type="VBoxContainer" parent="PanelContainer/MarginContainer/Commander_interface"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Commander" parent="PanelContainer/MarginContainer/Commander_interface/Main" instance=ExtResource("2_3dxm6")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/Commander_interface/Main"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ytbto")
+
+[node name="Battlegroup" parent="PanelContainer/MarginContainer/Commander_interface/Main" instance=ExtResource("3_lgr22")]
+layout_mode = 2
+
+[node name="Add_hull" type="Button" parent="PanelContainer/MarginContainer/Commander_interface/Main"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить корпус +"
+
+[node name="Hulls_list" parent="PanelContainer/MarginContainer" instance=ExtResource("5_03owx")]
+visible = false
+layout_mode = 2
+
+[node name="Option_list" parent="PanelContainer/MarginContainer" instance=ExtResource("6_hx7mi")]
+visible = false
+layout_mode = 2
+
+[node name="Note" parent="PanelContainer/MarginContainer" instance=ExtResource("4_trn2v")]
+visible = false
+layout_mode = 2
+
+[connection signal="change_scene" from="PanelContainer/MarginContainer/Commander_interface/Main/Commander" to="." method="_on_commander_change_scene"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Commander_interface/Main/Add_hull" to="." method="_on_hull_list_change_scene"]
+
+[editable path="PanelContainer/MarginContainer/Commander_interface/Main/Commander"]

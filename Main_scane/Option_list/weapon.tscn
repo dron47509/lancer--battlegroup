@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpog3om631ner"]
+
+[ext_resource type="Theme" uid="uid://b3luguxwg7daa" path="res://Main_scane/Hull_list/Themes/Weapon.tres" id="1_0srrn"]
+[ext_resource type="Theme" uid="uid://g1g15wtayaql" path="res://Main_scane/Hull_list/Themes/Weapon_header.tres" id="2_627df"]
+[ext_resource type="Script" uid="uid://bsewkfg83h67e" path="res://Main_scane/Option_list/weapon.gd" id="2_luaq8"]
+[ext_resource type="Theme" uid="uid://qqtlvkypad6c" path="res://Main_scane/Option_list/Theme/for_label.tres" id="4_luaq8"]
+
+[node name="Weapon" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0srrn")
+script = ExtResource("2_luaq8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Head" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_627df")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Head"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Head/MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_luaq8")
+text = "Имя"
+fit_content = true
+
+[node name="Tags" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Теги"
+fit_content = true
+
+[node name="Param" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "[Дистанция 4-0] [Урон 1d6+2] [Упорство 12]
+[Очки 4]"
+fit_content = true
+
+[node name="Effect" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Effect"]
+layout_mode = 2
+text = "Большое описание Большое описание Большое описание"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Discription" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Discription" type="RichTextLabel" parent="VBoxContainer/Discription"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[i]Большое описание Большое описание Большое описание "
+fit_content = true
+
+[node name="Button" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="VBoxContainer/Button"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить"
+
+[node name="Button2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/Button2"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Убрать"
+
+[connection signal="pressed" from="VBoxContainer/Button/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2/Remove" to="." method="_on_remove_pressed"]

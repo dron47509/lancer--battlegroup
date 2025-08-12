@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfox1wsfas3lb"]
+
+[ext_resource type="Script" uid="uid://dxdav6kwlhk82" path="res://Main_scane/Hull_list/feat_for_showing.gd" id="1_83eq7"]
+[ext_resource type="Theme" uid="uid://bxdv3qkxkuifb" path="res://Main_scane/Hull_list/Themes/Feat.tres" id="1_sa27u"]
+[ext_resource type="Theme" uid="uid://bqrbrc5d862nx" path="res://Main_scane/Hull_list/Themes/Feat_header.tres" id="3_fw3rc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fw3rc"]
+font_size = 20
+
+[node name="Feat" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_sa27u")
+script = ExtResource("1_83eq7")
+
+[node name="Feat" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="PanelContainer" parent="Feat"]
+layout_mode = 2
+theme = ExtResource("3_fw3rc")
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat/Header"]
+layout_mode = 2
+
+[node name="Header" type="VBoxContainer" parent="Feat/Header/MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="Feat/Header/MarginContainer/Header"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_fw3rc")
+
+[node name="Type" type="Label" parent="Feat/Header/MarginContainer/Header"]
+layout_mode = 2
+
+[node name="Tags" type="Label" parent="Feat/Header/MarginContainer/Header"]
+layout_mode = 2
+
+[node name="Damage_range_container" type="HBoxContainer" parent="Feat/Header/MarginContainer/Header"]
+layout_mode = 2
+
+[node name="Damage" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Range" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer"]
+layout_mode = 2
+
+[node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="Discription" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+fit_content = true

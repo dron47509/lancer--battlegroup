@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://deerom4h8pcop"
-path="res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"
+uid="uid://dptfgsxvmpuvr"
+path="res://.godot/imported/HA FARRAGUT-CLASS STARFIELD CARRIER.png-15e604fa4db0bd057751b4085911b2f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://hulls/GMS HURON-CLASS FRIGATE.png"
-dest_files=["res://.godot/imported/GMS HURON-CLASS FRIGATE.png-9bf026721f5df1624ea7a85030dc204e.ctex"]
+source_file="res://hulls/HA FARRAGUT-CLASS STARFIELD CARRIER.png"
+dest_files=["res://.godot/imported/HA FARRAGUT-CLASS STARFIELD CARRIER.png-15e604fa4db0bd057751b4085911b2f2.ctex"]
 
 [params]
 

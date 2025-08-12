@@ -1,0 +1,97 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://d31dmyser3qbo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbp8m"]
+bg_color = Color(0.560784, 0.00392157, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.560784, 0.00392157, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5g3t8"]
+bg_color = Color(0.713726, 0.12549, 0.145098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.713726, 0.12549, 0.145098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b6m2r"]
+bg_color = Color(0.419608, 0.00392157, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.419608, 0.00392157, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amgga"]
+bg_color = Color(0.713726, 0.12549, 0.145098, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.713726, 0.12549, 0.145098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6jtcd"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4laq"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_08tpl"]
+bg_color = Color(0.713726, 0.12549, 0.145098, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.713726, 0.12549, 0.145098, 1)
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_mbp8m")
+Button/styles/normal = SubResource("StyleBoxFlat_5g3t8")
+Button/styles/pressed = SubResource("StyleBoxFlat_b6m2r")
+HSeparator/styles/separator = SubResource("StyleBoxFlat_amgga")
+Label/colors/font_color = Color(0, 0, 0, 1)
+MarginContainer/constants/margin_bottom = 4
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+MarginContainer/constants/margin_top = 4
+Panel/styles/panel = SubResource("StyleBoxFlat_6jtcd")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_q4laq")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+VSeparator/styles/separator = SubResource("StyleBoxFlat_08tpl")

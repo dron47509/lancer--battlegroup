@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://1yxsler2mri0"]
+[gd_scene load_steps=30 format=3 uid="uid://1yxsler2mri0"]
 
 [ext_resource type="Script" uid="uid://becsagq41grx5" path="res://Main_scane/Commander/ship.gd" id="1_vlw5j"]
 [ext_resource type="Theme" uid="uid://dt88e5xvcdgje" path="res://Main_scane/Commander/ship_box.tres" id="2_vybui"]
@@ -23,6 +23,14 @@
 LineEdit/font_sizes/font_size = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swqo0"]
+bg_color = Color(0.514773, 0.43584, 5.77569e-07, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.513726, 0.435294, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dp0u4"]
 bg_color = Color(0.666667, 0.568627, 0, 1)
 border_width_left = 5
 border_width_top = 5
@@ -30,16 +38,23 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.666667, 0.568627, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sfabn"]
+bg_color = Color(0.596078, 0.505882, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.596078, 0.505882, 0, 1)
+
 [sub_resource type="Theme" id="Theme_dp0u4"]
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_focus_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_swqo0")
 Button/styles/hover = SubResource("StyleBoxFlat_swqo0")
-Button/styles/normal = SubResource("StyleBoxFlat_swqo0")
-Button/styles/pressed = SubResource("StyleBoxFlat_swqo0")
+Button/styles/normal = SubResource("StyleBoxFlat_dp0u4")
+Button/styles/pressed = SubResource("StyleBoxFlat_sfabn")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5he1"]
 bg_color = Color(0.113725, 0.447059, 0.164706, 1)

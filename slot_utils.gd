@@ -50,3 +50,14 @@ static func get_slot_usage(ship: Dictionary) -> Dictionary:
 		else:
 			used["system"] += 1
 	return used
+
+static func get_slot_total(ship: Dictionary) -> Dictionary:
+	var sum = {
+		"auxiliary": int(ship["weapon_slots"]["auxiliaries"]),
+		"escort": int(ship["support_slots"]["escorts"]),
+		"primary": int(ship["weapon_slots"]["primaries"]),
+		"superheavy": int(ship["weapon_slots"]["superheavy"]),
+		"system": int(ship["support_slots"]["systems"]),
+		"wing": int(ship["support_slots"]["wings"]),
+	}
+	return sum

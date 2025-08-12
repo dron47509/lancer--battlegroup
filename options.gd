@@ -12,13 +12,8 @@ const SlotUtils = preload("res://slot_utils.gd")
 }
 
 
-func _ready() -> void:
-	visibility_changed.connect(_on_visibility_changed)
+func _process(delta: float) -> void:
 	_update_from_ship()
-
-func _on_visibility_changed() -> void:
-	if visible:
-		_update_from_ship()
 
 
 func _update_from_ship() -> void:
@@ -26,7 +21,7 @@ func _update_from_ship() -> void:
 		if idx < 0 or idx >= BattlegroupData.ships.size():
 				return
 		var ship = BattlegroupData.ships[idx]
-		var sum = SlotUtils.get_slot_sums(ship)
+		var sum = SlotUtils.get_slot_total(ship)
 		var used = SlotUtils.get_slot_usage(ship)
 		_labels["superheavy"].text = "%d/%d" % [used["superheavy"], sum["superheavy"]]
 		_labels["primaries"].text = "%d/%d" % [used["primary"], sum["primary"]]

@@ -26,24 +26,47 @@ const Opt = preload("res://option_types.gd")
 var _src: Dictionary
 
 func _process(delta: float) -> void:
-	if _src.size() != 0 and BattlegroupData.current_ship != -1:
-		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
-		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
-			var sum = SlotUtils.get_slot_sums(ship)
-			if _src["type"] == Opt.Support.ESCORT and sum["escort"] <= 0:
-				_add.hide()
-			elif _src["type"] == Opt.Support.WING and sum["wing"] <= 0:
-				_add.hide()
-			if _src in ship["option"]:
-				_remove.show()
-			else:
-				_remove.hide()
-		else:
-			_add.show()
-			_remove.hide()
-	else:
-		_add.show()
-		_remove.hide()
+        _update_buttons()
+
+func _update_buttons() -> void:
+        var show_add := false
+        var show_remove := false
+        if _src.size() != 0 and BattlegroupData.current_ship != -1 and BattlegroupData.ships.size() != 0:
+                var ship = BattlegroupData.ships[BattlegroupData.current_ship]
+                var sum = SlotUtils.get_slot_sums(ship)
+                var used = SlotUtils.get_slot_usage(ship)
+                var key := _src["type"] == Opt.Support.ESCORT ? "escort" : "wing"
+                var capacity := sum.get(key, 0) + int(_src.get("modification", {}).get(key, 0))
+                var points := int(_src.get("points", 0)) + int(_src.get("modification", {}).get("point", 0))
+                show_add = used.get(key, 0) < capacity \
+                        and BattlegroupData.point + points <= 20 \
+                        and not (_has_unique_tag(_src) and _is_unique_taken())
+                show_remove = _count_added(ship) > 0
+        _add.visible = show_add
+        _remove.visible = show_remove
+
+func _has_unique_tag(opt: Dictionary) -> bool:
+        for t in opt.get("tags", "").split(",", false):
+                if t.strip_edges().to_lower() == "уникальное":
+                        return true
+        return false
+
+func _is_unique_taken() -> bool:
+        for s in BattlegroupData.ships:
+                for o in s.get("option", []):
+                        if o.get("name") == _src.get("name"):
+                                return true
+        return false
+
+func _is_same_template(o: Dictionary) -> bool:
+        return o.get("name") == _src.get("name")
+
+func _count_added(ship: Dictionary) -> int:
+        var n := 0
+        for o in ship.get("option", []):
+                if _is_same_template(o):
+                        n += 1
+        return n
 
 func populate(system):
 	_src = system.duplicate(true)
@@ -88,11 +111,16 @@ func populate(system):
 			_maneveue1_effect.text = feat1.get("effect")
 
 func _on_add_pressed() -> void:
-		BattlegroupData.ships[BattlegroupData.current_ship]["option"].append(_src)
-		BattlegroupData.refresh_point()
-		BattlegroupData.option_change.emit()
+        var opt = _src.duplicate(true)
+        BattlegroupData.ships[BattlegroupData.current_ship]["option"].append(opt)
+        BattlegroupData.refresh_point()
+        BattlegroupData.option_change.emit()
 
 func _on_remove_pressed() -> void:
-		BattlegroupData.ships[BattlegroupData.current_ship]["option"].erase(_src)
-		BattlegroupData.refresh_point()
-		BattlegroupData.option_change.emit()
+        var arr = BattlegroupData.ships[BattlegroupData.current_ship]["option"]
+        for i in range(arr.size() - 1, -1, -1):
+                if _is_same_template(arr[i]):
+                        arr.remove_at(i)
+                        break
+        BattlegroupData.refresh_point()
+        BattlegroupData.option_change.emit()

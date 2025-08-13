@@ -11,7 +11,6 @@ extends VBoxContainer
 
 func _ready() -> void:
 	BattlegroupData.connect("battlegroup_change", refresh_fleet)
-	BattlegroupData.connect("option_change", refresh_fleet)
 
 func _process(delta: float) -> void:
 	_point.text = str(BattlegroupData.point) + " /"

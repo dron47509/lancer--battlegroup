@@ -73,9 +73,8 @@ var _dict  : Dictionary = {}   # ссылка на словарь корабля
 var _index : int        = -1   # позиция в BattlegroupData.ships
 var _base_system_slots : int   = 0   # базовое число системных слотов
 
-func _process(delta: float) -> void:
-	_refresh_option_buttons()
-
+func _ready() -> void:
+	BattlegroupData.option_change.connect(_refresh_option_buttons)
 # ───────────────────────────────────────────
 # 3.  Public — populate
 # ───────────────────────────────────────────
@@ -123,6 +122,7 @@ func populate(src : Dictionary) -> void:
 
 	# 3.5  расчёт и отображение
 	_recalc_and_update_display()
+	_refresh_option_buttons()
 
 # ───────────────────────────────────────────
 # 4.  Сигналы
@@ -231,12 +231,12 @@ func _clear_containers() -> void:
 func _refresh_option_buttons() -> void:
 	# 3.1 очищаем всё, кроме первого ребёнка-Label в каждом контейнере
 	for cont in _slot_containers.values():
-		while cont.get_child_count() > 1:
-			cont.get_child(1).queue_free()
+		for x in cont.get_children():
+			x.queue_free()
 
 	# 3.2 создаём кнопку с именем опции в нужном контейнере
 	for o in _dict.get("option", []):
-		var t := int(o.get("type", -1))
+		var t = o.get("type", -1)
 		if _slot_containers.has(t):
 			var btn := Button.new()
 			btn.text = str(o.get("name", ""))

@@ -32,10 +32,6 @@ var _tag_suffix_re := RegEx.new()
 func _ready() -> void:
 	_tag_suffix_re.compile("\\s*[\\-–+]?\\d+$")
 	_populate_all()
-	# слушаем выбор корабля
-	BattlegroupData.option_change.connect(_apply_filters)
-	# сразу применяем фильтр для первого выбранного корабля (если есть)
-	_apply_filters()
 
 
 

@@ -89,9 +89,13 @@ func can_add(cls: int) -> bool:
 
 
 func refresh_point():
-	point = 0
-	for x in ships:
-		point += int(x.get("points"))
+        point = 0
+        for ship in ships:
+                var total := int(ship.get("points", 0))
+                for opt in ship.get("option", []):
+                        total += int(opt.get("points", 0))
+                        total += int(opt.get("modification", {}).get("point", 0))
+                point += total
 
 
 func change_on_option():

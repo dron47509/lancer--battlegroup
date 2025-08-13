@@ -131,13 +131,14 @@ func _on_name_changed(new_name : String) -> void:
 	_dict["ship_name"] = new_name
 
 func _on_flagman_toggled(on : bool) -> void:
-	_dict["flagman"] = on
-	if on:
-		_add_flagship_option()
-	else:
-		_remove_flagship_option()
-	_recalc_and_update_display()
-	BattlegroupData.emit_signal("battlegroup_change")
+        _dict["flagman"] = on
+        if on:
+                _add_flagship_option()
+        else:
+                _remove_flagship_option()
+        _recalc_and_update_display()
+        BattlegroupData.refresh_point()
+        BattlegroupData.emit_signal("battlegroup_change")
 
 func _on_option_pressed() -> void:
 	BattlegroupData.current_ship = _index

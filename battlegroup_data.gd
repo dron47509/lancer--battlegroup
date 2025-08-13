@@ -89,14 +89,90 @@ func can_add(cls: int) -> bool:
 
 
 func refresh_point():
-		point = 0
-		for ship in ships:
-				var total := int(ship.get("points", 0))
-				for opt in ship.get("option", []):
-						total += int(opt.get("points", 0))
-						total += int(opt.get("modification", {}).get("point", 0))
-				point += total
+	point = 0
+	for ship in ships:
+		var total := int(ship.get("points", 0))
+		var spec = 0
+		for opt in ship.get("option", []):
+			if ship.get("class") == 1.0 and (opt.get("type") == 5.0 or opt.get("type") == 4.0):
+				spec += int(opt.get("points", 0))
+				spec += int(opt.get("modification", {}).get("point", 0))
+			elif ship.get("name") == "IPS-N\nEILAND-CLASS COMMAND CARRIER" and (opt.get("type") == 5.0):
+				spec += int(opt.get("points", 0))
+				spec += int(opt.get("modification", {}).get("point", 0))
+			elif (opt.get("type") == 0.0) and (ship.get("name") == "HA\nCREIGHTON-CLASS FRIGATE\n(CALIBRATED FIRING PLATFORM)" or ship.get("name") == "HA\nCREIGHTON-CLASS FRIGATE\n(VEGA)"):
+				if int(opt.get("points", 0)) == 0.0:
+					total += int(opt.get("points", 0))
+					total += int(opt.get("modification", {}).get("point", 0))
+				else:
+					total += int(opt.get("points", 0)) - 1
+					total += int(opt.get("modification", {}).get("point", 0))
+			else:
+				total += int(opt.get("points", 0))
+				total += int(opt.get("modification", {}).get("point", 0))
+		if spec > 3:
+			spec -= 3
+		else:
+			spec = 0
+		if ship.get("name") == "GMS\nAMAZON-CLASS LINE CARRIER":
+			if spec > 1:
+				spec -= 1
+			else:
+				spec = 0
+		point += total + spec
 
+func will_exceed_20(opt: Dictionary) -> bool:
+	var total_points := 0
+	
+	for i in range(ships.size()):
+		var ship = ships[i]
+		var ship_total := 0
+		var spec := 0
+		
+		# Собираем список опций для подсчёта.
+		# Для целевого корабля добавляем "виртуально" новую опцию.
+		var opts: Array = ship.get("option", []).duplicate()
+		if i == current_ship and opt != null:
+			opts.append(opt)
+		
+		# Подсчёт очков по правилам
+		for o in opts:
+			var o_points := int(o.get("points", 0))
+			var o_mod_points := int(o.get("modification", {}).get("point", 0))
+			var o_type = o.get("type")
+			var s_class = ship.get("class")
+			var s_name := String(ship.get("name", ""))
+			
+			if s_class == 1.0 and (o_type == 5.0 or o_type == 4.0):
+				spec += o_points
+				spec += o_mod_points
+			elif s_name == "IPS-N\nEILAND-CLASS COMMAND CARRIER" and (o_type == 5.0):
+				spec += o_points
+				spec += o_mod_points
+			elif (opt.get("type") == 0.0) and (s_name == "HA\nCREIGHTON-CLASS FRIGATE\n(CALIBRATED FIRING PLATFORM)" or s_name == "HA\nCREIGHTON-CLASS FRIGATE\n(VEGA)"):
+				if o_points == 0:
+					ship_total += o_points + o_mod_points
+				else:
+					ship_total += (o_points - 1) + o_mod_points
+			else:
+				ship_total += o_points + o_mod_points
+		
+		# Порог для спец-очков
+		if spec > 3:
+			spec -= 3
+		else:
+			spec = 0
+		
+		# Исключение для AMAZON
+		if String(ship.get("name","")) == "GMS\nAMAZON-CLASS LINE CARRIER":
+			if spec > 1:
+				spec -= 1
+			else:
+				spec = 0
+		
+		total_points += ship_total + spec + int(ship.get("points"))
+	
+	return total_points > 20
 
 func change_on_option():
 	emit_signal("option_change")

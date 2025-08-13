@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 func _update_buttons() -> void:
 	if _src.size() != 0 and BattlegroupData.current_ship != -1 and BattlegroupData.ships.size() != 0 and visible:
 		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
+		_add.show()
 		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
 			var sum = SlotUtils.get_slot_sums(ship)
 			if sum["system"] <= 0:

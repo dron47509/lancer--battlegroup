@@ -83,6 +83,7 @@ func _on_add_pressed() -> void:
 
 func _on_remove_pressed() -> void:
 	# ищем последнюю копию нашего шаблона в списке BattlegroupData.ships
+	BattlegroupData.current_ship = -1
 	for i in range(BattlegroupData.ships.size() - 1, -1, -1):
 		var hull = BattlegroupData.ships[i]
 		if _is_same_template(hull):

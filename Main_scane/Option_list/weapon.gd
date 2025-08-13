@@ -16,9 +16,10 @@ func _process(delta: float) -> void:
 		_update_buttons()
 
 func _update_buttons() -> void:
-	if _src.size() != 0 and BattlegroupData.current_ship != -1 and BattlegroupData.ships.size() != 0 and visible:
+	if _src.size() != 0 and BattlegroupData.current_ship != -1 and BattlegroupData.ships.size() != 0:
 		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
 		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
+			_add.show()
 			var sum = SlotUtils.get_slot_sums(ship)
 			if _src["type"] == Opt.Weapon.SUPERHEAVY and sum["superheavy"] <= 0:
 				_add.hide()
@@ -33,14 +34,13 @@ func _update_buttons() -> void:
 			else:
 				_remove.hide()
 		else:
-			
-			if int(_src["points"]) + BattlegroupData.point > 20 or super_condition():
+			if BattlegroupData.will_exceed_20(_src) or super_condition():
 				_add.hide()
 			else:
 				_add.show()
 			_remove.hide()
 	else:
-		if int(_src["points"]) + BattlegroupData.point > 20 or super_condition():
+		if BattlegroupData.will_exceed_20(_src) or super_condition():
 			_add.hide()
 		else:
 			_add.show()
@@ -120,6 +120,18 @@ func super_condition():
 				if x.get("tags").contains("Заряжаемое"):
 					return false
 			if _src.get("tags").contains("Заряжаемое"):
+				return false
+			return true
+		if ship.get("name") == "HA\nCREIGHTON-CLASS FRIGATE\n(CALIBRATED FIRING PLATFORM)" or ship.get("name") == "HA\nCREIGHTON-CLASS FRIGATE\n(VEGA)" and _src.get("type") == Opt.Weapon.SUPERHEAVY:
+			if _src.get("tags").contains("Заряжаемое"):
+				return false
+			return true
+		if ship.get("name") == "FKS\nTOLUMNIA-CLASS FRIGATE" and _src.get("type") == Opt.Weapon.PRIMARY:
+			if _src.get("tags").contains("Боезаряд"):
+				return true
+			return false
+		if ship.get("name") == "IPS-N\nLAHO-CLASS FRIGATE" and _src.get("type") == Opt.Weapon.PRIMARY:
+			if _src.get("tags").contains("Боезаряд"):
 				return false
 			return true
 	return false

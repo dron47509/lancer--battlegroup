@@ -24,7 +24,7 @@ const FLAGSHIP_OPTION := {
 	"points":   0.0,
 	"tags":     "Уникальное",
 	"tenacity": "1d6",
-	"type":     6,            # ← добавили
+	"type":     6.0,            # ← добавили
 }
 
 
@@ -55,6 +55,9 @@ const FLAGSHIP_OPTION := {
 	4.0: $Ship_box/Wing,          # Wings
 	5.0: $Ship_box/Escort,        # Escorts
 	3.0: $Ship_box/System,        # Systems
+	6.0: $Ship_box/Feat,        # Systems
+	7.0:$Ship_box/Tactic,
+	8.0:$Ship_box/Maneuver
 }
 
 @onready var _systems_container : Control      = $Ship_box/Options/Systems
@@ -108,8 +111,8 @@ func populate(src : Dictionary) -> void:
 		b.text = feat["name"]
 		match int(feat["type"]):
 			0: _feat_box.add_child(b)
-			1: _tactic_box.add_child(b)
-			2: _maneuver_box.add_child(b)
+			2: _tactic_box.add_child(b)
+			1: _maneuver_box.add_child(b)
 			3: _primary_box.add_child(b)
 
 	# 3.4  сигналы
@@ -131,38 +134,25 @@ func _on_name_changed(new_name : String) -> void:
 	_dict["ship_name"] = new_name
 
 func _on_flagman_toggled(on : bool) -> void:
-		_dict["flagman"] = on
-		if on:
-				_add_flagship_option()
-		else:
-				_remove_flagship_option()
-		_recalc_and_update_display()
+	if on:
+		BattlegroupData.ships[_index]["option"].append(FLAGSHIP_OPTION)
 		BattlegroupData.refresh_point()
-		BattlegroupData.emit_signal("battlegroup_change")
+		_refresh_option_buttons()
+
+	else:
+		var arr = BattlegroupData.ships[_index]["option"]
+		for i in range(arr.size() - 1, -1, -1):
+			if arr[i].get("name") == FLAGSHIP_OPTION.get("name"):
+				arr.remove_at(i)
+				BattlegroupData.refresh_point()
+				_refresh_option_buttons()
+				break
+		
+
 
 func _on_option_pressed() -> void:
 	BattlegroupData.current_ship = _index
 	BattlegroupData.change_on_option()
-
-# ───────────────────────────────────────────
-# 5.  Опция FLAGSHIP
-# ───────────────────────────────────────────
-func _has_flagship_option() -> bool:
-	for o in _dict.get("option", []):
-		if o.get("name") == "FLAGSHIP":
-			return true
-	return false
-
-func _add_flagship_option() -> void:
-	if _has_flagship_option():
-		return
-	_dict["option"].append(FLAGSHIP_OPTION.duplicate(true))
-
-func _remove_flagship_option() -> void:
-	for i in range(_dict["option"].size() - 1, -1, -1):
-		if _dict["option"][i].get("name") == "FLAGSHIP":
-			_dict["option"].remove_at(i)
-			break
 
 # ───────────────────────────────────────────
 # 6.  Пересчёт характеристик + рендер
@@ -234,11 +224,21 @@ func _refresh_option_buttons() -> void:
 	for cont in _slot_containers.values():
 		for x in cont.get_children():
 			x.queue_free()
-
-	# 3.2 создаём кнопку с именем опции в нужном контейнере
+			
+	for feat in _dict["feats"]:
+		var b := Button.new()
+		b.text = feat["name"]
+		match int(feat["type"]):
+			0: _feat_box.add_child(b)
+			2: _tactic_box.add_child(b)
+			1: _maneuver_box.add_child(b)
+			3: _primary_box.add_child(b)
+	
 	for o in _dict.get("option", []):
 		var t = o.get("type", -1)
 		if _slot_containers.has(t):
 			var btn := Button.new()
 			btn.text = str(o.get("name", ""))
 			_slot_containers[t].add_child(btn)
+			
+	

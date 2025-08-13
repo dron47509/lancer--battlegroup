@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 		_update_buttons()
 
 func _update_buttons() -> void:
-	if _src.size() != 0 and BattlegroupData.current_ship != -1 and BattlegroupData.ships.size() != 0:
+	if _src.size() != 0 and BattlegroupData.current_ship != -1 and BattlegroupData.ships.size() != 0 and visible:
 		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
 		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
 			var sum = SlotUtils.get_slot_sums(ship)
@@ -26,19 +26,21 @@ func _update_buttons() -> void:
 				_add.hide()
 			elif _src["type"] == Opt.Weapon.AUXILIARY and sum["auxiliary"] <= 0:
 				_add.hide()
+			elif super_condition():
+				_add.hide()
 			if _src in ship["option"]:
 				_remove.show()
 			else:
 				_remove.hide()
 		else:
 			
-			if int(_src["points"]) + BattlegroupData.point > 20:
+			if int(_src["points"]) + BattlegroupData.point > 20 or super_condition():
 				_add.hide()
 			else:
 				_add.show()
 			_remove.hide()
 	else:
-		if int(_src["points"]) + BattlegroupData.point > 20:
+		if int(_src["points"]) + BattlegroupData.point > 20 or super_condition():
 			_add.hide()
 		else:
 			_add.show()
@@ -106,3 +108,18 @@ func _on_remove_pressed() -> void:
 						break
 		BattlegroupData.refresh_point()
 		BattlegroupData.option_change.emit()
+
+func super_condition():
+	if BattlegroupData.current_ship != -1 and BattlegroupData.ships.size() != 0:
+		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
+		var sum = SlotUtils.get_slot_usage(ship)
+		if ship.get("name") == "FKS\nCALENDULA-CLASS BATTLECRUISER" and _src.get("type") == Opt.Weapon.SUPERHEAVY:
+			if sum["superheavy"] == 0:
+				return false
+			for x in ship.get("option"):
+				if x.get("tags").contains("Заряжаемое"):
+					return false
+			if _src.get("tags").contains("Заряжаемое"):
+				return false
+			return true
+	return false

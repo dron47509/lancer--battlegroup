@@ -33,22 +33,20 @@ static func get_slot_usage(ship: Dictionary) -> Dictionary:
 	}
 	for option in ship.get("option", []):
 		if option.has("type"):
-			if option.has("hp"):
-				match int(option["type"]):
-					Opt.Support.ESCORT:
-						used["escort"] += 1
-					Opt.Support.WING:
-						used["wing"] += 1
-			else:
-				match int(option["type"]):
-					Opt.Weapon.SUPERHEAVY:
-						used["superheavy"] += 1
-					Opt.Weapon.PRIMARY:
-						used["primary"] += 1
-					Opt.Weapon.AUXILIARY:
-						used["auxiliary"] += 1
-		else:
-			used["system"] += 1
+			match int(option["type"]):
+				Opt.Weapon.SUPERHEAVY:
+					used["superheavy"] += 1
+				Opt.Weapon.PRIMARY:
+					used["primary"] += 1
+				Opt.Weapon.AUXILIARY:
+					used["auxiliary"] += 1
+				Opt.Support.ESCORT:
+					used["escort"] += 1
+				Opt.Support.WING:
+					used["wing"] += 1
+				3:
+					used["system"] += 1
+			
 	return used
 
 static func get_slot_total(ship: Dictionary) -> Dictionary:

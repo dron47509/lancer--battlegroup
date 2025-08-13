@@ -9,8 +9,8 @@ enum Weapon {
 
 # Support options (escorts and wings)
 enum Support {
-	ESCORT,
-	WING,
+	ESCORT = 5,
+	WING = 4,
 }
 
 # Indices of option categories in option lists

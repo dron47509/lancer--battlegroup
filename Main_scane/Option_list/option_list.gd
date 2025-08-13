@@ -20,7 +20,7 @@ var _tag_suffix_re := RegEx.new()
 	Opt.SlotIndex.PRIMARIES:   { "key":"primaries",   "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Primary   },
 	Opt.SlotIndex.AUXILIARIES:{ "key":"auxiliaries","node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Auxiliry  },
 	Opt.SlotIndex.SYSTEMS:     { "key":"systems",     "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/System    },
-	Opt.SlotIndex.ESCORTS:     { "key":"escorts",     "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Escort    },
+	Opt.SlotIndex.ESCORTS:     { "key":"escorts",     "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Escort   },
 	Opt.SlotIndex.WINGS:       { "key":"wings",       "node": $MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Wing      },
 }
 
@@ -58,8 +58,10 @@ func _populate_all() -> void:
 	# эскорты / крылья
 	for e in raw.get("escorts_wings", []):
 		var n := eswg_scene.instantiate()
-		var idx := Opt.SlotIndex.ESCORTS if e.get("type") == Opt.Support.ESCORT else Opt.SlotIndex.WINGS   # support type
-		_slot_info[idx]["node"].add_child(n)
+		if  int(e.get("type")) == 5:
+			_slot_info[4]["node"].add_child(n)
+		else:
+			_slot_info[5]["node"].add_child(n)
 		n.populate(e)
 
 	_populate_tag_button(tag_map.keys())
@@ -174,3 +176,7 @@ func _populate_tag_button(tag_list: Array) -> void:
 	tag_list.sort()
 	for t in tag_list:
 		_tag_button.add_item(t)
+
+
+func _on_visibility_changed() -> void:
+	_apply_filters()

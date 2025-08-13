@@ -13,7 +13,7 @@ const Opt = preload("res://option_types.gd")
 var _src: Dictionary
 
 func _process(delta: float) -> void:
-	if _src.size() != 0 and BattlegroupData.current_ship != -1:
+	if _src.size() != 0 and BattlegroupData.current_ship != -1 and BattlegroupData.ships.size() != 0:
 		var ship = BattlegroupData.ships[BattlegroupData.current_ship]
 		if BattlegroupData.ships[BattlegroupData.current_ship]["option"].size() != 0:
 			var sum = SlotUtils.get_slot_sums(ship)

@@ -9,6 +9,11 @@ const Opt = preload("res://option_types.gd")
 @onready var _carrier: VBoxContainer = $Hulls_list/VBoxContainer/Carrier
 @onready var _battleship: VBoxContainer = $Hulls_list/VBoxContainer/Battleship
 @onready var _options: OptionButton = $OptionButton
+@onready var _point = $Inform_panel/Point_container/Label2
+@onready var _frigate_count = $Inform_panel/Frigate_container/Label2
+@onready var _carrier_count = $Inform_panel/Carrier_container/Label2
+@onready var _battleship_count = $Inform_panel/Battleship_container/Label2
+
 func _ready() -> void:
 	var raw := _load_json(json_path)
 	if raw.is_empty():
@@ -17,7 +22,11 @@ func _ready() -> void:
 	for hull_data in raw.get("hulls", []):
 		_spawn_hull(hull_data)
 
-
+func _process(delta: float) -> void:
+	_point.text = str(BattlegroupData.point) + "/20"
+	_frigate_count.text = str(BattlegroupData.class_counts[0]) + "/3"
+	_carrier_count.text = str(BattlegroupData.class_counts[1]) + "/2"
+	_battleship_count.text = str(BattlegroupData.class_counts[2]) + "/1"
 ### utils -----------------------------------------------------------------
 
 func _spawn_hull(hull_data: Dictionary) -> void:

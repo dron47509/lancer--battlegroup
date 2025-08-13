@@ -65,6 +65,69 @@ popup/item_2/id = 2
 popup/item_3/text = "Линкоры"
 popup/item_3/id = 3
 
+[node name="Inform_panel" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Battleship_container" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Inform_panel/Battleship_container"]
+layout_mode = 2
+text = "Эсминцы:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Inform_panel/Battleship_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+
+[node name="Carrier_container" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Inform_panel/Carrier_container"]
+layout_mode = 2
+text = "Авианосцы:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Inform_panel/Carrier_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+
+[node name="Frigate_container" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Inform_panel/Frigate_container"]
+layout_mode = 2
+text = "Фрегаты:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Inform_panel/Frigate_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+
+[node name="Point_container" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Inform_panel/Point_container"]
+layout_mode = 2
+text = "Очки:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Inform_panel/Point_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0"
+horizontal_alignment = 1
+
 [node name="Hulls_list" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3

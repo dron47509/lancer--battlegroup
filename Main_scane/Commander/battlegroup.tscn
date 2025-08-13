@@ -22,56 +22,20 @@ label_settings = SubResource("LabelSettings_7nqf6")
 [node name="Inform_panel" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Point_container" type="VBoxContainer" parent="Inform_panel"]
+[node name="Battleship_container" type="VBoxContainer" parent="Inform_panel"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Inform_panel/Point_container"]
+[node name="Label" type="Label" parent="Inform_panel/Battleship_container"]
 layout_mode = 2
-text = "Очки:"
+text = "Эсминцы:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Inform_panel/Point_container"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Inform_panel/Point_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "0 /"
-horizontal_alignment = 2
-
-[node name="Label3" type="Label" parent="Inform_panel/Point_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "20"
-
-[node name="Frigate_container" type="VBoxContainer" parent="Inform_panel"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="Inform_panel/Frigate_container"]
-layout_mode = 2
-text = "Фрегаты:"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Inform_panel/Frigate_container"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Inform_panel/Frigate_container/HBoxContainer"]
+[node name="Label2" type="Label" parent="Inform_panel/Battleship_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
-horizontal_alignment = 2
-
-[node name="Label2" type="Label" parent="Inform_panel/Frigate_container/HBoxContainer"]
-layout_mode = 2
-text = "/"
 horizontal_alignment = 1
-
-[node name="Label3" type="Label" parent="Inform_panel/Frigate_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "3"
 
 [node name="Carrier_container" type="VBoxContainer" parent="Inform_panel"]
 layout_mode = 2
@@ -82,52 +46,41 @@ layout_mode = 2
 text = "Авианосцы:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Inform_panel/Carrier_container"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Inform_panel/Carrier_container/HBoxContainer"]
+[node name="Label2" type="Label" parent="Inform_panel/Carrier_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
-horizontal_alignment = 2
-
-[node name="Label2" type="Label" parent="Inform_panel/Carrier_container/HBoxContainer"]
-layout_mode = 2
-text = "/"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="Inform_panel/Carrier_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "2"
-
-[node name="Battleship_container" type="VBoxContainer" parent="Inform_panel"]
+[node name="Frigate_container" type="VBoxContainer" parent="Inform_panel"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="Inform_panel/Battleship_container"]
+[node name="Label" type="Label" parent="Inform_panel/Frigate_container"]
 layout_mode = 2
-text = "Эсминцы:"
+text = "Фрегаты:"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Inform_panel/Battleship_container"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Inform_panel/Battleship_container/HBoxContainer"]
+[node name="Label2" type="Label" parent="Inform_panel/Frigate_container"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0"
-horizontal_alignment = 2
-
-[node name="Label2" type="Label" parent="Inform_panel/Battleship_container/HBoxContainer"]
-layout_mode = 2
-text = "/"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="Inform_panel/Battleship_container/HBoxContainer"]
+[node name="Point_container" type="VBoxContainer" parent="Inform_panel"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "1"
+
+[node name="Label" type="Label" parent="Inform_panel/Point_container"]
+layout_mode = 2
+text = "Очки:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Inform_panel/Point_container"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "0 /"
+horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2

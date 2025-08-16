@@ -202,6 +202,7 @@ layout_mode = 2
 [node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 vertical_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
@@ -209,53 +210,53 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Superheavy" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Superheavy"]
 layout_mode = 2
 text = "Сверхтяжелые орудия:"
 label_settings = SubResource("LabelSettings_t0xno")
 
-[node name="Superheavy" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Primary" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Primary"]
 layout_mode = 2
 text = "Основные орудия:"
 label_settings = SubResource("LabelSettings_knkwd")
 
-[node name="Primary" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Auxiliry" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Auxiliry"]
 layout_mode = 2
 text = "Вспомогательные орудия:"
 label_settings = SubResource("LabelSettings_8ckod")
 
-[node name="Auxiliry" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="System" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/System"]
 layout_mode = 2
 text = "Системы:"
 label_settings = SubResource("LabelSettings_p8owa")
 
-[node name="System" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Escort" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Escort"]
 layout_mode = 2
 text = "Эскорты:"
 label_settings = SubResource("LabelSettings_ow11d")
 
-[node name="Escort" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Wing" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/Wing"]
 layout_mode = 2
 text = "Крылья:"
 label_settings = SubResource("LabelSettings_2suni")
-
-[node name="Wing" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]

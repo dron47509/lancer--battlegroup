@@ -4,6 +4,7 @@ extends HBoxContainer  # или VBoxContainer – подставьте свой 
 # по умолчанию считаем, что в контейнере порядок узлов такой:
 #   0 - подпись / иконка
 #   1 - числовой Label, который показывает сколько «крыльев / эскортов / систем»
+@onready var special_slot = $Special/Special
 @export var value_label_index:int = 1
 
 

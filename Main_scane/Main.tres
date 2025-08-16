@@ -1,0 +1,123 @@
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://chm4wbanev37u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ic1s"]
+bg_color = Color(0.560784, 0.00392157, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.560784, 0.00392157, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_80e7i"]
+bg_color = Color(0.713726, 0.12549, 0.145098, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.713726, 0.12549, 0.145098, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qang5"]
+bg_color = Color(0.419608, 0.00392157, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.419608, 0.00392157, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_80e7i"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nh136"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hpybd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_exakp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hx7mi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_522w0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exakp"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 3
+border_color = Color(0.713726, 0.12549, 0.145098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_522w0"]
+bg_color = Color(1, 1, 1, 1)
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hx7mi"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpybd"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2wca"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_0ic1s")
+Button/styles/normal = SubResource("StyleBoxFlat_80e7i")
+Button/styles/pressed = SubResource("StyleBoxFlat_qang5")
+CheckBox/styles/disabled = SubResource("StyleBoxEmpty_80e7i")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_nh136")
+CheckBox/styles/hover = SubResource("StyleBoxEmpty_hpybd")
+CheckBox/styles/hover_pressed = SubResource("StyleBoxEmpty_exakp")
+CheckBox/styles/normal = SubResource("StyleBoxEmpty_hx7mi")
+CheckBox/styles/pressed = SubResource("StyleBoxEmpty_522w0")
+Label/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/caret_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.631373)
+LineEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+LineEdit/colors/selection_color = Color(0.713726, 0.12549, 0.145098, 1)
+LineEdit/styles/focus = SubResource("StyleBoxFlat_exakp")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_522w0")
+MarginContainer/constants/margin_bottom = 5
+MarginContainer/constants/margin_left = 5
+MarginContainer/constants/margin_right = 5
+MarginContainer/constants/margin_top = 5
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_hx7mi")
+PopupMenu/colors/font_color = Color(0, 0, 0, 1)
+PopupMenu/colors/font_hover_color = Color(1, 1, 1, 1)
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_80e7i")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_hpybd")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+TextEdit/colors/background_color = Color(0, 0, 0, 0)
+TextEdit/colors/caret_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_color = Color(0, 0, 0, 1)
+TextEdit/colors/font_selected_color = Color(1, 1, 1, 1)
+TextEdit/colors/selection_color = Color(0.713726, 0.12549, 0.145098, 1)
+TextEdit/styles/normal = SubResource("StyleBoxFlat_n2wca")

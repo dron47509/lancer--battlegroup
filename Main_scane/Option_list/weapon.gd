@@ -27,8 +27,13 @@ func _update_buttons() -> void:
 				_add.hide()
 			elif _src["type"] == Opt.Weapon.AUXILIARY and sum["auxiliary"] <= 0:
 				_add.hide()
-			elif super_condition():
+			elif BattlegroupData.will_exceed_20(_src) or super_condition():
 				_add.hide()
+
+			# ⬅︎ УНИКАЛЬНОЕ: запретить добавление, если такая «уникальная» уже есть где-то в боегруппе
+			if _has_unique_tag(_src) and _is_unique_taken():
+				_add.hide()
+
 			if _src in ship["option"]:
 				_remove.show()
 			else:
@@ -38,13 +43,24 @@ func _update_buttons() -> void:
 				_add.hide()
 			else:
 				_add.show()
+
+			# ⬅︎ УНИКАЛЬНОЕ: даже при пустых опциях текущего корабля учитываем уникальность на всю группу
+			if _has_unique_tag(_src) and _is_unique_taken():
+				_add.hide()
+
 			_remove.hide()
 	else:
 		if BattlegroupData.will_exceed_20(_src) or super_condition():
 			_add.hide()
 		else:
 			_add.show()
+
+		# ⬅︎ УНИКАЛЬНОЕ: правило действует и вне выбранного корабля
+		if _has_unique_tag(_src) and _is_unique_taken():
+			_add.hide()
+
 		_remove.hide()
+
 
 func _has_unique_tag(opt: Dictionary) -> bool:
 		for t in opt.get("tags", "").split(",", false):

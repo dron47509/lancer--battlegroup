@@ -28,7 +28,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Inform_panel/Battleship_container"]
 layout_mode = 2
-text = "Эсминцы:"
+text = "Линкоры:"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Inform_panel/Battleship_container"]

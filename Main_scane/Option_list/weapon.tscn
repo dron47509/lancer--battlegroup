@@ -11,61 +11,75 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_0srrn")
 script = ExtResource("2_luaq8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Head" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme = ExtResource("2_627df")
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Head"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Head/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Name" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme = ExtResource("4_luaq8")
 text = "Имя"
 fit_content = true
 
 [node name="Tags" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 text = "Теги"
 fit_content = true
 
 [node name="Param" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 text = "[Дистанция 4-0] [Урон 1d6+2] [Упорство 12]
 [Очки 4]"
 fit_content = true
 
 [node name="Effect" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Effect" type="RichTextLabel" parent="VBoxContainer/Effect"]
 layout_mode = 2
+mouse_filter = 2
 text = "Большое описание Большое описание Большое описание"
 fit_content = true
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Discription" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Discription" type="RichTextLabel" parent="VBoxContainer/Discription"]
 layout_mode = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "[i]Большое описание Большое описание Большое описание "
 fit_content = true
 
 [node name="Button" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Add" type="Button" parent="VBoxContainer/Button"]
 layout_mode = 2
@@ -74,6 +88,7 @@ text = "Добавить"
 
 [node name="Button2" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Remove" type="Button" parent="VBoxContainer/Button2"]
 layout_mode = 2

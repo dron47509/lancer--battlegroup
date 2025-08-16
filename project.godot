@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Lancer: battlegroup"
+config/name="Lancer_battlegroup"
 run/main_scene="uid://cpb3nqlbj36ba"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -23,9 +23,14 @@ BattlegroupData="*res://battlegroup_data.gd"
 
 window/size/viewport_width=400
 window/size/viewport_height=800
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=false
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dkuii5nokbvcq"]
+[gd_scene load_steps=4 format=3 uid="uid://dkuii5nokbvcq"]
 
 [ext_resource type="Script" uid="uid://e2361rc72ifr" path="res://note.gd" id="1_wn01w"]
 [ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://icons/close-svgrepo-com.svg" id="2_lyp5m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wn01w"]
+font_size = 25
+font_color = Color(0, 0, 0, 1)
 
 [node name="Note" type="VBoxContainer"]
 anchors_preset = -1
@@ -19,6 +23,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_wn01w")
 
 [node name="Button" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)

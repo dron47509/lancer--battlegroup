@@ -58,11 +58,11 @@ func _on_option_button_item_selected(index: int) -> void:
 	_frigate.hide()
 	_carrier.hide()
 	_battleship.hide()
-	if  _options.selected == Opt.HullFilter.FRIGATE:
+	if  _options.selected == Opt.HullFilter.BATTLESHIP:
 		_frigate.show()
 	elif  _options.selected == Opt.HullFilter.CARRIER:
 		_carrier.show()
-	elif  _options.selected == Opt.HullFilter.BATTLESHIP:
+	elif  _options.selected == Opt.HullFilter.FRIGATE:
 		_battleship.show()
 	elif _options.selected == Opt.HullFilter.ALL:
 		_frigate.show()

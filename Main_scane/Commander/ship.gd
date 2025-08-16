@@ -1,9 +1,6 @@
 extends PanelContainer
 # class_name ShipCard
 
-# ───────────────────────────────────────────
-# 0.  Константа FLAGSHIP
-# ───────────────────────────────────────────
 const FLAGSHIP_OPTION := {
 	"description":  "",
 	"effect":       "",
@@ -24,66 +21,60 @@ const FLAGSHIP_OPTION := {
 	"points":   0.0,
 	"tags":     "Уникальное",
 	"tenacity": "1d6",
-	"type":     6.0,            # ← добавили
+	"type":     6.0,
 }
 
-
+const FeatCard = preload("res://Main_scane/Commander/Feat_ship.tscn")
+const hide_theme = preload("res://Main_scane/Commander/Battlegroup/Theme/Hide_button.tres")
 # ───────────────────────────────────────────
-# 1.  UI-узлы
+# 1. UI-узлы
 # ───────────────────────────────────────────
-@onready var _name_edit   : LineEdit    = $Ship_box/MarginContainer2/HBoxContainer/Name
-@onready var _flagman_btn : CheckBox    = $Ship_box/Ship_image/MarginContainer/Flagman
-@onready var _img         : TextureRect = $Ship_box/Ship_image
-@onready var _hull_name   : Label       = $Ship_box/Hulls_name
-@onready var _point_lbl   : Label       = $Ship_box/Atributs/VBoxContainer/Point/Label
-@onready var _hp_lbl_1    : Label       = $Ship_box/Atributs/HP/HBoxContainer/Label2
-@onready var _hp_lbl_2    : Label       = $Ship_box/Atributs/HP/HBoxContainer/Label3
-@onready var _def_lbl     : Label       = $Ship_box/Atributs/Defence/Label2
+@onready var _name_edit   : LineEdit      = $Ship_box/MarginContainer2/HBoxContainer/Name
+@onready var _delete_btn  : Button        = $Ship_box/MarginContainer2/HBoxContainer/Delete_ship
+@onready var _flagman_btn : CheckBox      = $Ship_box/Ship_image/MarginContainer/Flagman
+@onready var _img         : TextureRect   = $Ship_box/Ship_image
+@onready var _hull_name   : Button        = $Ship_box/MarginContainer3/Hulls_name
+@onready var _hide_box    : VBoxContainer = $Ship_box/VBoxContainer
+@onready var _point_lbl   : Label         = $Ship_box/VBoxContainer/Atributs/Point/Point
+@onready var _hp_lbl_1    : Label         = $Ship_box/VBoxContainer/Atributs/HP/HBoxContainer/Max_HP
+@onready var _hp_lbl_2    : LineEdit      = $Ship_box/VBoxContainer/Atributs/HP/HBoxContainer/Current_HP
+@onready var _def_lbl     : Label         = $Ship_box/VBoxContainer/Atributs/Defence/Defence
 
-@onready var _opt_labels := {
-	"superheavy":  $Ship_box/Options/Superheavies/Superheavy,
-	"primaries":   $Ship_box/Options/Primaries/Primary,
-	"auxiliaries": $Ship_box/Options/Auxiliaries/Auxiliary,
-	"wings":       $Ship_box/Options/Wings/Wing,
-	"escorts":     $Ship_box/Options/Escorts/Escort,
-	# "systems" — счётчик рендерится внутри _systems_container
-}
+# Контейнеры слотов для опций
 @onready var _slot_containers := {
-	0.0: $Ship_box/Superheavy,   # Superheavy
-	1.0: $Ship_box/Primary,      # Primaries
-	2.0: $Ship_box/Auxiliary,    # Auxiliaries
-	4.0: $Ship_box/Wing,          # Wings
-	5.0: $Ship_box/Escort,        # Escorts
-	3.0: $Ship_box/System,        # Systems
-	6.0: $Ship_box/Feat,        # Systems
-	7.0:$Ship_box/Tactic,
-	8.0:$Ship_box/Maneuver
+	0.0: $Ship_box/VBoxContainer/Superheavy,   # Superheavy
+	1.0: $Ship_box/VBoxContainer/Primary,      # Primaries
+	2.0: $Ship_box/VBoxContainer/Auxiliary,    # Auxiliaries
+	4.0: $Ship_box/VBoxContainer/Wing,         # Wings
+	5.0: $Ship_box/VBoxContainer/Escort,       # Escorts
+	3.0: $Ship_box/VBoxContainer/System,       # Systems
+	6.0: $Ship_box/VBoxContainer/Feat,         # Feats (корпуса)
+	7.0: $Ship_box/VBoxContainer/Tactic,       # Tactics (корпуса)
+	8.0: $Ship_box/VBoxContainer/Maneuver      # Maneuvers (корпуса)
 }
 
-@onready var _systems_container : Control      = $Ship_box/Options/Systems
-@onready var _system_count_lbl  : Label        = $Ship_box/Options/Systems/System
-
-@onready var _feat_box      : VBoxContainer = $Ship_box/Feat
-@onready var _tactic_box    : VBoxContainer = $Ship_box/Tactic
-@onready var _maneuver_box  : VBoxContainer = $Ship_box/Maneuver
-@onready var _primary_box   : VBoxContainer = $Ship_box/Primary
-@onready var _opt_btn       : Button        = $Ship_box/MarginContainer/Button
+@onready var _feat_box      : VBoxContainer = $Ship_box/VBoxContainer/Feat
+@onready var _tactic_box    : VBoxContainer = $Ship_box/VBoxContainer/Tactic
+@onready var _maneuver_box  : VBoxContainer = $Ship_box/VBoxContainer/Maneuver
+@onready var _primary_box   : VBoxContainer = $Ship_box/VBoxContainer/Primary
+@onready var _opt_btn       : Button        = $Ship_box/VBoxContainer/MarginContainer/Add_option
 
 # ───────────────────────────────────────────
-# 2.  Данные экземпляра
+# 2. Данные экземпляра
 # ───────────────────────────────────────────
-var _dict  : Dictionary = {}   # ссылка на словарь корабля
-var _index : int        = -1   # позиция в BattlegroupData.ships
-var _base_system_slots : int   = 0   # базовое число системных слотов
+var ship_cur  : Dictionary = {}  # ссылка на словарь корабля из BattlegroupData.ships
+var _index    : int        = -1
+var _base_system_slots : int = 0
 
 func _ready() -> void:
 	BattlegroupData.option_change.connect(_refresh_option_buttons)
+
 # ───────────────────────────────────────────
-# 3.  Public — populate
+# 3. Public — populate
 # ───────────────────────────────────────────
 func populate(src : Dictionary) -> void:
 	# 3.1  ссылка + индекс
-	_dict = src
+	ship_cur = src
 	_index = BattlegroupData.ships.find(src)
 	if _index == -1:
 		for i in BattlegroupData.ships.size():
@@ -99,31 +90,17 @@ func populate(src : Dictionary) -> void:
 
 	_base_system_slots = int(src["support_slots"]["systems"])
 
-	# оружейные/поддерж-слоты (кроме systems, он рендерится отдельно)
-	for k in ["superheavy", "primaries", "auxiliaries", "wings", "escorts"]:
-		var slot_dict = src["weapon_slots"] if k in ["superheavy","primaries","auxiliaries"] else src["support_slots"]
-		_opt_labels[k].text = slot_dict[k]
-
-	# 3.3  черты / тактики / манёвры / primary
-	_clear_containers()
-	for feat in src["feats"]:
-		var b := Button.new()
-		b.text = feat["name"]
-		match int(feat["type"]):
-			0: _feat_box.add_child(b)
-			2: _tactic_box.add_child(b)
-			1: _maneuver_box.add_child(b)
-			3: _primary_box.add_child(b)
-
-	# 3.4  сигналы
+	# 3.3  сигналы
 	if not _name_edit.text_changed.is_connected(_on_name_changed):
 		_name_edit.text_changed.connect(_on_name_changed)
 	if not _flagman_btn.toggled.is_connected(_on_flagman_toggled):
 		_flagman_btn.toggled.connect(_on_flagman_toggled)
 	if not _opt_btn.pressed.is_connected(_on_option_pressed):
 		_opt_btn.pressed.connect(_on_option_pressed)
+	if not _delete_btn.pressed.is_connected(_on_delete_pressed):
+		_delete_btn.pressed.connect(_on_delete_pressed)
 
-	# 3.5  расчёт и отображение
+	# 3.4  расчёт и отображение
 	_recalc_and_update_display()
 	_refresh_option_buttons()
 
@@ -131,14 +108,13 @@ func populate(src : Dictionary) -> void:
 # 4.  Сигналы
 # ───────────────────────────────────────────
 func _on_name_changed(new_name : String) -> void:
-	_dict["ship_name"] = new_name
+	ship_cur["ship_name"] = new_name
 
 func _on_flagman_toggled(on : bool) -> void:
 	if on:
 		BattlegroupData.ships[_index]["option"].append(FLAGSHIP_OPTION)
 		BattlegroupData.refresh_point()
 		_refresh_option_buttons()
-
 	else:
 		var arr = BattlegroupData.ships[_index]["option"]
 		for i in range(arr.size() - 1, -1, -1):
@@ -147,26 +123,122 @@ func _on_flagman_toggled(on : bool) -> void:
 				BattlegroupData.refresh_point()
 				_refresh_option_buttons()
 				break
-		
-
 
 func _on_option_pressed() -> void:
 	BattlegroupData.current_ship = _index
 	BattlegroupData.change_on_option()
 
+func _on_delete_pressed() -> void:
+	var cls := int(ship_cur.get("class", -1))
+	var idx := BattlegroupData.ships.find(ship_cur)
+	if idx == -1:
+		return
+
+	BattlegroupData.ships.remove_at(idx)
+
+	# поправим current_ship, чтобы индексы не поехали
+	if BattlegroupData.current_ship == idx:
+		BattlegroupData.current_ship = -1
+	elif BattlegroupData.current_ship > idx:
+		BattlegroupData.current_ship -= 1
+
+	# счётчик классов и очки
+	if BattlegroupData.class_counts.has(cls):
+		BattlegroupData.class_counts[cls] = max(BattlegroupData.class_counts[cls] - 1, 0)
+
+	BattlegroupData.refresh_point()
+	BattlegroupData.emit_signal("battlegroup_change")
+	queue_free()
+
+# ───────────────────────────────────────────
+# 5. Вспомогательное — построение кнопок + карточек
+# ───────────────────────────────────────────
+
+func _clear_containers_keep_titles() -> void:
+	# Очищаем динамику; если в контейнере первый ребёнок — Label, оставляем его.
+	for cont in _slot_containers.values():
+		var to_remove : Array = []
+		for i in range(cont.get_child_count()):
+			var ch = cont.get_child(i)
+			if i == 0 and ch is Label:
+				continue
+			to_remove.append(ch)
+		for n in to_remove:
+			n.queue_free()
+
+func _add_button_with_card(to_container: VBoxContainer, data: Dictionary, removable: bool) -> void:
+	var btn := Button.new()
+	btn.flat = true
+	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	btn.theme = hide_theme
+	var marg := MarginContainer.new()
+	var panel := PanelContainer.new()
+	#btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	btn.text = str(data.get("name", ""))
+	panel.add_child(marg)
+	marg.add_child(btn)
+	to_container.add_child(panel)
+
+	var card: PanelContainer = FeatCard.instantiate()
+	card.visible = false
+	to_container.add_child(card)
+
+	# передаём данные
+	card.call_deferred("populate", data)
+	if card.has_method("set_pair"):
+		card.call_deferred("set_pair", panel)
+	if card.has_method("set_context"):
+		card.call_deferred("set_context", removable, ship_cur, false)  # ← ВАЖНО
+
+	btn.pressed.connect(func():
+		panel.visible = false
+		card.visible = true
+	)
+
+func _build_from_top_level_feats() -> void:
+	# Черты/Тактики/Манёвры/Орудия, заданные в hull.feats
+	for f in ship_cur.get("feats", []):
+		match int(f.get("type", -1)):
+			0:  _add_button_with_card(_feat_box,     f, false)  # Черта
+			1:  _add_button_with_card(_maneuver_box, f, false)  # Манёвр
+			2:  _add_button_with_card(_tactic_box,   f, false)  # Тактика
+			3:  _add_button_with_card(_primary_box,  f, false)  # Орудие (если встречается в списке feats)
+			_:  pass
+
+func _build_from_options() -> void:
+	# Сами опции — в свои секции слотов
+	for o in ship_cur.get("option", []):
+		var t = o.get("type", -1)
+		if _slot_containers.has(t):
+			_add_button_with_card(_slot_containers[t], o, true)
+
+		# Вложенные "feats" внутри опции — добавить как отдельные элементы
+		for sub in o.get("feats", []):
+			match int(sub.get("type", -1)):
+				0:  _add_button_with_card(_feat_box,     sub, false)
+				1:  _add_button_with_card(_maneuver_box, sub, false)
+				2:  _add_button_with_card(_tactic_box,   sub, false)
+				3:  _add_button_with_card(_primary_box,  sub, false)
+				_:  pass
+
+func _refresh_option_buttons() -> void:
+	_clear_containers_keep_titles()
+	_build_from_top_level_feats()
+	_build_from_options()
+
 # ───────────────────────────────────────────
 # 6.  Пересчёт характеристик + рендер
 # ───────────────────────────────────────────
 func _recalc_and_update_display() -> void:
-	var hp      := int(_dict["hp"])
-	var defence := int(_dict["defense"])
-	var points  := int(_dict["points"])
+	var hp      := int(ship_cur["hp"])
+	var defence := int(ship_cur["defense"])
+	var points  := int(ship_cur["points"])
 
-	var weapon  = _dict["weapon_slots"].duplicate()
-	var support = _dict["support_slots"].duplicate()
+	var weapon  = ship_cur["weapon_slots"].duplicate()
+	var support = ship_cur["support_slots"].duplicate()
 
 	# суммируем модификаторы всех опций
-	for o in _dict.get("option", []):
+	for o in ship_cur.get("option", []):
 		var m = o.get("modification", {})
 		hp      += int(m.get("HP", "0"))
 		defence += int(m.get("defence", "0"))
@@ -181,64 +253,14 @@ func _recalc_and_update_display() -> void:
 		support["escorts"] = str(int(support["escorts"]) + int(m.get("escort", "0")))
 
 	# вывод основных чисел
-	_hp_lbl_1.text = str(hp)
-	_hp_lbl_2.text = str(hp)
-	_def_lbl.text  = str(defence)
+	_hp_lbl_1.text  = "/%s" % str(hp)
+	_hp_lbl_2.text  = str(hp)
+	_def_lbl.text   = str(defence)
 	_point_lbl.text = str(points)
 
-	_opt_labels["auxiliaries"].text = weapon["auxiliaries"]
-	_opt_labels["primaries"].text   = weapon["primaries"]
-	_opt_labels["superheavy"].text  = weapon["superheavy"]
 
-	_opt_labels["wings"].text   = support["wings"]
-	_opt_labels["escorts"].text = support["escorts"]
-	_system_count_lbl.text      = support["systems"]
-
-	# 🔄 обновляем кнопки всех слотов
-# ───────────────────────────────────────────
-# 7.  Кнопки Systems
-# ───────────────────────────────────────────
-func _refresh_system_buttons(total : int) -> void:
-	# первый ребёнок контейнера — label-счётчик, остальные — динамические кнопки
-	while _systems_container.get_child_count() > 1:
-		_systems_container.get_child(1).queue_free()
-
-	for i in range(total):
-		var b := Button.new()
-		b.text = str(i + 1)
-		_systems_container.add_child(b)
-
-# ───────────────────────────────────────────
-# 8.  Вспомогательное
-# ───────────────────────────────────────────
-func _clear_containers() -> void:
-	for box in [_feat_box, _tactic_box, _maneuver_box]:
-		for c in box.get_children():
-			c.queue_free()
-	for box in _slot_containers.values():
-		for c in box.get_children():
-			c.queue_free()
-
-func _refresh_option_buttons() -> void:
-	# 3.1 очищаем всё, кроме первого ребёнка-Label в каждом контейнере
-	for cont in _slot_containers.values():
-		for x in cont.get_children():
-			x.queue_free()
-			
-	for feat in _dict["feats"]:
-		var b := Button.new()
-		b.text = feat["name"]
-		match int(feat["type"]):
-			0: _feat_box.add_child(b)
-			2: _tactic_box.add_child(b)
-			1: _maneuver_box.add_child(b)
-			3: _primary_box.add_child(b)
-	
-	for o in _dict.get("option", []):
-		var t = o.get("type", -1)
-		if _slot_containers.has(t):
-			var btn := Button.new()
-			btn.text = str(o.get("name", ""))
-			_slot_containers[t].add_child(btn)
-			
-	
+func _on_hulls_name_pressed() -> void:
+	if _hide_box.visible:
+		_hide_box.hide()
+	else:
+		_hide_box.show()

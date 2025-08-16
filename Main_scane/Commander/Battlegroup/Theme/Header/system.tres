@@ -1,0 +1,42 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cwdx2nv5p1ill"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j5he1"]
+bg_color = Color(0.0960704, 0.39109, 0.140868, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0941176, 0.392157, 0.141176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_civbo"]
+bg_color = Color(0.113725, 0.447059, 0.164706, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.113725, 0.447059, 0.164706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_la7xv"]
+bg_color = Color(0.0763848, 0.330534, 0.114747, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0745098, 0.329412, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k50m1"]
+bg_color = Color(0.113725, 0.447059, 0.164706, 1)
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_j5he1")
+Button/styles/normal = SubResource("StyleBoxFlat_civbo")
+Button/styles/pressed = SubResource("StyleBoxFlat_la7xv")
+MarginContainer/constants/margin_left = 4
+MarginContainer/constants/margin_right = 4
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_k50m1")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)

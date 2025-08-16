@@ -38,6 +38,13 @@ func _update_buttons() -> void:
 				_add.hide()
 			elif _src["type"] == Opt.Support.WING and sum["wing"] <= 0:
 				_add.hide()
+			elif BattlegroupData.will_exceed_20(_src):
+				_add.hide()
+
+			# ⬅︎ УНИКАЛЬНОЕ: если такая уже стоит где-то в группе — запретить добавление
+			if _has_unique_tag(_src) and _is_unique_taken():
+				_add.hide()
+
 			if _src in ship["option"]:
 				_remove.show()
 			else:
@@ -47,12 +54,22 @@ func _update_buttons() -> void:
 				_add.hide()
 			else:
 				_add.show()
+
+			# ⬅︎ УНИКАЛЬНОЕ (даже при пустых опциях текущего корабля)
+			if _has_unique_tag(_src) and _is_unique_taken():
+				_add.hide()
+
 			_remove.hide()
 	else:
 		if int(_src["points"]) + BattlegroupData.point > 20:
 			_add.hide()
 		else:
 			_add.show()
+
+		# ⬅︎ УНИКАЛЬНОЕ: правило действует и вне выбранного корабля/видимости
+		if _has_unique_tag(_src) and _is_unique_taken():
+			_add.hide()
+
 		_remove.hide()
 
 func _has_unique_tag(opt: Dictionary) -> bool:

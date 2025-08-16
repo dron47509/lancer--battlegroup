@@ -18,7 +18,7 @@
 				"wing": "0"
 			},
 			"name": "MARINE LANDERS",
-			"points": 0.0,
+			"points": "0",
 			"range": "3–0",
 			"tags": "Абордаж",
 			"tenacity": "10",
@@ -52,7 +52,7 @@
 				"wing": "0"
 			},
 			"name": "DESTROYER ESCORT",
-			"points": 2.0,
+			"points": "2",
 			"range": "",
 			"tags": "",
 			"tenacity": "",
@@ -446,7 +446,7 @@
 					"name": "BARBAROSSA COMMAND",
 					"range": "3-0",
 					"tags": "",
-					"type": 0.0
+					"type": 2.0
 				}
 			],
 			"hp": "8",
@@ -480,7 +480,7 @@
 					"name": "MONARCH COMMAND",
 					"range": "3-0",
 					"tags": "",
-					"type": 0.0
+					"type": 2.0
 				}
 			],
 			"hp": "8",
@@ -659,11 +659,11 @@
 					"type": 0.0
 				},
 				{
-					"damage": "",
+					"damage": "2",
 					"discription": "",
 					"effect": "При попадании - накладывает Захват на цель.",
 					"name": "VEGA-PATTERN TARGETING LASER",
-					"range": "",
+					"range": "5-2",
 					"tags": "По одной цели, Надёжное 2",
 					"type": 3.0
 				}
@@ -1389,7 +1389,7 @@
 				{
 					"damage": "",
 					"discription": "",
-					"effect": "1/раунд ты можешь выбрать одно: • Во время своего хода снять 1 Счётчик Полёта с одной из твоих активных атак с Боезарядом. • Во время Фазы воздействий потратить Захват враждебного Капитального корабля, когда он совершает бросок Перехвата против одной или нескольких твоих атак с Боезарядом, чтобы заставить его перебросить 1 кубик Перехвата и оставить худший результат.",
+					"effect": "1/раунд ты можешь выбрать одно:\n• Во время своего хода снять 1 Счётчик Полёта с одной из твоих активных атак с Боезарядом.\n• Во время Фазы воздействий потратить Захват враждебного Капитального корабля, когда он совершает бросок Перехвата против одной или нескольких твоих атак с Боезарядом, чтобы заставить его перебросить 1 кубик Перехвата и оставить худший результат.",
 					"name": "IMPACT-ASSURANCE TARGETING",
 					"range": "",
 					"tags": "",
@@ -1514,7 +1514,7 @@
 				"wing": "0"
 			},
 			"name": "AGGRESSIVE COMMANDERS",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1546,7 +1546,7 @@
 				"wing": "0"
 			},
 			"name": "BRACE FOR IMPACT",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Ограничение 1, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1578,7 +1578,7 @@
 				"wing": "0"
 			},
 			"name": "CLEARED TO LAND",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1600,7 +1600,7 @@
 				"wing": "0"
 			},
 			"name": "BULWARK REDUNDANCIES",
-			"points": 0.0,
+			"points": "0",
 			"tags": "",
 			"tenacity": "",
 			"type": 3.0
@@ -1622,7 +1622,7 @@
 				"wing": "1"
 			},
 			"name": "FIGHTER LAUNCH CATAPULTS",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1654,7 +1654,7 @@
 				"wing": "0"
 			},
 			"name": "FIRE FOR EFFECT",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1676,7 +1676,7 @@
 				"wing": "0"
 			},
 			"name": "INSIGHTFUL COMMANDERS",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1698,7 +1698,7 @@
 				"wing": "0"
 			},
 			"name": "PIPER DRONES",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Ограничение 1, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1720,7 +1720,7 @@
 				"wing": "0"
 			},
 			"name": "PREDICT/OVERLAY SHIELD PROJECTOR",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Ограничение 1, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1742,7 +1742,7 @@
 				"wing": "0"
 			},
 			"name": "SINGLE-PLANE SHIELD",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Ограничение 1",
 			"tenacity": "",
 			"type": 3.0
@@ -1774,7 +1774,7 @@
 				"wing": "0"
 			},
 			"name": "STEADY… NOW!",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1796,7 +1796,7 @@
 				"wing": "0"
 			},
 			"name": "VETERAN CREWS",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Ограничение 1",
 			"tenacity": "",
 			"type": 3.0
@@ -1828,7 +1828,7 @@
 				"wing": "0"
 			},
 			"name": "ECHOPRAXIC IMAGO",
-			"points": 1.0,
+			"points": "1",
 			"tags": "Абордаж, Пространство Легиона, Уникальное",
 			"tenacity": "10",
 			"type": 3.0
@@ -1850,7 +1850,7 @@
 				"wing": "0"
 			},
 			"name": "SUBLINE BERTH",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1872,7 +1872,7 @@
 				"wing": "0"
 			},
 			"name": "IMPOSSIBLE DODGE",
-			"points": 0.0,
+			"points": "0",
 			"tags": "Пространство Легиона, Обновляемое 3, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1913,7 +1913,7 @@
 				"wing": "0"
 			},
 			"name": "POWER DISTRIBUTION SYSTEMS",
-			"points": 1.0,
+			"points": "1",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1935,7 +1935,7 @@
 				"wing": "0"
 			},
 			"name": "SUBJECTIVE SYZYGY",
-			"points": 1.0,
+			"points": "1",
 			"tags": "Пространство Легиона, Обновляемое 3, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1957,7 +1957,7 @@
 				"wing": "0"
 			},
 			"name": "ANTICOGNITION HYPERFRACTAL",
-			"points": 2.0,
+			"points": "2",
 			"tags": "Пространство Легиона, Обновляемое 3, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -1989,7 +1989,7 @@
 				"wing": "0"
 			},
 			"name": "LEGIONSPACE COORDINATOR",
-			"points": 2.0,
+			"points": "2",
 			"tags": "Пространство Легиона, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -2030,7 +2030,7 @@
 				"wing": "0"
 			},
 			"name": "AURORA STEALTH SHROUDING",
-			"points": 3.0,
+			"points": "3",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -2052,7 +2052,7 @@
 				"wing": "0"
 			},
 			"name": "SUBALTERN COMBAT CREWS",
-			"points": 2.0,
+			"points": "2",
 			"tags": "Обновляемое 3, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -2074,7 +2074,7 @@
 				"wing": "0"
 			},
 			"name": "SMARTSCREEN",
-			"points": 1.0,
+			"points": "1",
 			"tags": "",
 			"tenacity": "",
 			"type": 3.0
@@ -2115,7 +2115,7 @@
 				"wing": "0"
 			},
 			"name": "BATTLESPACE CIC",
-			"points": 3.0,
+			"points": "3",
 			"tags": "Пространство Легиона, Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -2156,7 +2156,7 @@
 				"wing": "0"
 			},
 			"name": "“SANDSTORM” VANGUARD",
-			"points": 3.0,
+			"points": "3",
 			"tags": "Уникальное",
 			"tenacity": "",
 			"type": 3.0
@@ -2203,7 +2203,7 @@
 				"wing": "0"
 			},
 			"name": "3X3 BLOCK SHORT-SPOOL CANNONS",
-			"points": 2.0,
+			"points": "2",
 			"range": "4-1",
 			"tags": "По одной цели, Надёжное 2",
 			"tenacity": "",
@@ -2226,7 +2226,7 @@
 				"wing": "0"
 			},
 			"name": "SPEARTIP ANTI-CAPITAL TORPEDOES",
-			"points": 2.0,
+			"points": "2",
 			"range": "5-4",
 			"tags": "По одной цели, Боезаряд –1",
 			"tenacity": "",
@@ -2249,7 +2249,7 @@
 				"wing": "0"
 			},
 			"name": "SPINAL LINAC COHERENT BEAM CANNON",
-			"points": 2.0,
+			"points": "2",
 			"range": "4-1",
                         "tags": "По одной цели, Заряжаемое 2, Критическое",
 			"tenacity": "",
@@ -2272,7 +2272,7 @@
 				"wing": "0"
 			},
 			"name": "SPINAL PETAJOULE KINETIC",
-			"points": 2.0,
+			"points": "2",
 			"range": "5-2",
                         "tags": "По одной цели, Точное, Заряжаемое 3, Критическое",
 			"tenacity": "",
@@ -2295,7 +2295,7 @@
 				"wing": "0"
 			},
 			"name": "SPINAL TACHYON LANCE",
-			"points": 3.0,
+			"points": "3",
 			"range": "5-3",
                         "tags": "По одной цели, Заряжаемое 4, Критическое, Надёжное 10",
 			"tenacity": "",
@@ -2318,7 +2318,7 @@
 				"wing": "0"
 			},
 			"name": "CO-CONSCIOUSNESS LANCE",
-			"points": 3.0,
+			"points": "3",
 			"range": "4-2",
 			"tags": "Атака по области, Пространство Легиона, Обновляемое 3",
 			"tenacity": "",
@@ -2341,7 +2341,7 @@
 				"wing": "0"
 			},
 			"name": "NEARLIGHT KILL-PACK",
-			"points": 3.0,
+			"points": "3",
 			"range": "4-3",
 			"tags": "По одной цели, Избыточный урон, Обновляемое 2",
 			"tenacity": "",
@@ -2364,7 +2364,7 @@
 				"wing": "0"
 			},
 			"name": "CONICAL KINETIC PROJECTORS",
-			"points": 0.0,
+			"points": "0",
 			"range": "2–0",
 			"tags": "По одной цели, Критическое",
 			"tenacity": "",
@@ -2387,7 +2387,7 @@
 				"wing": "0"
 			},
 			"name": "DORSAL RAZORBACK MISSILES",
-			"points": 0.0,
+			"points": "0",
 			"range": "4-0",
 			"tags": "По одной цели, Боезаряд",
 			"tenacity": "",
@@ -2410,7 +2410,7 @@
 				"wing": "0"
 			},
 			"name": "PINAKA SHIP-TO-SHIP MISSILES",
-			"points": 0.0,
+			"points": "0",
 			"range": "3-0",
 			"tags": "Атака по области, Боезаряд",
 			"tenacity": "",
@@ -2433,7 +2433,7 @@
 				"wing": "0"
 			},
 			"name": "PRIMARY KINETIC BATTERIES",
-			"points": 0.0,
+			"points": "0",
 			"range": "3-0",
 			"tags": "По одной цели, Надёжное 1",
 			"tenacity": "",
@@ -2456,7 +2456,7 @@
 				"wing": "0"
 			},
 			"name": "PRIMARY SINGLE-STAGE TORPEDOES",
-			"points": 0.0,
+			"points": "0",
 			"range": "4-2",
 			"tags": "По одной цели, Боезаряд –1",
 			"tenacity": "",
@@ -2479,7 +2479,7 @@
 				"wing": "0"
 			},
 			"name": "SHORT-CYCLE LANCE BATTERIES",
-			"points": 0.0,
+			"points": "0",
 			"range": "3-0",
 			"tags": "По одной цели, Точное, Критическое",
 			"tenacity": "",
@@ -2502,7 +2502,7 @@
 				"wing": "0"
 			},
 			"name": "TANDEM-SPREAD TORPEDOES",
-			"points": 0.0,
+			"points": "0",
 			"range": "4-2",
 			"tags": "По одной цели, Боезаряд –1",
 			"tenacity": "",
@@ -2525,7 +2525,7 @@
 				"wing": "0"
 			},
 			"name": "GEMINI LASER ARRAY",
-			"points": 1.0,
+			"points": "1",
 			"range": "3-0",
 			"tags": "По одной цели",
 			"tenacity": "",
@@ -2548,7 +2548,7 @@
 				"wing": "0"
 			},
 			"name": "HEAVY KINETIC BATTERIES",
-			"points": 1.0,
+			"points": "1",
 			"range": "4-1",
 			"tags": "По одной цели, Надёжное 2",
 			"tenacity": "",
@@ -2571,7 +2571,7 @@
 				"wing": "0"
 			},
 			"name": "LAMPREY BOARDING TORPEDOES",
-			"points": 1.0,
+			"points": "1",
 			"range": "4-1",
 			"tags": "По одной цели, Абордаж, Боезаряд –1",
 			"tenacity": "11",
@@ -2594,7 +2594,7 @@
 				"wing": "0"
 			},
 			"name": "LONG-FLIGHT ACTIVE CONTROL MISSILES",
-			"points": 1.0,
+			"points": "1",
 			"range": "5-1",
 			"tags": "По одной цели, Боезаряд",
 			"tenacity": "",
@@ -2617,7 +2617,7 @@
 				"wing": "0"
 			},
 			"name": "DARKSTAR MULTIPLE-WARHEAD TORPEDOES",
-			"points": 2.0,
+			"points": "2",
 			"range": "4-2",
 			"tags": "Атака по области, Боезаряд –1",
 			"tenacity": "",
@@ -2640,7 +2640,7 @@
 				"wing": "0"
 			},
 			"name": "LEGIONSPACE SCHISM",
-			"points": 2.0,
+			"points": "2",
 			"range": "4-2",
 			"tags": "По одной цели, Точное, Пространство Легиона",
 			"tenacity": "",
@@ -2663,7 +2663,7 @@
 				"wing": "0"
 			},
 			"name": "MASS ACCELERATOR TURRETS",
-			"points": 2.0,
+			"points": "2",
 			"range": "2-0",
 			"tags": "По одной цели, Избыточный урон, Надёжное 3",
 			"tenacity": "",
@@ -2686,7 +2686,7 @@
 				"wing": "0"
 			},
 			"name": "THROUGHLINE SKIP DRONE",
-			"points": 2.0,
+			"points": "2",
 			"range": "4-3",
                         "tags": "По одной цели, Заряжаемое 2, Ограничение 1, Избыточный урон, Уникальное",
 			"tenacity": "",
@@ -2709,7 +2709,7 @@
 				"wing": "0"
 			},
 			"name": "FLYSWATTER MISSILES",
-			"points": 0.0,
+			"points": "0",
 			"range": "3-0",
 			"tags": "",
 			"tenacity": "",
@@ -2732,7 +2732,7 @@
 				"wing": "0"
 			},
 			"name": "MESSENGER LEAD LASER",
-			"points": 0.0,
+			"points": "0",
 			"range": "4-2",
 			"tags": "",
 			"tenacity": "",
@@ -2755,7 +2755,7 @@
 				"wing": "0"
 			},
 			"name": "HARBINGER CONFIDENCE LASERS",
-			"points": 1.0,
+			"points": "1",
 			"range": "5-3",
 			"tags": "",
 			"tenacity": "",
@@ -2778,7 +2778,7 @@
 				"wing": "0"
 			},
 			"name": "SECONDARY TURRETS",
-			"points": 0.0,
+			"points": "0",
 			"range": "3-0",
 			"tags": "",
 			"tenacity": "",
@@ -2801,7 +2801,7 @@
 				"wing": "0"
 			},
 			"name": "NEARSPACE DIRECTED-ENERGY PERFORATORS",
-			"points": 1.0,
+			"points": "1",
 			"range": "2-0",
 			"tags": "",
 			"tenacity": "",
@@ -2824,7 +2824,7 @@
 				"wing": "0"
 			},
 			"name": "CLOUDKILL KINETICS",
-			"points": 2.0,
+			"points": "2",
 			"range": "",
 			"tags": "Ограничение 2",
 			"tenacity": "",

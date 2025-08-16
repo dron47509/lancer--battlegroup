@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfox1wsfas3lb"]
+[gd_scene load_steps=9 format=3 uid="uid://bfox1wsfas3lb"]
 
 [ext_resource type="Script" uid="uid://dxdav6kwlhk82" path="res://Main_scane/Hull_list/feat_for_showing.gd" id="1_83eq7"]
 [ext_resource type="Theme" uid="uid://bxdv3qkxkuifb" path="res://Main_scane/Hull_list/Themes/Feat.tres" id="1_sa27u"]
@@ -6,6 +6,14 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_fw3rc"]
 font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_sa27u"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lmsry"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1oeq1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k341a"]
 
 [node name="Feat" type="PanelContainer"]
 anchors_preset = -1
@@ -17,6 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme = ExtResource("1_sa27u")
 script = ExtResource("1_83eq7")
 
@@ -25,6 +34,7 @@ layout_mode = 2
 
 [node name="Header" type="PanelContainer" parent="Feat"]
 layout_mode = 2
+mouse_filter = 2
 theme = ExtResource("3_fw3rc")
 
 [node name="MarginContainer" type="MarginContainer" parent="Feat/Header"]
@@ -39,20 +49,25 @@ label_settings = SubResource("LabelSettings_fw3rc")
 
 [node name="Type" type="Label" parent="Feat/Header/MarginContainer/Header"]
 layout_mode = 2
+label_settings = SubResource("LabelSettings_sa27u")
 
 [node name="Tags" type="Label" parent="Feat/Header/MarginContainer/Header"]
 layout_mode = 2
+label_settings = SubResource("LabelSettings_lmsry")
 
 [node name="Damage_range_container" type="HBoxContainer" parent="Feat/Header/MarginContainer/Header"]
 layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="Damage" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 2
+label_settings = SubResource("LabelSettings_1oeq1")
 
 [node name="Range" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 0
+label_settings = SubResource("LabelSettings_k341a")
 
 [node name="MarginContainer" type="MarginContainer" parent="Feat"]
 layout_mode = 2
@@ -62,10 +77,12 @@ layout_mode = 2
 
 [node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 bbcode_enabled = true
 fit_content = true
 
 [node name="Discription" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 bbcode_enabled = true
 fit_content = true

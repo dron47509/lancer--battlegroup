@@ -14,7 +14,6 @@ const FEAT_SCENE := preload("res://Main_scane/Hull_list/Feat_for_showing.tscn")
 @onready var _hp          : Label          = $Paramets/HP_Container/HP
 @onready var _defense     : Label          = $Paramets/Defence_Container/Defence
 @onready var _option_1    : HBoxContainer  = $Options
-@onready var _option_2    : HBoxContainer  = $Options2
 @onready var _superheavy  : Label          = $Options/Superheavies/Superheavy
 @onready var _primary     : Label          = $Options/Primaries/Primary
 @onready var _auxiliary   : Label          = $Options/Auxiliaries/Auxiliary
@@ -34,6 +33,8 @@ func _process(delta: float) -> void:
 func populate(data: Dictionary) -> void:
 	_src = data.duplicate(true)
 	_name.text     = data.get("name")
+	if data.get("name") in ["HA\nFARRAGUT-CLASS STARFIELD CARRIER", "IPS-N\nMINOKAWA-CLASS FRIGATE"]:
+		_option_1.special_slot.text = "1"
 	_image.texture = load("res://hulls/" + data.get("name").replace("\n", " ") + ".png")
 	match int(data.get("class")):
 		BattlegroupData.ShipClass.FRIGATE:

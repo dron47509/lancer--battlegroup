@@ -118,6 +118,8 @@ func _apply_filters() -> void:
 				var any := false
 				for c in d["node"].get_children():
 					var has := false
+					if c is Label:
+						continue
 					for t in c._src.get("tags", "").split(",", false):
 						if _clean_tag(t) == tag_text:
 							has = true

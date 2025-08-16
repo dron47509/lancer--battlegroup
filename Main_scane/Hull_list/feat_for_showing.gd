@@ -47,8 +47,10 @@ func populate(data) -> void:
 		3.0:
 			_type.text = "Орудие"
 	_tags.text = data.get("tags")
-	_damage.text = data.get("damage")
-	_range.text = data.get("range")
+	if data.get("damage") != "":
+		_damage.text = "[Урон %s]" % data.get("damage")
+	if data.get("range") != "":
+		_range.text = "[Дистанция %s]" % data.get("range")
 	_effect.text = data.get("effect")
 	_discription.text = data.get("discription")
 	_change_theme()

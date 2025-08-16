@@ -36,22 +36,34 @@ func _update_buttons() -> void:
 			var sum = SlotUtils.get_slot_sums(ship)
 			if sum["system"] <= 0:
 				_add.hide()
+			elif BattlegroupData.will_exceed_20(_src):
+				_add.hide()
 			if _src in ship["option"]:
 				_remove.show()
 			else:
 				_remove.hide()
+			# ⬅︎ УНИКАЛЬНОЕ: если такая «уникальная» уже где-то стоит — запрещаем добавление
+			if _has_unique_tag(_src) and _is_unique_taken():
+				_add.hide()
 		else:
 			if int(_src["points"]) + BattlegroupData.point > 20:
 				_add.hide()
 			else:
 				_add.show()
+			# ⬅︎ УНИКАЛЬНОЕ: даже при пустом списке опций текущего корабля учитываем уникальность на всю группу
+			if _has_unique_tag(_src) and _is_unique_taken():
+				_add.hide()
 			_remove.hide()
 	else:
 		if int(_src["points"]) + BattlegroupData.point > 20:
 			_add.hide()
 		else:
 			_add.show()
+		# ⬅︎ УНИКАЛЬНОЕ: правило действует и без выбранного корабля
+		if _has_unique_tag(_src) and _is_unique_taken():
+			_add.hide()
 		_remove.hide()
+
 
 func _has_unique_tag(opt: Dictionary) -> bool:
 		for t in opt.get("tags", "").split(",", false):
@@ -113,10 +125,11 @@ func populate(system):
 			_maneveue1_effect.text = feat1.get("effect")
 
 func _on_add_pressed() -> void:
-		var opt = _src.duplicate(true)
-		BattlegroupData.ships[BattlegroupData.current_ship]["option"].append(opt)
-		BattlegroupData.refresh_point()
-		BattlegroupData.option_change.emit()
+
+	var opt = _src.duplicate(true)
+	BattlegroupData.ships[BattlegroupData.current_ship]["option"].append(opt)
+	BattlegroupData.refresh_point()
+	BattlegroupData.option_change.emit()
 
 
 func _on_remove_pressed() -> void:

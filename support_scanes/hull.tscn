@@ -16,10 +16,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_x6ilt")
 
 [node name="Hull" type="VBoxContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme = ExtResource("1_x6ilt")
 script = ExtResource("1_j70ce")
 
@@ -30,6 +32,7 @@ horizontal_alignment = 1
 
 [node name="Image" type="TextureRect" parent="Hull"]
 layout_mode = 2
+mouse_filter = 2
 expand_mode = 5
 
 [node name="Type" type="Label" parent="Hull"]
@@ -38,13 +41,16 @@ label_settings = SubResource("LabelSettings_tgw6a")
 
 [node name="HSeparator2" type="HSeparator" parent="Hull"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Paramets" type="HBoxContainer" parent="Hull"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Point_Container" type="VBoxContainer" parent="Hull/Paramets"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Paramets/Point_Container"]
 layout_mode = 2
@@ -58,6 +64,7 @@ horizontal_alignment = 1
 [node name="HP_Container" type="VBoxContainer" parent="Hull/Paramets"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Paramets/HP_Container"]
 layout_mode = 2
@@ -72,6 +79,7 @@ horizontal_alignment = 1
 [node name="Defence_Container" type="VBoxContainer" parent="Hull/Paramets"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Paramets/Defence_Container"]
 layout_mode = 2
@@ -84,14 +92,17 @@ horizontal_alignment = 1
 
 [node name="HSeparator3" type="HSeparator" parent="Hull"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Options" type="HBoxContainer" parent="Hull"]
 layout_mode = 2
+mouse_filter = 2
 script = ExtResource("3_j70ce")
 
 [node name="Superheavies" type="VBoxContainer" parent="Hull/Options"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Options/Superheavies"]
 layout_mode = 2
@@ -106,6 +117,7 @@ horizontal_alignment = 1
 [node name="Primaries" type="VBoxContainer" parent="Hull/Options"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Options/Primaries"]
 layout_mode = 2
@@ -120,6 +132,7 @@ horizontal_alignment = 1
 [node name="Auxiliaries" type="VBoxContainer" parent="Hull/Options"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Options/Auxiliaries"]
 layout_mode = 2
@@ -134,6 +147,7 @@ horizontal_alignment = 1
 [node name="Wings" type="VBoxContainer" parent="Hull/Options"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Options/Wings"]
 layout_mode = 2
@@ -148,6 +162,7 @@ horizontal_alignment = 1
 [node name="Escorts" type="VBoxContainer" parent="Hull/Options"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Options/Escorts"]
 layout_mode = 2
@@ -163,6 +178,7 @@ horizontal_alignment = 1
 [node name="Systems" type="VBoxContainer" parent="Hull/Options"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="Hull/Options/Systems"]
 layout_mode = 2
@@ -174,20 +190,39 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
+[node name="Special" type="VBoxContainer" parent="Hull/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Hull/Options/Special"]
+layout_mode = 2
+text = "Особый"
+horizontal_alignment = 1
+
+[node name="Special" type="Label" parent="Hull/Options/Special"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
 [node name="HSeparator4" type="HSeparator" parent="Hull"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Hull"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Feats_container" type="VBoxContainer" parent="Hull/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="Hull"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Discription" type="RichTextLabel" parent="Hull/MarginContainer2"]
 layout_mode = 2
+mouse_filter = 2
 fit_content = true
 
 [node name="Button" type="Button" parent="Hull"]
@@ -204,3 +239,4 @@ text = "Убрать корпус"
 [node name="RichTextLabel" type="RichTextLabel" parent="Hull"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
+mouse_filter = 2

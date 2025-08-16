@@ -1,0 +1,258 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfmnaxmwuyw7c"]
+
+[ext_resource type="Theme" uid="uid://ub8betb6ka2e" path="res://Main_scane/Commander/Battlegroup/Theme/Body/feat.tres" id="1_vw5js"]
+[ext_resource type="Script" uid="uid://dp2mxx4n6vamw" path="res://Main_scane/Commander/feat_ship.gd" id="2_vw5js"]
+[ext_resource type="Theme" uid="uid://baf7ven6bc8vi" path="res://Main_scane/Commander/Battlegroup/Theme/Header/feat.tres" id="4_bshel"]
+[ext_resource type="Theme" uid="uid://b0gpqephvhh8r" path="res://Main_scane/Commander/Battlegroup/Theme/Hide_button.tres" id="4_svja1"]
+[ext_resource type="Theme" uid="uid://bv15hsbarh0ee" path="res://Main_scane/Option_list/Theme/maneveue.tres" id="5_bshel"]
+[ext_resource type="Theme" uid="uid://ihkj5ctm6n8p" path="res://Main_scane/Option_list/Theme/maneveue_head.tres" id="6_ekl7w"]
+[ext_resource type="Theme" uid="uid://clf85mpqe5p0v" path="res://tactic.tres" id="7_id18o"]
+[ext_resource type="Theme" uid="uid://dduae04ub3q8p" path="res://Main_scane/Option_list/Theme/tactic_head.tres" id="8_h1pwk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k341a"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1oeq1"]
+
+[node name="Feat" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_vw5js")
+script = ExtResource("2_vw5js")
+
+[node name="Feat" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="PanelContainer" parent="Feat"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("4_bshel")
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat/Header"]
+layout_mode = 2
+
+[node name="Header" type="VBoxContainer" parent="Feat/Header/MarginContainer"]
+layout_mode = 2
+
+[node name="Hide" type="Button" parent="Feat/Header/MarginContainer/Header"]
+layout_mode = 2
+theme = ExtResource("4_svja1")
+text = "N"
+flat = true
+alignment = 0
+expand_icon = true
+
+[node name="Tags" type="RichTextLabel" parent="Feat/Header/MarginContainer/Header"]
+layout_mode = 2
+mouse_filter = 2
+text = "H"
+fit_content = true
+
+[node name="Damage_range_container" type="HBoxContainer" parent="Feat/Header/MarginContainer/Header"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="HP" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = SubResource("LabelSettings_k341a")
+
+[node name="Range" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = SubResource("LabelSettings_k341a")
+
+[node name="Damage" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
+layout_mode = 2
+size_flags_horizontal = 2
+label_settings = SubResource("LabelSettings_1oeq1")
+
+[node name="Tenacity" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = SubResource("LabelSettings_k341a")
+
+[node name="Point" type="Label" parent="Feat/Header/MarginContainer/Header/Damage_range_container"]
+layout_mode = 2
+size_flags_horizontal = 0
+label_settings = SubResource("LabelSettings_k341a")
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer"]
+layout_mode = 2
+
+[node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+
+[node name="Discription" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "[i]nnj"
+fit_content = true
+
+[node name="Maneveue1" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("5_bshel")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("6_ekl7w")
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="Tags" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+text = "Описание"
+fit_content = true
+
+[node name="Tactic1" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("7_id18o")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("8_h1pwk")
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="Tags" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+text = "Описание"
+fit_content = true
+
+[node name="Tactic2" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("7_id18o")
+
+[node name="PanelContainer2" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("8_h1pwk")
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="Tags" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+text = "Описание"
+fit_content = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Feat/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Remove" type="Button" parent="Feat/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Демонтировать"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Feat"]
+layout_mode = 2

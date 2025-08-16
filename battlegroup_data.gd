@@ -145,17 +145,15 @@ func will_exceed_20(opt: Dictionary) -> bool:
 			
 			if s_class == 1.0 and (o_type == 5.0 or o_type == 4.0):
 				spec += o_points
-				spec += o_mod_points
 			elif s_name == "IPS-N\nEILAND-CLASS COMMAND CARRIER" and (o_type == 5.0):
 				spec += o_points
-				spec += o_mod_points
-			elif (opt.get("type") == 0.0) and (s_name == "HA\nCREIGHTON-CLASS FRIGATE\n(CALIBRATED FIRING PLATFORM)" or s_name == "HA\nCREIGHTON-CLASS FRIGATE\n(VEGA)"):
+			elif (o_type == 0.0) and (s_name == "HA\nCREIGHTON-CLASS FRIGATE\n(CALIBRATED FIRING PLATFORM)" or s_name == "HA\nCREIGHTON-CLASS FRIGATE\n(VEGA)"):
 				if o_points == 0:
-					ship_total += o_points + o_mod_points
+					ship_total += o_points 
 				else:
-					ship_total += (o_points - 1) + o_mod_points
+					ship_total += (o_points - 1)
 			else:
-				ship_total += o_points + o_mod_points
+				ship_total += o_points 
 		
 		# Порог для спец-очков
 		if spec > 3:

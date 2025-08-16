@@ -58,12 +58,12 @@ selected = 0
 item_count = 4
 popup/item_0/text = "Все"
 popup/item_0/id = 0
-popup/item_1/text = "Фрегаты"
-popup/item_1/id = 1
+popup/item_1/text = "Линкоры"
+popup/item_1/id = 3
 popup/item_2/text = "Авианосцы"
 popup/item_2/id = 2
-popup/item_3/text = "Линкоры"
-popup/item_3/id = 3
+popup/item_3/text = "Фрегаты"
+popup/item_3/id = 1
 
 [node name="Inform_panel" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -74,7 +74,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Inform_panel/Battleship_container"]
 layout_mode = 2
-text = "Эсминцы:"
+text = "Линкоры:"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Inform_panel/Battleship_container"]
@@ -131,6 +131,7 @@ horizontal_alignment = 1
 [node name="Hulls_list" type="ScrollContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+follow_focus = true
 vertical_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Hulls_list"]

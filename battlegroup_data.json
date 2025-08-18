@@ -1588,7 +1588,7 @@
 			"effect": "Этот корабль получает +3 HP.\nЭта система может быть выбрана только один раз для каждого корабля.",
 			"feats": [],
 			"modification": {
-				"HP": "3",
+				"HP": "0",
 				"auxiliary": "0",
 				"defence": "0",
 				"escort": "0",
@@ -1619,7 +1619,7 @@
 				"primary": "0",
 				"superheavy": "0",
 				"system": "-1",
-				"wing": "1"
+				"wing": "0"
 			},
 			"name": "FIGHTER LAUNCH CATAPULTS",
 			"points": "0",
@@ -1841,7 +1841,7 @@
 				"HP": "0",
 				"auxiliary": "0",
 				"defence": "0",
-				"escort": "1",
+				"escort": "0",
 				"interdiction": "0",
 				"point": "0",
 				"primary": "0",

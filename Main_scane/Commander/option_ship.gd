@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends GridContainer
 
 const SlotUtils = preload("res://slot_utils.gd")
 
@@ -28,7 +28,7 @@ func _update_from_ship() -> void:
 		_labels["escorts"].text = "%d/%d" % [used["escort"], sum["escort"]]
 		_labels["systems"].text = "%d/%d" % [used["system"], sum["system"]]
 		if get_parent().get_parent().get_parent().ship_cur.get("name") in ["HA\nFARRAGUT-CLASS STARFIELD CARRIER", "IPS-N\nMINOKAWA-CLASS FRIGATE"]:
-			_labels["special"].text = "0/1" 
+			_labels["special"].text = "%d/1" % ship["special"].size()
 		_refresh_visibility()
 
 func _refresh_visibility() -> void:

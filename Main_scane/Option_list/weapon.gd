@@ -10,6 +10,8 @@ const Opt = preload("res://option_types.gd")
 @onready var _discription: RichTextLabel = $VBoxContainer/Discription/Discription
 @onready var _add: MarginContainer = $VBoxContainer/Button
 @onready var _remove: MarginContainer = $VBoxContainer/Button2
+@onready var _add_special:    MarginContainer = $VBoxContainer/Button3
+@onready var _remove_special: MarginContainer = $VBoxContainer/Button4
 var _src: Dictionary
 
 func _process(delta: float) -> void:
@@ -30,7 +32,7 @@ func _update_buttons() -> void:
 			elif BattlegroupData.will_exceed_20(_src) or super_condition():
 				_add.hide()
 
-			# ⬅︎ УНИКАЛЬНОЕ: запретить добавление, если такая «уникальная» уже есть где-то в боегруппе
+			# УНИКАЛЬНОЕ
 			if _has_unique_tag(_src) and _is_unique_taken():
 				_add.hide()
 
@@ -38,28 +40,76 @@ func _update_buttons() -> void:
 				_remove.show()
 			else:
 				_remove.hide()
+
+			# ----- SPECIAL UI (только для вспомогательных орудий) -----
+			var special_arr = ship.get("special", [])
+			var in_special := false
+			for o in special_arr:
+				if _is_same_template(o):
+					in_special = true
+					break
+
+			# Кнопка добавления special показывается только для AUXILIARY
+			if ship.get("name") in ["HA\nFARRAGUT-CLASS STARFIELD CARRIER"] and  _src.get("type") == Opt.Weapon.AUXILIARY and special_arr.size() < 1 and not in_special:
+				_add_special.show()
+			else:
+				_add_special.hide()
+
+			# Кнопка удаления special — если именно это орудие уже в special
+			if in_special:
+				_remove_special.show()
+			else:
+				_remove_special.hide()
+
 		else:
-			if BattlegroupData.will_exceed_20(_src) or super_condition():
+			var sum = SlotUtils.get_slot_sums(ship)
+			if _src["type"] == Opt.Weapon.SUPERHEAVY and sum["superheavy"] <= 0:
+				_add.hide()
+			elif _src["type"] == Opt.Weapon.PRIMARY and sum["primary"] <= 0:
+				_add.hide()
+			elif _src["type"] == Opt.Weapon.AUXILIARY and sum["auxiliary"] <= 0:
+				_add.hide()
+			elif BattlegroupData.will_exceed_20(_src) or super_condition():
 				_add.hide()
 			else:
 				_add.show()
 
-			# ⬅︎ УНИКАЛЬНОЕ: даже при пустых опциях текущего корабля учитываем уникальность на всю группу
+			# УНИКАЛЬНОЕ (и при пустых опциях)
 			if _has_unique_tag(_src) and _is_unique_taken():
 				_add.hide()
 
 			_remove.hide()
+
+			# ----- SPECIAL UI (только для вспомогательных орудий) -----
+			var special_arr2 = ship.get("special", [])
+			var in_special2 := false
+			for o in special_arr2:
+				if _is_same_template(o):
+					in_special2 = true
+					break
+
+			if ship.get("name") in ["HA\nFARRAGUT-CLASS STARFIELD CARRIER"] and _src.get("type") == Opt.Weapon.AUXILIARY and special_arr2.size() < 1 and not in_special2:
+				_add_special.show()
+			else:
+				_add_special.hide()
+
+			if in_special2:
+				_remove_special.show()
+			else:
+				_remove_special.hide()
+
 	else:
 		if BattlegroupData.will_exceed_20(_src) or super_condition():
 			_add.hide()
 		else:
 			_add.show()
 
-		# ⬅︎ УНИКАЛЬНОЕ: правило действует и вне выбранного корабля
 		if _has_unique_tag(_src) and _is_unique_taken():
 			_add.hide()
 
 		_remove.hide()
+		_add_special.hide()
+		_remove_special.hide()
 
 
 func _has_unique_tag(opt: Dictionary) -> bool:
@@ -151,3 +201,39 @@ func super_condition():
 				return false
 			return true
 	return false
+	
+func _on_add_special_pressed() -> void:
+	var ship = BattlegroupData.ships[BattlegroupData.current_ship]
+	if not ship.has("special") or ship.get("special") == null:
+		ship["special"] = []
+
+	# только вспомогательные
+	if _src.get("type") != Opt.Weapon.AUXILIARY:
+		return
+
+	# без дублей одного и того же шаблона
+	for o in ship["special"]:
+		if _is_same_template(o):
+			return
+
+	var opt := _src.duplicate(true)
+	ship["special"].append(opt)
+
+	# UI обновится через _process/_update_buttons, но подсветим намерение
+	_remove_special.show()
+	_add_special.hide()
+
+	BattlegroupData.option_change.emit()
+
+
+func _on_remove_special_pressed() -> void:
+	var ship = BattlegroupData.ships[BattlegroupData.current_ship]
+	var arr = ship.get("special", [])
+	for i in range(arr.size() - 1, -1, -1):
+		if _is_same_template(arr[i]):
+			arr.remove_at(i)
+			break
+
+	_remove_special.hide()
+	# _add_special покажется в _update_buttons при выполнении условий
+	BattlegroupData.option_change.emit()

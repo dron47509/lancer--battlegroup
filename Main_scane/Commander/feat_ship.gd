@@ -23,36 +23,20 @@ const wing_escort_body     = preload("res://Main_scane/Commander/Battlegroup/The
 @onready var _discription : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Discription
 @onready var _header      : PanelContainer  = $Feat/Header
 @onready var _hide_btn    : Button          = $Feat/Header/MarginContainer/Header/Hide
-
-# Подкарточки для вложенных манёвров/тактик в опциях
-@onready var _m1_root     : MarginContainer = $Feat/MarginContainer/VBoxContainer/Maneveue1
-@onready var _m1_name     : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Name
-@onready var _m1_tags     : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Tags
-@onready var _m1_eff      : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/MarginContainer/Effect
-
-@onready var _t1_root     : MarginContainer = $Feat/MarginContainer/VBoxContainer/Tactic1
-@onready var _t1_name     : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Name
-@onready var _t1_tags     : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Tags
-@onready var _t1_eff      : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/MarginContainer/Effect
-
-@onready var _t2_root     : MarginContainer = $Feat/MarginContainer/VBoxContainer/Tactic2
-@onready var _t2_name     : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Name
-@onready var _t2_tags     : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Tags
-@onready var _t2_eff      : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/MarginContainer/Effect
 @onready var _remove_btn  : Button          = $Feat/MarginContainer/VBoxContainer/HBoxContainer/Remove
 
-var _hide_panel    :PanelContainer = null
+var _hide_panel    : PanelContainer = null
 var _removable     : bool = false
 var _host_ship     : Dictionary = {}
 var _data          : Dictionary = {}   # что именно показываем в карточке
-var _is_option_item: bool = false   # ← новый флаг
-# контекст для демонтажа
+var _is_option_item: bool = false      # ← флаг, что это элемент из option-пула
+
+# контекст для демонтажа (если используется внешним кодом)
 var _is_option  : bool = false
 var _ship_ref   : Dictionary = {}
 var _option_ref : Dictionary = {}
 
 func _ready() -> void:
-	# Подстраховка: привязываем Hide, даже если set_pair не вызван
 	if is_instance_valid(_hide_btn) and not _hide_btn.pressed.is_connected(_on_hide_pressed):
 		_hide_btn.pressed.connect(_on_hide_pressed)
 	if is_instance_valid(_remove_btn) and not _remove_btn.pressed.is_connected(_on_remove_pressed):
@@ -63,7 +47,7 @@ func set_pair(panel: PanelContainer) -> void:
 	if is_instance_valid(_hide_btn) and not _hide_btn.pressed.is_connected(_on_hide_pressed):
 		_hide_btn.pressed.connect(_on_hide_pressed)
 
-# новый метод — получает флаг «можно ли удалять» и ссылку на корабль
+# получает флаг «можно ли удалять» и ссылку на корабль
 func set_context(removable: bool, host_ship: Dictionary, is_option_item: bool=false) -> void:
 	_removable      = removable
 	_host_ship      = host_ship
@@ -71,7 +55,6 @@ func set_context(removable: bool, host_ship: Dictionary, is_option_item: bool=fa
 	_update_remove_visibility()
 
 func _update_remove_visibility() -> void:
-
 	var t := int(_data.get("type", -999))
 	# Прятать Remove только для option-элементов, если это слоты 7/8 (Тактика/Манёвр как опция)
 	var is_tactic_or_maneuver_option := _is_option_item and (t == 7 or t == 8)
@@ -83,25 +66,42 @@ func _on_hide_pressed() -> void:
 		_hide_panel.visible = true
 
 func _on_remove_pressed() -> void:
-	# Демонтаж опции с корабля
 	if not _removable or _host_ship.is_empty():
 		return
-	var opts: Array = _host_ship.get("option", [])
-	var idx := opts.find(_data)
-	if idx == -1:
-		# редкий случай: ищем по имени как запасной вариант
-		for i in opts.size():
-			if String(opts[i].get("name", "")) == String(_data.get("name", "")):
-				idx = i
-				break
-	if idx == -1:
+
+	var removed := false
+	var removed_from := ""  # "special" | "option" (для логики отката бонусов)
+
+	# Если эта карточка — ПОСЛЕДНЯЯ в своём контейнере, сперва пробуем удалить из special
+	if _is_last_in_parent() and _host_ship.has("special") and (_host_ship["special"] is Array):
+		removed = _remove_from_array_by_template(_host_ship["special"])
+		if removed:
+			removed_from = "special"
+
+	# Если не удалилось из special (или карточка не последняя) — удаляем из option
+	if not removed:
+		var opts: Array = _host_ship.get("option", [])
+		removed = _remove_from_array_by_template(opts)
+		if removed and removed_from == "":
+			removed_from = "option"
+
+	if not removed:
 		return
 
-	opts.remove_at(idx)
-	BattlegroupData.refresh_point()
-	#BattlegroupData.emit_signal("battlegroup_change")
+	# --- ПРИ УСПЕШНОМ УДАЛЕНИИ: откатываем соответствующие изменения корабля ---
+	_apply_on_remove_effects(_data.get("name", ""))
 
-	# чистим UI: убираем кнопку и карточку
+	# Обновляем UI/счётчики
+	var root := get_parent()
+	if root and root.get_parent() and root.get_parent().get_parent() and root.get_parent().get_parent().get_parent():
+		root.get_parent().get_parent().get_parent()._refresh_option_buttons()
+
+	# Пересчёт очков и оповещения
+	if "BattlegroupData" in Engine.get_singleton_list():
+		BattlegroupData.refresh_point()
+		if "option_change" in BattlegroupData:
+			BattlegroupData.option_change.emit()
+
 	if is_instance_valid(_hide_panel):
 		_hide_panel.queue_free()
 	queue_free()
@@ -114,6 +114,74 @@ func set_context_for_option(ship_ref: Dictionary, option_ref: Dictionary) -> voi
 	if _remove_btn:
 		_remove_btn.visible = true
 
+func _is_last_in_parent() -> bool:
+	var p := get_parent()
+	if p == null:
+		return false
+	return p.get_child_count() > 0 and p.get_child(p.get_child_count() - 1) == self
+
+func _remove_from_array_by_template(arr: Array) -> bool:
+	# Пытаемся по точной ссылке
+	var idx := arr.find(_data)
+	# Если не нашли — по имени (шаблонному совпадению)
+	if idx == -1:
+		for i in range(arr.size() - 1, -1, -1):
+			if String(arr[i].get("name", "")) == String(_data.get("name", "")):
+				idx = i
+				break
+	if idx != -1:
+		arr.remove_at(idx)
+		return true
+	return false
+
+# ---------- ЛОГИКА ОТКАТА БОНУСОВ ПРИ СНЯТИИ ОПЦИИ -------------------------
+
+func _apply_on_remove_effects(opt_name: String) -> void:
+	# Снятие опций должно уменьшать ранее выданные бонусы.
+	# Структура корабля:
+	#   "hp": String
+	#   "support_slots": { "wings": String, "escorts": String, "systems": String }
+	# Все числа хранятся строками → преобразуем безопасно.
+
+	match opt_name.strip_edges():
+		"FIGHTER LAUNCH CATAPULTS":
+			_dec_support_slot("wings", 1)
+		"BULWARK REDUNDANCIES":
+			_dec_hp(3)
+		"SUBLINE BERTH":
+			_dec_support_slot("escorts", 1)
+		_:
+			# Ничего не нужно откатывать
+			pass
+
+func _dec_support_slot(which: String, by: int) -> void:
+	if not _host_ship.has("support_slots"):
+		return
+	var ss = _host_ship.get("support_slots", {})
+	var cur := _to_int(ss.get(which, "0"))
+	cur = max(cur - by, 0)
+	ss[which] = str(cur)
+	_host_ship["support_slots"] = ss
+
+func _dec_hp(by: int) -> void:
+	# HP не должен опуститься ниже 1 (страховка)
+	var cur_hp := _to_int(_host_ship.get("hp", "0"))
+	cur_hp = max(cur_hp - by, 1)
+	_host_ship["hp"] = str(cur_hp)
+
+func _to_int(v) -> int:
+	match typeof(v):
+		TYPE_INT:
+			return int(v)
+		TYPE_FLOAT:
+			return int(round(v))
+		TYPE_STRING:
+			var s := String(v).strip_edges()
+			if s == "":
+				return 0
+			return int(s)
+		_:
+			return 0
 
 # --- утилиты ---------------------------------------------------
 func _hide_if_text_empty(node: Node) -> void:
@@ -126,12 +194,6 @@ func _hide_if_text_empty(node: Node) -> void:
 	for child in node.get_children():
 		if child is Node:
 			_hide_if_text_empty(child)
-
-func _fill_subcard(root: MarginContainer, name_lbl: RichTextLabel, tags_lbl: RichTextLabel, eff_lbl: RichTextLabel, data: Dictionary) -> void:
-	name_lbl.text = str(data.get("name", ""))
-	tags_lbl.text = str(data.get("tags", ""))
-	eff_lbl.text  = str(data.get("effect", ""))
-	root.visible  = true
 
 func _change_theme() -> void:
 	if get_parent().name in ["Auxiliary", "Primary", "Superheavy"]:
@@ -171,22 +233,6 @@ func populate(data: Dictionary) -> void:
 	_effect.text = data.get("effect", "")
 	_discription.text = "[i]" + data.get("discription", "")
 
-	# Вложенные элементы (для опций, содержащих feats[])
-	if data.has("feats") and data["feats"] is Array:
-		var t_count := 0
-		for sub in data["feats"]:
-			var t := int(sub.get("type", -1))
-			if t == 1 and !_m1_root.visible:
-				_fill_subcard(_m1_root, _m1_name, _m1_tags, _m1_eff, sub)
-			elif t == 2:
-				if !_t1_root.visible:
-					_fill_subcard(_t1_root, _t1_name, _t1_tags, _t1_eff, sub)
-					t_count += 1
-				elif !_t2_root.visible:
-					_fill_subcard(_t2_root, _t2_name, _t2_tags, _t2_eff, sub)
-					t_count += 1
-	
 	_hide_if_text_empty(self)
 	_change_theme()
-	# Обновляем видимость Remove c учётом полученных data/set_context
 	_update_remove_visibility()

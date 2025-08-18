@@ -178,17 +178,27 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="Current_HP" type="LineEdit" parent="Ship_box/VBoxContainer/Atributs/HP/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 text = "0"
 alignment = 1
 
+[node name="Sep" type="Label" parent="Ship_box/VBoxContainer/Atributs/HP/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "/"
+horizontal_alignment = 1
+
 [node name="Max_HP" type="Label" parent="Ship_box/VBoxContainer/Atributs/HP/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "16"
+horizontal_alignment = 1
 
 [node name="Overshild" type="VBoxContainer" parent="Ship_box/VBoxContainer/Atributs"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
@@ -223,8 +233,9 @@ horizontal_alignment = 1
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Options" type="HBoxContainer" parent="Ship_box/VBoxContainer"]
+[node name="Options" type="GridContainer" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+columns = 4
 script = ExtResource("6_dp0u4")
 
 [node name="Superheavies" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
@@ -269,6 +280,21 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 
+[node name="Systems" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Systems"]
+layout_mode = 2
+text = "Системы"
+horizontal_alignment = 1
+
+[node name="System" type="Label" parent="Ship_box/VBoxContainer/Options/Systems"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
 [node name="Wings" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
 visible = false
 layout_mode = 2
@@ -296,21 +322,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Escort" type="Label" parent="Ship_box/VBoxContainer/Options/Escorts"]
-layout_mode = 2
-text = "0"
-horizontal_alignment = 1
-
-[node name="Systems" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Systems"]
-layout_mode = 2
-text = "Системы"
-horizontal_alignment = 1
-
-[node name="System" type="Label" parent="Ship_box/VBoxContainer/Options/Systems"]
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
@@ -445,3 +456,4 @@ text = "Модифицировать"
 
 [connection signal="toggled" from="Ship_box/Ship_image/MarginContainer/Flagman" to="." method="_on_flagman_toggled"]
 [connection signal="pressed" from="Ship_box/MarginContainer3/Hulls_name" to="." method="_on_hulls_name_pressed"]
+[connection signal="text_changed" from="Ship_box/VBoxContainer/Atributs/Overshild/Overshild" to="." method="_on_overshild_text_changed"]

@@ -43,7 +43,6 @@ func populate(data: Dictionary) -> void:
 			_type.text = "Авианосец"
 		BattlegroupData.ShipClass.BATTLESHIP:
 			_type.text = "Эсминец"
-
 	_points.text     = str(data.get("points"))
 	_hp.text         = str(data.get("hp"))
 	_defense.text    = str(data.get("defense"))

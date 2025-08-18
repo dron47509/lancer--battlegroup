@@ -1,13 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfmnaxmwuyw7c"]
+[gd_scene load_steps=7 format=3 uid="uid://dfmnaxmwuyw7c"]
 
 [ext_resource type="Theme" uid="uid://ub8betb6ka2e" path="res://Main_scane/Commander/Battlegroup/Theme/Body/feat.tres" id="1_vw5js"]
 [ext_resource type="Script" uid="uid://dp2mxx4n6vamw" path="res://Main_scane/Commander/feat_ship.gd" id="2_vw5js"]
 [ext_resource type="Theme" uid="uid://baf7ven6bc8vi" path="res://Main_scane/Commander/Battlegroup/Theme/Header/feat.tres" id="4_bshel"]
 [ext_resource type="Theme" uid="uid://b0gpqephvhh8r" path="res://Main_scane/Commander/Battlegroup/Theme/Hide_button.tres" id="4_svja1"]
-[ext_resource type="Theme" uid="uid://bv15hsbarh0ee" path="res://Main_scane/Option_list/Theme/maneveue.tres" id="5_bshel"]
-[ext_resource type="Theme" uid="uid://ihkj5ctm6n8p" path="res://Main_scane/Option_list/Theme/maneveue_head.tres" id="6_ekl7w"]
-[ext_resource type="Theme" uid="uid://clf85mpqe5p0v" path="res://tactic.tres" id="7_id18o"]
-[ext_resource type="Theme" uid="uid://dduae04ub3q8p" path="res://Main_scane/Option_list/Theme/tactic_head.tres" id="8_h1pwk"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_k341a"]
 
@@ -44,7 +40,6 @@ layout_mode = 2
 [node name="Hide" type="Button" parent="Feat/Header/MarginContainer/Header"]
 layout_mode = 2
 theme = ExtResource("4_svja1")
-text = "N"
 flat = true
 alignment = 0
 expand_icon = true
@@ -52,7 +47,6 @@ expand_icon = true
 [node name="Tags" type="RichTextLabel" parent="Feat/Header/MarginContainer/Header"]
 layout_mode = 2
 mouse_filter = 2
-text = "H"
 fit_content = true
 
 [node name="Damage_range_container" type="HBoxContainer" parent="Feat/Header/MarginContainer/Header"]
@@ -100,148 +94,6 @@ fit_content = true
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "[i]nnj"
-fit_content = true
-
-[node name="Maneveue1" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("5_bshel")
-
-[node name="PanelContainer2" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("6_ekl7w")
-
-[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Name" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-fit_content = true
-
-[node name="Tags" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-fit_content = true
-
-[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-text = "Описание"
-fit_content = true
-
-[node name="Tactic1" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("7_id18o")
-
-[node name="PanelContainer2" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("8_h1pwk")
-
-[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Name" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-fit_content = true
-
-[node name="Tags" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-fit_content = true
-
-[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-text = "Описание"
-fit_content = true
-
-[node name="Tactic2" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("7_id18o")
-
-[node name="PanelContainer2" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme = ExtResource("8_h1pwk")
-
-[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Name" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-fit_content = true
-
-[node name="Tags" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-fit_content = true
-
-[node name="MarginContainer" type="MarginContainer" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="Effect" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/MarginContainer"]
-layout_mode = 2
-mouse_filter = 2
-text = "Описание"
 fit_content = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Feat/MarginContainer/VBoxContainer"]

@@ -77,6 +77,24 @@ bbcode_enabled = true
 text = "[i]Большое описание Большое описание Большое описание "
 fit_content = true
 
+[node name="Button3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Add_special" type="Button" parent="VBoxContainer/Button3"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить в особый слот"
+
+[node name="Button4" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Remove_special" type="Button" parent="VBoxContainer/Button4"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Убрать из  особого слота"
+
 [node name="Button" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
@@ -95,5 +113,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Убрать"
 
+[connection signal="pressed" from="VBoxContainer/Button3/Add_special" to="." method="_on_add_special_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button4/Remove_special" to="." method="_on_remove_special_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button/Add" to="." method="_on_add_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2/Remove" to="." method="_on_remove_pressed"]

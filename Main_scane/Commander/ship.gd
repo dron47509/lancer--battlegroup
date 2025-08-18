@@ -58,7 +58,7 @@ const hide_theme = preload("res://Main_scane/Commander/Battlegroup/Theme/Hide_bu
 @onready var _maneuver_box  : VBoxContainer = $Ship_box/VBoxContainer/Maneuver
 @onready var _primary_box   : VBoxContainer = $Ship_box/VBoxContainer/Primary
 @onready var _opt_btn       : Button        = $Ship_box/VBoxContainer/MarginContainer/Add_option
-
+@onready var _overshild     : LineEdit      = $Ship_box/VBoxContainer/Atributs/Overshild/Overshild
 # ───────────────────────────────────────────
 # 2. Данные экземпляра
 # ───────────────────────────────────────────
@@ -68,6 +68,7 @@ var _base_system_slots : int = 0
 
 func _ready() -> void:
 	BattlegroupData.option_change.connect(_refresh_option_buttons)
+	BattlegroupData.option_change.connect(change_hp)
 
 # ───────────────────────────────────────────
 # 3. Public — populate
@@ -194,6 +195,48 @@ func _add_button_with_card(to_container: VBoxContainer, data: Dictionary, remova
 		panel.visible = false
 		card.visible = true
 	)
+	
+func _add_button_with_card_special(to_container: VBoxContainer, data: Dictionary, removable: bool) -> void:
+	var btn := Button.new()
+	btn.flat = true
+	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	btn.theme = hide_theme
+	var marg := MarginContainer.new()
+	var panel := PanelContainer.new()
+	btn.text = str(data.get("name", ""))
+	panel.add_child(marg)
+	marg.add_child(btn)
+	to_container.add_child(panel)
+
+	var card: PanelContainer = FeatCard.instantiate()
+	card.visible = false
+	to_container.add_child(card)
+
+	card.call_deferred("populate", data)
+	if card.has_method("set_pair"):
+		card.call_deferred("set_pair", panel)
+	if card.has_method("set_context"):
+		card.call_deferred("set_context", removable, ship_cur, true)  # ← для SPECIAL
+
+	btn.pressed.connect(func():
+		panel.visible = false
+		card.visible = true
+	)
+
+func _build_from_special_options() -> void:
+	for o in ship_cur.get("special", []):
+		var t = o.get("type", -1)
+		if _slot_containers.has(t):
+			_add_button_with_card_special(_slot_containers[t], o, true)
+
+		# если у special-опции есть вложенные feats — тоже добавим
+		for sub in o.get("feats", []):
+			match int(sub.get("type", -1)):
+				0:  _add_button_with_card_special(_feat_box,     sub, false)
+				1:  _add_button_with_card_special(_maneuver_box, sub, false)
+				2:  _add_button_with_card_special(_tactic_box,   sub, false)
+				3:  _add_button_with_card_special(_primary_box,  sub, false)
+				_:  pass
 
 func _build_from_top_level_feats() -> void:
 	# Черты/Тактики/Манёвры/Орудия, заданные в hull.feats
@@ -225,6 +268,7 @@ func _refresh_option_buttons() -> void:
 	_clear_containers_keep_titles()
 	_build_from_top_level_feats()
 	_build_from_options()
+	_build_from_special_options()
 
 # ───────────────────────────────────────────
 # 6.  Пересчёт характеристик + рендер
@@ -253,7 +297,9 @@ func _recalc_and_update_display() -> void:
 		support["escorts"] = str(int(support["escorts"]) + int(m.get("escort", "0")))
 
 	# вывод основных чисел
-	_hp_lbl_1.text  = "/%s" % str(hp)
+	_hp_lbl_1.text  = str(hp)
+	if ship_cur["name"] == "HA\nLOUIS XIV–CLASS DREADNOUGHT":
+		_overshild.text = "5"
 	_hp_lbl_2.text  = str(hp)
 	_def_lbl.text   = str(defence)
 	_point_lbl.text = str(points)
@@ -264,3 +310,14 @@ func _on_hulls_name_pressed() -> void:
 		_hide_box.hide()
 	else:
 		_hide_box.show()
+
+
+func _on_overshild_text_changed(new_text: String) -> void:
+	if ship_cur["name"] == "HA\nLOUIS XIV–CLASS DREADNOUGHT":
+		if new_text == "0" or new_text == "":
+			_def_lbl.text = "13"
+		else:
+			_def_lbl.text = "15"
+
+func change_hp():
+	_hp_lbl_1.text  = ship_cur["hp"]

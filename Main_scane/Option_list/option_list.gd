@@ -31,6 +31,7 @@ var _tag_suffix_re := RegEx.new()
 ## ───────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	_tag_suffix_re.compile("\\s*[\\-–+]?\\d+$")
+	BattlegroupData.option_change.connect(_install)
 	_populate_all()
 
 
@@ -78,7 +79,7 @@ func _type_to_index(t: float) -> int:
 ## 4.  Фильтрация по выбранному кораблю
 ## ───────────────────────────────────────────────────────────────────
 func _apply_filters() -> void:
-	# сбросить видимость
+	# 1) Сброс видимости: все карточки внутри категорий видимы, сами контейнеры скрыты
 	for d in _slot_info.values():
 		for c in d["node"].get_children():
 			c.visible = true
@@ -88,21 +89,37 @@ func _apply_filters() -> void:
 	if idx < 0 or idx >= BattlegroupData.ships.size():
 		return                                     # корабль не выбран
 
-	var ship = BattlegroupData.ships[idx]
-	var weapon  = ship["weapon_slots"]
-	var support = ship["support_slots"]
+	var ship: Dictionary  = BattlegroupData.ships[idx]
+	var weapon: Dictionary  = ship.get("weapon_slots", {})
+	var support: Dictionary = ship.get("support_slots", {})
+	var ship_name := String(ship.get("name", ""))
 
-	# показываем только те категории, где есть слоты (>0)
-	for i in _slot_info:
+	# 2) Особые слоты: принудительно делаем нужные категории видимыми
+	var force_visible := {}   # ключи — индексы слотов Opt.SlotIndex.*
+	if ship_name == "IPS-N\nMINOKAWA-CLASS FRIGATE":
+		force_visible[Opt.SlotIndex.ESCORTS] = true
+		force_visible[Opt.SlotIndex.WINGS]   = true
+	elif ship_name == "HA\nFARRAGUT-CLASS STARFIELD CARRIER":
+		force_visible[Opt.SlotIndex.AUXILIARIES] = true
+		force_visible[Opt.SlotIndex.SYSTEMS]     = true
+		force_visible[Opt.SlotIndex.ESCORTS]     = true
+		force_visible[Opt.SlotIndex.WINGS]       = true
+
+	# 3) Показываем только те категории, где есть слоты (>0) ИЛИ они форс-видимы
+	for i in _slot_info.keys():
 		var k = _slot_info[i]["key"]
-		var cnt := int(weapon.get(k, "0")) if k in weapon else int(support.get(k, "0"))
-		if cnt > 0:
-			_slot_info[i]["node"].visible = true
+		var cnt := 0
+		if weapon.has(k):
+			cnt = int(weapon.get(k, "0"))
+		elif support.has(k):
+			cnt = int(support.get(k, "0"))
+		var vis := (cnt > 0) or force_visible.has(i)
+		_slot_info[i]["node"].visible = vis
 
-	# фильтр по категории
+	# 4) Фильтр по категории (OptionButton)
 	var cat_idx = $MarginContainer/VBoxContainer/OptionButton.selected
 	if cat_idx != Opt.SlotIndex.ALL:
-		for i in _slot_info:
+		for i in _slot_info.keys():
 			var n = _slot_info[i]["node"]
 			var vis = (i == cat_idx) and n.visible
 			n.visible = vis
@@ -110,7 +127,7 @@ func _apply_filters() -> void:
 				for c in n.get_children():
 					c.visible = false
 
-	# фильтр по тегу
+	# 5) Фильтр по тегу
 	var tag_text := _tag_button.get_item_text(_tag_button.selected)
 	if tag_text != "Все":
 		for d in _slot_info.values():
@@ -128,6 +145,8 @@ func _apply_filters() -> void:
 					if has:
 						any = true
 				d["node"].visible = any
+
+
 
 ## ───────────────────────────────────────────────────────────────────
 ## 5.  Реакция на выбор в OptionButton
@@ -181,4 +200,7 @@ func _populate_tag_button(tag_list: Array) -> void:
 
 
 func _on_visibility_changed() -> void:
+	_apply_filters()
+
+func _install():
 	_apply_filters()

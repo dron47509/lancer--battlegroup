@@ -47,6 +47,8 @@ func add_hull(hull: Dictionary) -> bool:
 	# 2. заполняем поля нового корпуса
 	new_hull["ship_name"] = "Имя %d" % idx
 	new_hull["option"]    = []
+	if new_hull.get("name") in ["HA\nFARRAGUT-CLASS STARFIELD CARRIER", "IPS-N\nMINOKAWA-CLASS FRIGATE"]:
+		new_hull["special"]    = []
 
 
 	# 3. кладём уже *уникальный* словарь в массив

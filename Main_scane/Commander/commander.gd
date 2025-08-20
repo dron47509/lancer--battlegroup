@@ -32,27 +32,34 @@ func refesh_comander():
 
 func _on_name_comander_text_changed(new_text: String) -> void:
 	BattlegroupData.comander["name"] = new_text
+	BattlegroupData.save_data()
 
 
 func _on_positive_1_text_changed(new_text: String) -> void:
 	BattlegroupData.comander["positive_1"] = new_text
+	BattlegroupData.save_data()
 
 
 func _on_positive_2_text_changed(new_text: String) -> void:
 	BattlegroupData.comander["positive_2"] = new_text
+	BattlegroupData.save_data()
 
 
 func _on_negative_text_changed(new_text: String) -> void:
 	BattlegroupData.comander["negative"] = new_text
+	BattlegroupData.save_data()
 
 
 func _on_positive_1_check_box_pressed() -> void:
 	BattlegroupData.comander["positive_1_check"] = _positive1_check.button_pressed
+	BattlegroupData.save_data()
 
 
 func _on_positive_2_check_box_pressed() -> void:
 	BattlegroupData.comander["positive_2_check"] = _positive2_check.button_pressed
+	BattlegroupData.save_data()
 
 
 func _on_negative_check_box_pressed() -> void:
 	BattlegroupData.comander["negative_check"] = _negative_check.button_pressed
+	BattlegroupData.save_data()

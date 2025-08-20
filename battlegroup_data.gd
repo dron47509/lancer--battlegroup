@@ -7,6 +7,8 @@ signal option_change
 
 var point = 0
 
+const SAVE_PATH = "user://battlegroup_save.json"
+
 # 1️⃣ максимумы
 const MAX_COUNTS := {
 	ShipClass.FRIGATE:    3,
@@ -188,4 +190,40 @@ func will_exceed_20(opt: Dictionary) -> bool:
 	return total_points > 20
 
 func change_on_option():
-	emit_signal("option_change")
+        emit_signal("option_change")
+
+func _enter_tree() -> void:
+	battlegroup_change.connect(save_data)
+	option_change.connect(save_data)
+	load_data()
+
+func save_data() -> void:
+	var data = {
+		"ships": ships,
+		"comander": comander
+	}
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(data))
+		file.close()
+
+func load_data() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+		if file:
+			var text = file.get_as_text()
+			file.close()
+			var result = JSON.parse_string(text)
+			if typeof(result) == TYPE_DICTIONARY:
+				ships = result.get("ships", [])
+				comander = result.get("comander", comander)
+				class_counts[ShipClass.FRIGATE] = 0
+				class_counts[ShipClass.CARRIER] = 0
+				class_counts[ShipClass.BATTLESHIP] = 0
+				for s in ships:
+					var cls = int(s.get("class", -1))
+					if class_counts.has(cls):
+						class_counts[cls] = class_counts[cls] + 1
+				refresh_point()
+				emit_signal("battlegroup_change")
+				emit_signal("option_change")

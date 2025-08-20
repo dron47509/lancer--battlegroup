@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cpb3nqlbj36ba"]
+[gd_scene load_steps=22 format=3 uid="uid://cpb3nqlbj36ba"]
 
 [ext_resource type="Script" uid="uid://csp5ojh14irwf" path="res://Main_scane/main.gd" id="1_fos0i"]
 [ext_resource type="PackedScene" uid="uid://ffwqq2icwm4n" path="res://Main_scane/Commander/commander.tscn" id="2_3dxm6"]
@@ -129,25 +129,6 @@ TextEdit/colors/font_selected_color = Color(1, 1, 1, 1)
 TextEdit/colors/selection_color = Color(0.713726, 0.12549, 0.145098, 1)
 TextEdit/styles/normal = SubResource("StyleBoxFlat_n2wca")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lfold"]
-bg_color = Color(0, 0, 0, 1)
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2sjs2"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ixgl7"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Theme" id="Theme_ruybg"]
-VScrollBar/styles/grabber = SubResource("StyleBoxFlat_lfold")
-VScrollBar/styles/scroll = SubResource("StyleBoxFlat_2sjs2")
-VSlider/styles/slider = SubResource("StyleBoxFlat_ixgl7")
-
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -182,9 +163,6 @@ size_flags_vertical = 3
 
 [node name="Commander" parent="PanelContainer/MarginContainer/Commander_interface/Main" instance=ExtResource("2_3dxm6")]
 layout_mode = 2
-
-[node name="RichTextLabel" parent="PanelContainer/MarginContainer/Commander_interface/Main/Commander/VBoxContainer" index="7"]
-theme = SubResource("Theme_ruybg")
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/Commander_interface/Main"]
 layout_mode = 2

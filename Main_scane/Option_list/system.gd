@@ -240,7 +240,7 @@ func _on_remove_pressed() -> void:
 			_apply_option_side_effects(ship, arr[i], -1)
 			arr.remove_at(i)
 			break
-
+	remove_overflow_by_sum()
 	BattlegroupData.refresh_point()
 	BattlegroupData.option_change.emit()
 
@@ -278,6 +278,49 @@ func _on_remove_special_pressed() -> void:
 			_apply_option_side_effects(ship, arr[i], -1)
 			arr.remove_at(i)
 			break
-
+	
 	_remove_special.hide()
 	BattlegroupData.option_change.emit()
+
+func remove_overflow_by_sum() -> bool:
+	var opts: Array = BattlegroupData.ships[BattlegroupData.current_ship].get("option", [])
+	if opts.is_empty():
+		return false
+
+	var changed := false
+
+	# Берём суммы (должны содержать "wings" и "escorts")
+	var sums := SlotUtils.get_slot_sums(BattlegroupData.ships[BattlegroupData.current_ship])
+
+	# Если крыльев больше лимита → по одному снимаем последние, пока не станет неотрицательно
+	while sums.get("wing") < 0:
+		if _remove_last_by_types(opts, [Opt.Support.WING, Opt.SlotIndex.WINGS]):
+			changed = true
+			sums = SlotUtils.get_slot_sums(BattlegroupData.ships[BattlegroupData.current_ship])  # пересчитать после каждого удаления
+		else:
+			break
+
+	# Если эскортов больше лимита → аналогично
+	while sums.get("escort") < 0:
+		if _remove_last_by_types(opts, [Opt.Support.ESCORT, Opt.SlotIndex.ESCORTS]):
+			changed = true
+			sums = SlotUtils.get_slot_sums(BattlegroupData.ships[BattlegroupData.current_ship])
+		else:
+			break
+
+	# при желании можно сразу дёрнуть пересчёт/сигналы
+	if changed:
+		BattlegroupData.refresh_point()
+		BattlegroupData.option_change.emit()
+
+	return changed
+
+
+# Хелпер: удалить ПОСЛЕДНЮЮ опцию, у которой type совпадает с любым из types_to_match
+func _remove_last_by_types(arr: Array, types_to_match: Array) -> bool:
+	for i in range(arr.size() - 1, -1, -1):
+		var t := int(arr[i].get("type", -999))
+		if t in types_to_match:
+			arr.remove_at(i)
+			return true
+	return false

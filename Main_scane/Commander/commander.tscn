@@ -18,7 +18,7 @@ script = ExtResource("1_gds87")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+[node name="NameComander" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_oxnjr")
 placeholder_text = "Имя персонажа"
@@ -34,18 +34,18 @@ text = "Черты:"
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="Positive1CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Positive1" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Положительная"
 
-[node name="CheckBox2" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
+[node name="Positive2CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="LineEdit2" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="Positive2" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Положительная"
@@ -54,10 +54,10 @@ placeholder_text = "Положительная"
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer3"]
+[node name="NegativeCheckBox" type="CheckBox" parent="VBoxContainer/HBoxContainer3"]
 layout_mode = 2
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer3"]
+[node name="Negative" type="LineEdit" parent="VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 size_flags_horizontal = 2
@@ -70,7 +70,7 @@ layout_mode = 2
 layout_mode = 2
 text = "Предыстрия:"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="Backstory" type="RichTextLabel" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 text = "Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... Очень большая предыстория... "
@@ -81,4 +81,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Редактировать предысторию"
 
+[connection signal="text_changed" from="VBoxContainer/NameComander" to="." method="_on_name_comander_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Positive1CheckBox" to="." method="_on_positive_1_check_box_pressed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/Positive1" to="." method="_on_positive_1_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Positive2CheckBox" to="." method="_on_positive_2_check_box_pressed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer/Positive2" to="." method="_on_positive_2_text_changed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/NegativeCheckBox" to="." method="_on_negative_check_box_pressed"]
+[connection signal="text_changed" from="VBoxContainer/HBoxContainer3/Negative" to="." method="_on_negative_text_changed"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

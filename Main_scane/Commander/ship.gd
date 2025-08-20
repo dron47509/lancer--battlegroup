@@ -6,7 +6,7 @@ const FLAGSHIP_OPTION := {
 	"effect":       "",
 	"feats":        [],
 	"modification": {
-		"HP":          "3",
+		"HP":          "0",
 		"auxiliary":   "0",
 		"defence":     "0",
 		"escort":      "0",
@@ -14,18 +14,20 @@ const FLAGSHIP_OPTION := {
 		"point":       "0",
 		"primary":     "0",
 		"superheavy":  "0",
-		"system":      "1",
+		"system":      "0",   # ← чтобы не было двойного +1 к системам
 		"wing":        "0",
 	},
 	"name":     "FLAGSHIP",
-	"points":   0.0,
+	"points":   "0",
 	"tags":     "Уникальное",
-	"tenacity": "1d6",
+	"tenacity": "0",
 	"type":     6.0,
 }
 
 const FeatCard = preload("res://Main_scane/Commander/Feat_ship.tscn")
 const hide_theme = preload("res://Main_scane/Commander/Battlegroup/Theme/Hide_button.tres")
+const SlotUtils            = preload("res://slot_utils.gd")
+const Opt                  = preload("res://option_types.gd")
 # ───────────────────────────────────────────
 # 1. UI-узлы
 # ───────────────────────────────────────────
@@ -71,6 +73,27 @@ func _ready() -> void:
 	BattlegroupData.option_change.connect(change_hp)
 
 # ───────────────────────────────────────────
+# 2.1 Вспомогательные утилитыв
+# ───────────────────────────────────────────
+
+func _inc_hp(by: int) -> void:
+	var hp := _to_int(ship_cur.get("hp", 0)) + by
+	ship_cur["hp"] = str(max(hp, 1))  # защита от нуля
+
+func _inc_system_slots(by: int) -> void:
+	var ss = ship_cur.get("support_slots", {})
+	var cur := _to_int(ss.get("systems", 0)) + by
+	ss["systems"] = str(max(cur, 0))
+	ship_cur["support_slots"] = ss
+
+func _has_flagship_option() -> int:
+	var arr: Array = ship_cur.get("option", [])
+	for i in range(arr.size() - 1, -1, -1):
+		if String(arr[i].get("name","")) == "FLAGSHIP":
+			return i
+	return -1
+
+# ───────────────────────────────────────────
 # 3. Public — populate
 # ───────────────────────────────────────────
 func populate(src : Dictionary) -> void:
@@ -112,18 +135,31 @@ func _on_name_changed(new_name : String) -> void:
 	ship_cur["ship_name"] = new_name
 
 func _on_flagman_toggled(on : bool) -> void:
+	var ship = BattlegroupData.ships[_index]
+
 	if on:
-		BattlegroupData.ships[_index]["option"].append(FLAGSHIP_OPTION)
+		# Если на этом корабле ещё нет FLAGSHIP — ставим
+		if _has_flagship_option() == -1:
+			ship["option"].append(FLAGSHIP_OPTION.duplicate(true))
+			_inc_system_slots(+1)  # +1 слот систем
+			_inc_hp(+3)            # +3 HP
+		ship["flagman"] = true
+		
 		BattlegroupData.refresh_point()
+		change_hp()
 		_refresh_option_buttons()
 	else:
-		var arr = BattlegroupData.ships[_index]["option"]
-		for i in range(arr.size() - 1, -1, -1):
-			if arr[i].get("name") == FLAGSHIP_OPTION.get("name"):
-				arr.remove_at(i)
-				BattlegroupData.refresh_point()
-				_refresh_option_buttons()
-				break
+		# Снимаем только если FLAGSHIP действительно стоит на ЭТОМ корабле
+		var idx := _has_flagship_option()
+		if idx != -1:
+			ship["option"].remove_at(idx)
+			_inc_system_slots(-1)  # -1 слот систем
+			_inc_hp(-3)            # -3 HP
+		ship["flagman"] = false
+		remove_overflow_by_sum()
+		BattlegroupData.refresh_point()
+		change_hp()
+		_refresh_option_buttons()
 
 func _on_option_pressed() -> void:
 	BattlegroupData.current_ship = _index
@@ -174,7 +210,6 @@ func _add_button_with_card(to_container: VBoxContainer, data: Dictionary, remova
 	btn.theme = hide_theme
 	var marg := MarginContainer.new()
 	var panel := PanelContainer.new()
-	#btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.text = str(data.get("name", ""))
 	panel.add_child(marg)
 	marg.add_child(btn)
@@ -189,13 +224,13 @@ func _add_button_with_card(to_container: VBoxContainer, data: Dictionary, remova
 	if card.has_method("set_pair"):
 		card.call_deferred("set_pair", panel)
 	if card.has_method("set_context"):
-		card.call_deferred("set_context", removable, ship_cur, false)  # ← ВАЖНО
+		card.call_deferred("set_context", removable, ship_cur, false)
 
 	btn.pressed.connect(func():
 		panel.visible = false
 		card.visible = true
 	)
-	
+
 func _add_button_with_card_special(to_container: VBoxContainer, data: Dictionary, removable: bool) -> void:
 	var btn := Button.new()
 	btn.flat = true
@@ -216,7 +251,7 @@ func _add_button_with_card_special(to_container: VBoxContainer, data: Dictionary
 	if card.has_method("set_pair"):
 		card.call_deferred("set_pair", panel)
 	if card.has_method("set_context"):
-		card.call_deferred("set_context", removable, ship_cur, true)  # ← для SPECIAL
+		card.call_deferred("set_context", removable, ship_cur, true)
 
 	btn.pressed.connect(func():
 		panel.visible = false
@@ -226,42 +261,54 @@ func _add_button_with_card_special(to_container: VBoxContainer, data: Dictionary
 func _build_from_special_options() -> void:
 	for o in ship_cur.get("special", []):
 		var t = o.get("type", -1)
-		if _slot_containers.has(t):
-			_add_button_with_card_special(_slot_containers[t], o, true)
+		var base = o
+		if _is_apeiron() and int(t) == int(Opt.Support.WING) or int(t) == int(Opt.SlotIndex.WINGS) or float(t) == 4.0:
+			base = _apply_range_bonus_if_wing(o)
 
-		# если у special-опции есть вложенные feats — тоже добавим
+		if _slot_containers.has(t):
+			_add_button_with_card_special(_slot_containers[t], base, true)
+
 		for sub in o.get("feats", []):
+			var item = sub
+			if base != o:
+				item = _apply_range_bonus_if_wing(sub)
 			match int(sub.get("type", -1)):
-				0:  _add_button_with_card_special(_feat_box,     sub, false)
-				1:  _add_button_with_card_special(_maneuver_box, sub, false)
-				2:  _add_button_with_card_special(_tactic_box,   sub, false)
-				3:  _add_button_with_card_special(_primary_box,  sub, false)
+				0:  _add_button_with_card_special(_feat_box,     item, false)
+				1:  _add_button_with_card_special(_maneuver_box, item, false)
+				2:  _add_button_with_card_special(_tactic_box,   item, false)
+				3:  _add_button_with_card_special(_primary_box,  item, false)
 				_:  pass
 
 func _build_from_top_level_feats() -> void:
-	# Черты/Тактики/Манёвры/Орудия, заданные в hull.feats
 	for f in ship_cur.get("feats", []):
 		match int(f.get("type", -1)):
-			0:  _add_button_with_card(_feat_box,     f, false)  # Черта
-			1:  _add_button_with_card(_maneuver_box, f, false)  # Манёвр
-			2:  _add_button_with_card(_tactic_box,   f, false)  # Тактика
-			3:  _add_button_with_card(_primary_box,  f, false)  # Орудие (если встречается в списке feats)
+			0:  _add_button_with_card(_feat_box,     f, false)
+			1:  _add_button_with_card(_maneuver_box, f, false)
+			2:  _add_button_with_card(_tactic_box,   f, false)
+			3:  _add_button_with_card(_primary_box,  f, false)
 			_:  pass
 
 func _build_from_options() -> void:
-	# Сами опции — в свои секции слотов
 	for o in ship_cur.get("option", []):
 		var t = o.get("type", -1)
+		var base = o
+		# если это APEIRON и это крыло — работаем на копии с повышенным range
+		if _is_apeiron() and int(t) == int(Opt.Support.WING) or int(t) == int(Opt.SlotIndex.WINGS) or float(t) == 4.0:
+			base = _apply_range_bonus_if_wing(o)
+		# кнопка/карточка для самой опции
 		if _slot_containers.has(t):
-			_add_button_with_card(_slot_containers[t], o, true)
+			_add_button_with_card(_slot_containers[t], base, true)
 
-		# Вложенные "feats" внутри опции — добавить как отдельные элементы
+		# фичи внутри опции; если родитель — крыло, повышаем и им
 		for sub in o.get("feats", []):
+			var item = sub
+			if _is_apeiron() and int(t) == int(Opt.Support.WING) or int(t) == int(Opt.SlotIndex.WINGS) or float(t) == 4.0:  # значит родитель — крыло и мы уже применили буст
+				item = _apply_range_bonus_if_wing(sub)
 			match int(sub.get("type", -1)):
-				0:  _add_button_with_card(_feat_box,     sub, false)
-				1:  _add_button_with_card(_maneuver_box, sub, false)
-				2:  _add_button_with_card(_tactic_box,   sub, false)
-				3:  _add_button_with_card(_primary_box,  sub, false)
+				0:  _add_button_with_card(_feat_box,     item, false)
+				1:  _add_button_with_card(_maneuver_box, item, false)
+				2:  _add_button_with_card(_tactic_box,   item, false)
+				3:  _add_button_with_card(_primary_box,  item, false)
 				_:  pass
 
 func _refresh_option_buttons() -> void:
@@ -281,7 +328,7 @@ func _recalc_and_update_display() -> void:
 	var weapon  = ship_cur["weapon_slots"].duplicate()
 	var support = ship_cur["support_slots"].duplicate()
 
-	# суммируем модификаторы всех опций
+	# Суммируем модификаторы всех опций (FLAGSHIP ничего не даёт здесь — мы уже учли напрямую)
 	for o in ship_cur.get("option", []):
 		var m = o.get("modification", {})
 		hp      += int(m.get("HP", "0"))
@@ -296,7 +343,6 @@ func _recalc_and_update_display() -> void:
 		support["wings"]   = str(int(support["wings"])   + int(m.get("wing", "0")))
 		support["escorts"] = str(int(support["escorts"]) + int(m.get("escort", "0")))
 
-	# вывод основных чисел
 	_hp_lbl_1.text  = str(hp)
 	if ship_cur["name"] == "HA\nLOUIS XIV–CLASS DREADNOUGHT":
 		_overshild.text = "5"
@@ -304,13 +350,11 @@ func _recalc_and_update_display() -> void:
 	_def_lbl.text   = str(defence)
 	_point_lbl.text = str(points)
 
-
 func _on_hulls_name_pressed() -> void:
 	if _hide_box.visible:
 		_hide_box.hide()
 	else:
 		_hide_box.show()
-
 
 func _on_overshild_text_changed(new_text: String) -> void:
 	if ship_cur["name"] == "HA\nLOUIS XIV–CLASS DREADNOUGHT":
@@ -321,3 +365,180 @@ func _on_overshild_text_changed(new_text: String) -> void:
 
 func change_hp():
 	_hp_lbl_1.text  = ship_cur["hp"]
+
+
+# ─────────────────────────────────────────────────────────────
+# Хелперы
+# ─────────────────────────────────────────────────────────────
+func _is_apeiron() -> bool:
+	return String(ship_cur.get("name","")) == "SSC\nAPEIRON-CLASS STRIKE CARRIER"
+
+func _range_plus_one_capped(r: String) -> String:
+	if r == null:
+		return ""
+	var s := String(r).strip_edges().replace("–", "-")  # на случай en dash
+	if s == "" or (not s[0].is_valid_int() and "-" not in s):
+		return s
+	var parts := s.split("-")
+	if parts.size() == 1:
+		var a = clamp(_to_int(parts[0]) + 1, 0, 5)
+		return str(a)
+	else:
+		var a = clamp(_to_int(parts[0]) + 1, 0, 5)
+		var b = clamp(_to_int(parts[1]) + 1, 0, 5)
+		return "%d-%d" % [a, b]
+
+func _range_in_text_plus_one_capped(text: String) -> String:
+	if text == null:
+		return ""
+	var s := String(text)
+	var re := RegEx.new()
+	# Матчим одиночные/двузначные числа по обе стороны дефиса/эн-даша, но не как часть других чисел/слов.
+	re.compile(r"(?<!\d)(\d+)\s*(?:-|–)\s*(\d+)(?!\d)")
+	var matches := re.search_all(s)
+	if matches == null or matches.is_empty():
+		return s
+	var out := ""
+	var pos := 0
+	for m in matches:
+		var a_str := m.get_string(1)
+		var b_str := m.get_string(2)
+		var a = clamp(_to_int(a_str) + 1, 0, 5)
+		var b = clamp(_to_int(b_str) + 1, 0, 5)
+		out += s.substr(pos, m.get_start() - pos)
+		out += "%d-%d" % [a, b]
+		pos = m.get_end()
+	out += s.substr(pos)
+	return out
+
+# Рекурсивно применяем бонус к range и к любым строковым полям effect.
+func _apply_range_bonus_in_dict(d: Dictionary) -> void:
+	if d.has("range") and String(d["range"]).strip_edges() != "":
+		d["range"] = _range_plus_one_capped(d["range"])
+	if d.has("effect") and String(d["effect"]).strip_edges() != "":
+		d["effect"] = _range_in_text_plus_one_capped(d["effect"])
+	# Пройтись по вложенным структурам
+	for k in d.keys():
+		var v = d[k]
+		if v is Dictionary:
+			_apply_range_bonus_in_dict(v)
+		elif v is Array:
+			for i in v:
+				if i is Dictionary:
+					_apply_range_bonus_in_dict(i)
+
+func _apply_range_bonus_if_wing(data: Dictionary) -> Dictionary:
+	var copy := data.duplicate(true)
+	_apply_range_bonus_in_dict(copy)
+	return copy
+
+func _to_int(v) -> int:
+	var t := typeof(v)
+	if t == TYPE_INT:
+		return v
+	if t == TYPE_FLOAT:
+		return int(round(v))
+	if t == TYPE_STRING:
+		var s := String(v).strip_edges()
+		if s == "":
+			return 0
+		if s.is_valid_int():
+			return s.to_int()
+		if s.is_valid_float():
+			return int(round(s.to_float()))
+		return 0
+	return 0
+
+func _dec_support_slot(slot_key: String, by: int) -> void:
+	var ss = ship_cur.get("support_slots", {})
+	var cur := _to_int(ss.get(slot_key, 0))
+	ss[slot_key] = str(max(cur - by, 0))
+	ship_cur["support_slots"] = ss
+
+# удалить ПОСЛЕДНИЙ элемент нужного типа и вернуть его ({} если не найден)
+func _remove_last_and_get(arr: Array, types_to_match: Array) -> Dictionary:
+	for i in range(arr.size() - 1, -1, -1):
+		var t := int(arr[i].get("type", -999))
+		if t in types_to_match:
+			var removed = arr[i]
+			arr.remove_at(i)
+			return removed
+	return {}
+
+# оставить, если где-то ещё используется
+func _remove_last_by_types(arr: Array, types_to_match: Array) -> bool:
+	for i in range(arr.size() - 1, -1, -1):
+		var t := int(arr[i].get("type", -999))
+		if t in types_to_match:
+			arr.remove_at(i)
+			return true
+	return false
+
+# ─────────────────────────────────────────────────────────────
+# КАСКАДНАЯ обрезка: wings/escorts/systems по SlotUtils.get_slot_sums(ship_cur)
+# Если лишней системой оказались SUBLINE BERTH / FIGHTER LAUNCH CATAPULTS,
+# дополнительно уменьшаем кап соответствующих слотов и продолжаем цикл.
+# Возвращает true, если что-то удалили.
+# ─────────────────────────────────────────────────────────────
+func remove_overflow_by_sum() -> bool:
+	var opts: Array = ship_cur.get("option", [])
+	if opts.is_empty():
+		return false
+
+	var changed := false
+	var guard := 0
+
+	while true:
+		guard += 1
+		if guard > 64:
+			break
+
+		var sums := SlotUtils.get_slot_sums(ship_cur)
+		var wing_sum   := _to_int(sums.get("wing",   0))
+		var escort_sum := _to_int(sums.get("escort", 0))
+		var system_sum := _to_int(sums.get("system", 0))
+
+		# 1) Крылья
+		if wing_sum < 0:
+			var rem_w := _remove_last_and_get(opts, [Opt.Support.WING, Opt.SlotIndex.WINGS])
+			if rem_w.size() == 0:
+				break
+			changed = true
+			BattlegroupData.refresh_point()
+			continue
+
+		# 2) Эскорты
+		if escort_sum < 0:
+			var rem_e := _remove_last_and_get(opts, [Opt.Support.ESCORT, Opt.SlotIndex.ESCORTS])
+			if rem_e.size() == 0:
+				break
+			changed = true
+			BattlegroupData.refresh_point()
+			continue
+
+		# 3) Системы
+		if system_sum < 0:
+			var rem_s := _remove_last_and_get(opts, [Opt.SlotIndex.SYSTEMS])
+			if rem_s.size() == 0:
+				break
+			changed = true
+
+			var rname := String(rem_s.get("name", ""))
+			# если сняли систему, которая добавляла кап — срежем его тоже
+			if rname == "SUBLINE BERTH":
+				_dec_support_slot("escorts", 1)
+				BattlegroupData.refresh_point()
+				continue
+			elif rname == "FIGHTER LAUNCH CATAPULTS":
+				_dec_support_slot("wings", 1)
+				BattlegroupData.refresh_point()
+				continue
+
+			BattlegroupData.refresh_point()
+			continue
+
+		# ничего не уходит в минус — выходим
+		break
+
+
+	return changed

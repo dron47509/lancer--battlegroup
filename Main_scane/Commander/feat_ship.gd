@@ -10,7 +10,8 @@ const tactic_header        = preload("res://Main_scane/Commander/Battlegroup/The
 const tactic_body          = preload("res://Main_scane/Commander/Battlegroup/Theme/Body/tactic.tres")
 const wing_escort_header   = preload("res://Main_scane/Commander/Battlegroup/Theme/Header/wing_escort.tres")
 const wing_escort_body     = preload("res://Main_scane/Commander/Battlegroup/Theme/Body/wing_escort.tres")
-
+const SlotUtils            = preload("res://slot_utils.gd")
+const Opt                  = preload("res://option_types.gd")
 # --- ссылки на виджеты ---------------------------------------------------
 @onready var _name        : Button          = $Feat/Header/MarginContainer/Header/Hide
 @onready var _tags        : RichTextLabel   = $Feat/Header/MarginContainer/Header/Tags
@@ -58,7 +59,7 @@ func _update_remove_visibility() -> void:
 	var t := int(_data.get("type", -999))
 	# Прятать Remove только для option-элементов, если это слоты 7/8 (Тактика/Манёвр как опция)
 	var is_tactic_or_maneuver_option := _is_option_item and (t == 7 or t == 8)
-	_remove_btn.visible = _removable and not is_tactic_or_maneuver_option
+	_remove_btn.visible = _removable and not is_tactic_or_maneuver_option and not _data.get("name") == "FLAGSHIP"
 
 func _on_hide_pressed() -> void:
 	self.visible = false
@@ -68,7 +69,7 @@ func _on_hide_pressed() -> void:
 func _on_remove_pressed() -> void:
 	if not _removable or _host_ship.is_empty():
 		return
-
+	
 	var removed := false
 	var removed_from := ""  # "special" | "option" (для логики отката бонусов)
 
@@ -90,7 +91,7 @@ func _on_remove_pressed() -> void:
 
 	# --- ПРИ УСПЕШНОМ УДАЛЕНИИ: откатываем соответствующие изменения корабля ---
 	_apply_on_remove_effects(_data.get("name", ""))
-
+	remove_overflow_by_sum()
 	# Обновляем UI/счётчики
 	var root := get_parent()
 	if root and root.get_parent() and root.get_parent().get_parent() and root.get_parent().get_parent().get_parent():
@@ -236,3 +237,47 @@ func populate(data: Dictionary) -> void:
 	_hide_if_text_empty(self)
 	_change_theme()
 	_update_remove_visibility()
+
+
+func remove_overflow_by_sum() -> bool:
+	var opts: Array = _host_ship.get("option", [])
+	if opts.is_empty():
+		return false
+
+	var changed := false
+
+	# Берём суммы (должны содержать "wings" и "escorts")
+	var sums := SlotUtils.get_slot_sums(_host_ship)
+
+	# Если крыльев больше лимита → по одному снимаем последние, пока не станет неотрицательно
+	while sums.get("wing") < 0:
+		if _remove_last_by_types(opts, [Opt.Support.WING, Opt.SlotIndex.WINGS]):
+			changed = true
+			sums = SlotUtils.get_slot_sums(_host_ship)  # пересчитать после каждого удаления
+		else:
+			break
+
+	# Если эскортов больше лимита → аналогично
+	while sums.get("escort") < 0:
+		if _remove_last_by_types(opts, [Opt.Support.ESCORT, Opt.SlotIndex.ESCORTS]):
+			changed = true
+			sums = SlotUtils.get_slot_sums(_host_ship)
+		else:
+			break
+
+	# при желании можно сразу дёрнуть пересчёт/сигналы
+	if changed:
+		BattlegroupData.refresh_point()
+		#BattlegroupData.option_change.emit()
+
+	return changed
+
+
+# Хелпер: удалить ПОСЛЕДНЮЮ опцию, у которой type совпадает с любым из types_to_match
+func _remove_last_by_types(arr: Array, types_to_match: Array) -> bool:
+	for i in range(arr.size() - 1, -1, -1):
+		var t := int(arr[i].get("type", -999))
+		if t in types_to_match:
+			arr.remove_at(i)
+			return true
+	return false

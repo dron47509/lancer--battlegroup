@@ -4,7 +4,6 @@
 [ext_resource type="Theme" uid="uid://dt88e5xvcdgje" path="res://Main_scane/Commander/ship_box.tres" id="2_vybui"]
 [ext_resource type="ButtonGroup" uid="uid://padp71yc23j7" path="res://Main_scane/Commander/ship.tres" id="3_8tv7i"]
 [ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://icons/close-svgrepo-com.svg" id="3_dp0u4"]
-[ext_resource type="Texture2D" uid="uid://bemeorqrhn30m" path="res://hulls/FKS CALENDULA-CLASS BATTLECRUISER.png" id="4_b4r53"]
 [ext_resource type="Script" uid="uid://dq2jo3li1580p" path="res://Main_scane/Commander/option_ship.gd" id="6_dp0u4"]
 [ext_resource type="Script" uid="uid://bkkq8nsqfgcbv" path="res://Main_scane/Commander/feat_label.gd" id="7_k5gai"]
 [ext_resource type="Theme" uid="uid://baf7ven6bc8vi" path="res://Main_scane/Commander/Battlegroup/Theme/Header/feat.tres" id="8_sfabn"]
@@ -72,6 +71,10 @@ Button/styles/hover = SubResource("StyleBoxFlat_ydlah")
 Button/styles/normal = SubResource("StyleBoxFlat_la7xv")
 Button/styles/pressed = SubResource("StyleBoxFlat_ckx55")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jurnl"]
+content_margin_left = 4.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [node name="Ship" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -111,7 +114,6 @@ custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_vertical = 4
 mouse_filter = 2
-texture = ExtResource("4_b4r53")
 expand_mode = 5
 stretch_mode = 5
 
@@ -235,6 +237,7 @@ mouse_filter = 2
 
 [node name="Options" type="GridContainer" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 columns = 4
 script = ExtResource("6_dp0u4")
 
@@ -346,8 +349,8 @@ mouse_filter = 2
 
 [node name="Feat_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Черты:"
-horizontal_alignment = 1
 script = ExtResource("7_k5gai")
 
 [node name="Feat" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
@@ -357,8 +360,8 @@ theme = ExtResource("8_sfabn")
 
 [node name="Superheavy_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Сверхтяжелые орудия:"
-horizontal_alignment = 1
 script = ExtResource("8_vtu8k")
 
 [node name="Superheavy" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
@@ -368,8 +371,8 @@ theme = ExtResource("9_swqo0")
 
 [node name="Primary_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Основные орудия:"
-horizontal_alignment = 1
 script = ExtResource("9_3an0d")
 
 [node name="Primary" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
@@ -379,8 +382,8 @@ theme = ExtResource("9_swqo0")
 
 [node name="Auxiliary_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Вспомогательные орудия:"
-horizontal_alignment = 1
 script = ExtResource("10_87s0o")
 
 [node name="Auxiliary" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
@@ -390,8 +393,8 @@ theme = ExtResource("9_swqo0")
 
 [node name="Wing_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Крылья:"
-horizontal_alignment = 1
 script = ExtResource("11_knt00")
 
 [node name="Wing" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
@@ -401,8 +404,8 @@ theme = ExtResource("13_j5he1")
 
 [node name="Escort_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Эскорты:"
-horizontal_alignment = 1
 script = ExtResource("12_w82g7")
 
 [node name="Escort" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
@@ -412,8 +415,8 @@ theme = ExtResource("13_j5he1")
 
 [node name="System_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Системы:"
-horizontal_alignment = 1
 script = ExtResource("13_w82g7")
 
 [node name="System" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
@@ -423,8 +426,8 @@ theme = ExtResource("17_ydlah")
 
 [node name="Tactic_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Тактики:"
-horizontal_alignment = 1
 script = ExtResource("14_swqo0")
 
 [node name="Tactic" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
@@ -434,8 +437,8 @@ theme = ExtResource("19_la7xv")
 
 [node name="Maneuver_label" type="Label" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
 text = "Маневры:"
-horizontal_alignment = 1
 script = ExtResource("15_j5he1")
 
 [node name="Maneuver" type="VBoxContainer" parent="Ship_box/VBoxContainer"]

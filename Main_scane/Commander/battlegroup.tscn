@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://m2w268pvfcue"]
+[gd_scene load_steps=4 format=3 uid="uid://m2w268pvfcue"]
 
 [ext_resource type="Script" uid="uid://d372ba2h6acfe" path="res://Main_scane/Commander/battlegroup.gd" id="1_a6mfk"]
+[ext_resource type="Script" uid="uid://duynq1ypqlltd" path="res://Main_scane/Commander/v_box_container.gd" id="2_f24ih"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7nqf6"]
 font_size = 20
@@ -19,8 +20,9 @@ layout_mode = 2
 text = "Боевая группа:"
 label_settings = SubResource("LabelSettings_7nqf6")
 
-[node name="Inform_panel" type="HBoxContainer" parent="."]
+[node name="Inform_panel" type="GridContainer" parent="."]
 layout_mode = 2
+columns = 4
 
 [node name="Battleship_container" type="VBoxContainer" parent="Inform_panel"]
 layout_mode = 2
@@ -80,6 +82,21 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 text = "0 /"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Inform_panel"]
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("2_f24ih")
+
+[node name="Label" type="Label" parent="Inform_panel/VBoxContainer"]
+layout_mode = 2
+text = "Перехват:"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Inform_panel/VBoxContainer"]
+layout_mode = 2
+text = "0"
 horizontal_alignment = 1
 
 [node name="HSeparator" type="HSeparator" parent="."]

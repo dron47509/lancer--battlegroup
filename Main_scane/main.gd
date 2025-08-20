@@ -38,6 +38,8 @@ func change_on_main():
 
 func _on_hull_list_change_scene() -> void:
 	_toggle_sections(true, false)
+	print(BattlegroupData.ships, "\n\n")
+	print(BattlegroupData.comander)
 
 
 func _on_commander_change_scene(parent_node: Node) -> void:

@@ -233,6 +233,7 @@ func _add_button_with_card(to_container: VBoxContainer, data: Dictionary, remova
 
 func _add_button_with_card_special(to_container: VBoxContainer, data: Dictionary, removable: bool) -> void:
 	var btn := Button.new()
+	btn.mouse_filter = Control.MOUSE_FILTER_PASS
 	btn.flat = true
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.theme = hide_theme

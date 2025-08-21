@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdtkka5md3ive"]
+
+[ext_resource type="Theme" uid="uid://b0gpqephvhh8r" path="res://Main_scane/Commander/Battlegroup/Theme/Hide_button.tres" id="1_srtw7"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_srtw7")
+flat = true
+alignment = 0

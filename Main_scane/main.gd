@@ -52,3 +52,7 @@ func _toggle_sections(show_hull_list := false, show_note := false) -> void:
 	main.visible      = not (show_hull_list or show_note)
 	hull_list.visible = show_hull_list
 	note.visible      = show_note
+
+
+func _on_install_pressed() -> void:
+	pass # Replace with function body.

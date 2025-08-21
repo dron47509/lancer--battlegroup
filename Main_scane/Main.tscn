@@ -155,6 +155,7 @@ layout_mode = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
+scroll_deadzone = 12
 
 [node name="Main" type="VBoxContainer" parent="PanelContainer/MarginContainer/Commander_interface"]
 layout_mode = 2

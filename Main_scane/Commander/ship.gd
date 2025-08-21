@@ -108,6 +108,7 @@ func populate(src : Dictionary) -> void:
 
 	# 3.2  базовые данные → UI
 	_name_edit.text = src["ship_name"]
+	$Ship_box/MarginContainer2/HBoxContainer/Label.text = src["ship_name"]
 	_img.texture = load("res://hulls/%s.png" % src["name"].replace("\n", " "))
 	_flagman_btn.set_pressed_no_signal(src.get("flagman", false))
 	_hull_name.text = src["name"]
@@ -133,6 +134,7 @@ func populate(src : Dictionary) -> void:
 # ───────────────────────────────────────────
 func _on_name_changed(new_name : String) -> void:
 	ship_cur["ship_name"] = new_name
+	BattlegroupData.save_data()
 
 func _on_flagman_toggled(on : bool) -> void:
 	var ship = BattlegroupData.ships[_index]
@@ -205,16 +207,17 @@ func _clear_containers_keep_titles() -> void:
 
 func _add_button_with_card(to_container: VBoxContainer, data: Dictionary, removable: bool) -> void:
 	var btn := Button.new()
-	btn.flat = true
-	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
-	btn.theme = hide_theme
 	var marg := MarginContainer.new()
 	var panel := PanelContainer.new()
-	btn.text = str(data.get("name", ""))
 	panel.add_child(marg)
 	marg.add_child(btn)
 	to_container.add_child(panel)
-
+	btn.flat = true
+	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	btn.mouse_filter = Control.MOUSE_FILTER_PASS
+	btn.theme = hide_theme
+	btn.text = str(data.get("name", ""))
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var card: PanelContainer = FeatCard.instantiate()
 	card.visible = false
 	to_container.add_child(card)
@@ -239,6 +242,8 @@ func _add_button_with_card_special(to_container: VBoxContainer, data: Dictionary
 	btn.theme = hide_theme
 	var marg := MarginContainer.new()
 	var panel := PanelContainer.new()
+	marg.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	btn.text = str(data.get("name", ""))
 	panel.add_child(marg)
 	marg.add_child(btn)

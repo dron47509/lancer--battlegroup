@@ -226,5 +226,3 @@ func load_data() -> void:
 					if class_counts.has(cls):
 						class_counts[cls] = class_counts[cls] + 1
 				refresh_point()
-				emit_signal("battlegroup_change")
-				emit_signal("option_change")

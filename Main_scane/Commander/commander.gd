@@ -21,9 +21,13 @@ func _on_button_pressed() -> void:
 
 func refesh_comander():
 	_name.text = BattlegroupData.comander["name"]
+	$VBoxContainer/Label3.text = BattlegroupData.comander["name"]
 	_positive1.text = BattlegroupData.comander["positive_1"]
+	$VBoxContainer/HBoxContainer/Label3.text = BattlegroupData.comander["positive_1"]
 	_positive2.text = BattlegroupData.comander["positive_2"]
+	$VBoxContainer/HBoxContainer/Label4.text = BattlegroupData.comander["positive_2"]
 	_negative.text = BattlegroupData.comander["negative"]
+	$VBoxContainer/HBoxContainer3/Label4.text = BattlegroupData.comander["negative"]
 	_positive1_check.button_pressed = BattlegroupData.comander["positive_1_check"]
 	_positive2_check.button_pressed = BattlegroupData.comander["positive_2_check"]
 	_negative_check.button_pressed = BattlegroupData.comander["negative_check"]

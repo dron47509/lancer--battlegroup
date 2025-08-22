@@ -156,6 +156,7 @@ layout_mode = 2
 [node name="Add_hull" type="Button" parent="Main/Battlegroup"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "Добавить корпус +"
 
 [editable path="Main/Commander"]

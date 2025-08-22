@@ -32,6 +32,7 @@ vertical_alignment = 1
 [node name="Button" type="Button" parent="."]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+mouse_filter = 1
 icon = ExtResource("2_q7tjj")
 icon_alignment = 1
 expand_icon = true

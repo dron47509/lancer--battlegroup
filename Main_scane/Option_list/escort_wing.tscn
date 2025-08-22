@@ -239,6 +239,7 @@ mouse_filter = 2
 [node name="Add_special" type="Button" parent="VBoxContainer/Button3"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "Добавить в особый слот"
 
 [node name="Button4" type="MarginContainer" parent="VBoxContainer"]
@@ -248,6 +249,7 @@ mouse_filter = 2
 [node name="Remove_special" type="Button" parent="VBoxContainer/Button4"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "Убрать из  особого слота"
 
 [node name="Button" type="MarginContainer" parent="VBoxContainer"]
@@ -257,6 +259,7 @@ mouse_filter = 2
 [node name="Add" type="Button" parent="VBoxContainer/Button"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "Добавить"
 
 [node name="Button2" type="MarginContainer" parent="VBoxContainer"]
@@ -266,6 +269,7 @@ mouse_filter = 2
 [node name="Remove" type="Button" parent="VBoxContainer/Button2"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "Убрать"
 
 [connection signal="pressed" from="VBoxContainer/Button3/Add_special" to="." method="_on_add_special_pressed"]

@@ -21,11 +21,13 @@ placeholder_text = "Черта, тактика, маневр, орудие"
 [node name="Delete_feat_button" type="Button" parent="Feat_hbox"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+mouse_filter = 1
 icon = ExtResource("1_1x2vi")
 expand_icon = true
 
 [node name="Feat_type_option_button" type="OptionButton" parent="."]
 layout_mode = 2
+mouse_filter = 1
 selected = 0
 item_count = 4
 popup/item_0/text = "Черта"

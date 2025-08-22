@@ -11,6 +11,7 @@ layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("1_srtw7")
 flat = true
 alignment = 0

@@ -39,6 +39,7 @@ layout_mode = 2
 
 [node name="Hide" type="Button" parent="Feat/Header/MarginContainer/Header"]
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("4_svja1")
 flat = true
 alignment = 0
@@ -104,6 +105,7 @@ size_flags_horizontal = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
+mouse_filter = 1
 text = "Демонтировать"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Feat"]

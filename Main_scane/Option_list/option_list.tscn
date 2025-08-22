@@ -60,12 +60,14 @@ label_settings = SubResource("LabelSettings_3li8n")
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 10
+mouse_filter = 1
 icon = ExtResource("3_t0xno")
 flat = true
 expand_icon = true
 
 [node name="OptionButton" type="OptionButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 selected = 6
 item_count = 7
 popup/item_0/text = "Сверхтяжелые"
@@ -85,6 +87,7 @@ popup/item_6/id = 6
 
 [node name="OptionButton2" type="OptionButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 selected = 0
 item_count = 1
 popup/item_0/text = "Все"

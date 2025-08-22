@@ -129,6 +129,7 @@ theme = SubResource("Theme_vqb6t")
 [node name="Delete_ship" type="Button" parent="Ship_box/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+mouse_filter = 1
 icon = ExtResource("3_dp0u4")
 flat = true
 expand_icon = true
@@ -479,6 +480,7 @@ theme = ExtResource("18_dp0u4")
 [node name="Add_option" type="Button" parent="Ship_box/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 theme = ExtResource("18_dp0u4")
 text = "Модифицировать"
 

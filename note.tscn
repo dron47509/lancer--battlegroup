@@ -28,6 +28,7 @@ label_settings = SubResource("LabelSettings_wn01w")
 [node name="Button" type="Button" parent="HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
+mouse_filter = 1
 icon = ExtResource("2_lyp5m")
 flat = true
 icon_alignment = 1

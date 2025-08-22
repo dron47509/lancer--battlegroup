@@ -13,6 +13,7 @@ const Opt = preload("res://option_types.gd")
 @onready var _frigate_count = $Inform_panel/Frigate_container/Label2
 @onready var _carrier_count = $Inform_panel/Carrier_container/Label2
 @onready var _battleship_count = $Inform_panel/Battleship_container/Label2
+@onready var _scroll: ScrollContainer = $Hulls_list
 
 func _ready() -> void:
 	var raw := _load_json(json_path)
@@ -21,6 +22,7 @@ func _ready() -> void:
 
 	for hull_data in raw.get("hulls", []):
 		_spawn_hull(hull_data)
+	visibility_changed.connect(_on_visibility_changed)
 
 func _process(delta: float) -> void:
 	_point.text = str(BattlegroupData.point) + "/20"
@@ -68,6 +70,11 @@ func _on_option_button_item_selected(index: int) -> void:
 		_frigate.show()
 		_carrier.show()
 		_battleship.show()
+	_scroll.scroll_vertical = 0
+
+func _on_visibility_changed() -> void:
+	if visible:
+		_scroll.scroll_vertical = 0
 
 
 func _on_button_pressed() -> void:

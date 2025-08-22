@@ -10,6 +10,7 @@ const Opt = preload("res://option_types.gd")
 @export var system_scene   := preload("res://Main_scane/Option_list/system.tscn")
 @export var eswg_scene     := preload("res://Main_scane/Option_list/escort_wing.tscn")
 @onready var _tag_button: OptionButton = $MarginContainer/VBoxContainer/OptionButton2
+@onready var _scroll: ScrollContainer = $MarginContainer/VBoxContainer/ScrollContainer
 var _tag_suffix_re := RegEx.new()
 
 ## ───────────────────────────────────────────────────────────────────
@@ -31,6 +32,7 @@ var _tag_suffix_re := RegEx.new()
 ## ───────────────────────────────────────────────────────────────────
 func _ready() -> void:
 	_tag_suffix_re.compile("\\s*[\\-–+]?\\d+$")
+	visibility_changed.connect(_on_visibility_changed)
 	BattlegroupData.option_change.connect(_install)
 	_populate_all()
 
@@ -153,9 +155,16 @@ func _apply_filters() -> void:
 ## ───────────────────────────────────────────────────────────────────
 func _on_option_button_item_selected(index: int) -> void:
 	_apply_filters()
+	_scroll.scroll_vertical = 0
 
 func _on_option_button2_item_selected(index: int) -> void:
 	_apply_filters()
+	_scroll.scroll_vertical = 0
+
+func _on_visibility_changed() -> void:
+	_apply_filters()
+	if visible:
+		_scroll.scroll_vertical = 0
 
 ## ───────────────────────────────────────────────────────────────────
 ## 6.  JSON utils
@@ -198,9 +207,6 @@ func _populate_tag_button(tag_list: Array) -> void:
 	for t in tag_list:
 		_tag_button.add_item(t)
 
-
-func _on_visibility_changed() -> void:
-	_apply_filters()
 
 func _install():
 	_apply_filters()

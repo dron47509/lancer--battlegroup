@@ -25,6 +25,7 @@ func _ready() -> void:
 	visibility_changed.connect(_on_visibility_changed)
 	_options.visibility_changed.connect(_on_options_visibility_changed)
 
+
 func _process(delta: float) -> void:
 	_point.text = str(BattlegroupData.point) + "/20"
 	_frigate_count.text = str(BattlegroupData.class_counts[0]) + "/3"

@@ -14,6 +14,7 @@ const Opt = preload("res://option_types.gd")
 @onready var _scroll: ScrollContainer = $MarginContainer/VBoxContainer/ScrollContainer
 var _tag_suffix_re = RegEx.new()
 
+
 ## ───────────────────────────────────────────────────────────────────
 ## 2.  Контейнеры категорий
 ## ───────────────────────────────────────────────────────────────────

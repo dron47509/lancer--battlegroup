@@ -228,12 +228,14 @@ fit_content = true
 [node name="Button" type="Button" parent="Hull"]
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "Добавить корпус"
 
 [node name="Button2" type="Button" parent="Hull"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_filter = 1
 text = "Убрать корпус"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Hull"]

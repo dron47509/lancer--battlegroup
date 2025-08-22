@@ -1,8 +1,8 @@
 ###  HullList.gd  ###
 extends VBoxContainer                        # навесьте на узел Hull_list
 
-@export var json_path := "res://battlegroup_data.json"
-@export var hull_scene:= preload("res://support_scanes/hull.tscn")    # drag-and-drop Hull.tscn в инспекторе
+@export var json_path = "res://battlegroup_data.json"
+@export var hull_scene = preload("res://support_scanes/hull.tscn")    # drag-and-drop Hull.tscn в инспекторе
 const Opt = preload("res://option_types.gd")
 
 @onready var _frigate: VBoxContainer = $Hulls_list/VBoxContainer/Frigate
@@ -16,13 +16,15 @@ const Opt = preload("res://option_types.gd")
 @onready var _scroll: ScrollContainer = $Hulls_list
 
 func _ready() -> void:
-	var raw := _load_json(json_path)
+	var raw = _load_json(json_path)
 	if raw.is_empty():
 		return
 
 	for hull_data in raw.get("hulls", []):
 		_spawn_hull(hull_data)
 	visibility_changed.connect(_on_visibility_changed)
+	_options.visibility_changed.connect(_on_options_visibility_changed)
+
 
 func _process(delta: float) -> void:
 	_point.text = str(BattlegroupData.point) + "/20"
@@ -32,7 +34,7 @@ func _process(delta: float) -> void:
 ### utils -----------------------------------------------------------------
 
 func _spawn_hull(hull_data: Dictionary) -> void:
-	var hull := hull_scene.instantiate()
+	var hull = hull_scene.instantiate()
 	if int(hull_data["class"]) == BattlegroupData.ShipClass.FRIGATE:
 		_frigate.add_child(hull)
 	elif int(hull_data["class"]) == BattlegroupData.ShipClass.CARRIER:
@@ -45,7 +47,7 @@ func _spawn_hull(hull_data: Dictionary) -> void:
 	#_box.add_child(HSeparator.new())
 
 func _load_json(path: String) -> Dictionary:
-	var f := FileAccess.open(path, FileAccess.READ)
+	var f = FileAccess.open(path, FileAccess.READ)
 	if f == null:
 		push_error("Файл %s не найден" % path)
 		return {}
@@ -74,7 +76,13 @@ func _on_option_button_item_selected(index: int) -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		_scroll.scroll_vertical = 0
+		_options.select(Opt.HullFilter.ALL)
+		_on_option_button_item_selected(Opt.HullFilter.ALL)
+
+func _on_options_visibility_changed() -> void:
+	if _options.visible:
+		_options.select(Opt.HullFilter.ALL)
+		_on_option_button_item_selected(Opt.HullFilter.ALL)
 
 
 func _on_button_pressed() -> void:

@@ -18,7 +18,7 @@ script = ExtResource("1_gds87")
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NameComander" type="LineEdit" parent="VBoxContainer"]
+[node name="NameCommander" type="LineEdit" parent="VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_oxnjr")
 placeholder_text = "Имя персонажа"
@@ -81,7 +81,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Редактировать предысторию"
 
-[connection signal="text_changed" from="VBoxContainer/NameComander" to="." method="_on_name_comander_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/NameCommander" to="." method="_on_name_commander_text_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Positive1CheckBox" to="." method="_on_positive_1_check_box_pressed"]
 [connection signal="text_changed" from="VBoxContainer/HBoxContainer/Positive1" to="." method="_on_positive_1_text_changed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Positive2CheckBox" to="." method="_on_positive_2_check_box_pressed"]

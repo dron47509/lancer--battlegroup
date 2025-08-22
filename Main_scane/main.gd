@@ -39,7 +39,7 @@ func change_on_main():
 func _on_hull_list_change_scene() -> void:
 	_toggle_sections(true, false)
 	print(BattlegroupData.ships, "\n\n")
-	print(BattlegroupData.comander)
+	print(BattlegroupData.commander)
 
 
 func _on_commander_change_scene(parent_node: Node) -> void:
@@ -48,7 +48,7 @@ func _on_commander_change_scene(parent_node: Node) -> void:
 	_toggle_sections(false, true)
 	
 
-func _toggle_sections(show_hull_list := false, show_note := false) -> void:
+func _toggle_sections(show_hull_list = false, show_note = false) -> void:
 	main.visible      = not (show_hull_list or show_note)
 	hull_list.visible = show_hull_list
 	note.visible      = show_note

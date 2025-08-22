@@ -19,5 +19,5 @@ func _on_visibility_changed() -> void:
 
 
 func _on_text_edit_text_changed() -> void:
-	BattlegroupData.comander["backstory"] = $TextEdit.text
+	BattlegroupData.commander["backstory"] = $TextEdit.text
 	BattlegroupData.save_data()

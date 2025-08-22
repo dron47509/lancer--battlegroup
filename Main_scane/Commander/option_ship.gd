@@ -2,7 +2,7 @@ extends GridContainer
 
 const SlotUtils = preload("res://slot_utils.gd")
 
-@onready var _labels := {
+@onready var _labels = {
 	"superheavy": $Superheavies/Superheavy,
 	"primaries": $Primaries/Primary,
 	"auxiliaries": $Auxiliaries/Auxiliary,
@@ -32,7 +32,7 @@ func _update_from_ship() -> void:
 		_refresh_visibility()
 
 func _refresh_visibility() -> void:
-	var any_visible := false
+	var any_visible = false
 	for c in get_children():
 		if c.get_child(1).text != "0/0":
 			c.visible = true

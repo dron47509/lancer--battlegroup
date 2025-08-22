@@ -4,7 +4,7 @@ extends VBoxContainer
 #signal hull_added(hull_data)     # чтобы подписаться извне
 #signal hull_removed(hull_data)     # чтобы подписаться извне
 
-const FEAT_SCENE := preload("res://Main_scane/Hull_list/Feat_for_showing.tscn")
+const FEAT_SCENE = preload("res://Main_scane/Hull_list/Feat_for_showing.tscn")
 
 # --- ссылки на виджеты ---------------------------------------------------
 @onready var _name        : Label          = $Name
@@ -21,7 +21,7 @@ const FEAT_SCENE := preload("res://Main_scane/Hull_list/Feat_for_showing.tscn")
 @onready var _escort      : Label          = $Options/Escorts/Escort
 @onready var _system      : Label          = $Options/Systems/System
 @onready var _feat_box    : VBoxContainer  = $MarginContainer/Feats_container
-@onready var _discription : RichTextLabel  = $MarginContainer2/Discription
+@onready var _description : RichTextLabel  = $MarginContainer2/Discription
 @onready var _add_btn     : Button         = $Button
 @onready var _remove_btn  : Button         = $Button2
 
@@ -52,7 +52,7 @@ func populate(data: Dictionary) -> void:
 	_wing.text       = str(data.get("support_slots").get("wings"))
 	_escort.text     = str(data.get("support_slots").get("escorts"))
 	_system.text     = str(data.get("support_slots").get("systems"))
-	_discription.text= str(data.get("discription"))
+	_description.text= str(data.get("discription"))
 	# описание и черта (feats[0])
 	for x in data.get("feats"):
 		_spawn_feat(x)
@@ -70,8 +70,8 @@ func _connect_buttons() -> void:
 # 👉 Единое место, которое решает «показать/спрятать»
 func _update_buttons() -> void:
 	var cls: int = _src["class"]
-	var already_added := _count_added()
-	var reached_limit := not BattlegroupData.can_add(cls)
+	var already_added = _count_added()
+	var reached_limit = not BattlegroupData.can_add(cls)
 
 	_remove_btn.visible = already_added > 0
 	_add_btn.visible    = not reached_limit \
@@ -92,7 +92,7 @@ func _on_remove_pressed() -> void:
 
 
 func _spawn_feat(feat_data) -> void:
-	var feat := FEAT_SCENE.instantiate()
+	var feat = FEAT_SCENE.instantiate()
 	_feat_box.add_child(feat)
 	feat.populate(feat_data)
 
@@ -101,7 +101,7 @@ func _is_same_template(h: Dictionary) -> bool:
 	return h.get("name") == _src.get("name")
 
 func _count_added() -> int:
-	var n := 0
+	var n = 0
 	for s in BattlegroupData.ships:
 		if _is_same_template(s):
 			n += 1

@@ -1,8 +1,8 @@
 ###  HullList.gd  ###
 extends VBoxContainer                        # навесьте на узел Hull_list
 
-@export var json_path := "res://battlegroup_data.json"
-@export var hull_scene:= preload("res://support_scanes/hull.tscn")    # drag-and-drop Hull.tscn в инспекторе
+@export var json_path = "res://battlegroup_data.json"
+@export var hull_scene = preload("res://support_scanes/hull.tscn")    # drag-and-drop Hull.tscn в инспекторе
 const Opt = preload("res://option_types.gd")
 
 @onready var _frigate: VBoxContainer = $Hulls_list/VBoxContainer/Frigate
@@ -15,7 +15,7 @@ const Opt = preload("res://option_types.gd")
 @onready var _battleship_count = $Inform_panel/Battleship_container/Label2
 
 func _ready() -> void:
-	var raw := _load_json(json_path)
+	var raw = _load_json(json_path)
 	if raw.is_empty():
 		return
 
@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 ### utils -----------------------------------------------------------------
 
 func _spawn_hull(hull_data: Dictionary) -> void:
-	var hull := hull_scene.instantiate()
+	var hull = hull_scene.instantiate()
 	if int(hull_data["class"]) == BattlegroupData.ShipClass.FRIGATE:
 		_frigate.add_child(hull)
 	elif int(hull_data["class"]) == BattlegroupData.ShipClass.CARRIER:
@@ -43,7 +43,7 @@ func _spawn_hull(hull_data: Dictionary) -> void:
 	#_box.add_child(HSeparator.new())
 
 func _load_json(path: String) -> Dictionary:
-	var f := FileAccess.open(path, FileAccess.READ)
+	var f = FileAccess.open(path, FileAccess.READ)
 	if f == null:
 		push_error("Файл %s не найден" % path)
 		return {}

@@ -459,4 +459,4 @@ text = "Модифицировать"
 
 [connection signal="toggled" from="Ship_box/Ship_image/MarginContainer/Flagman" to="." method="_on_flagman_toggled"]
 [connection signal="pressed" from="Ship_box/MarginContainer3/Hulls_name" to="." method="_on_hulls_name_pressed"]
-[connection signal="text_changed" from="Ship_box/VBoxContainer/Atributs/Overshild/Overshild" to="." method="_on_overshild_text_changed"]
+[connection signal="text_changed" from="Ship_box/VBoxContainer/Atributs/Overshild/Overshild" to="." method="_on_overshield_text_changed"]

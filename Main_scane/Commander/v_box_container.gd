@@ -1,18 +1,18 @@
 extends VBoxContainer
 # Godot 4.x
 
-@export var update_interval := 0.2   # как часто пересчитывать (в секундах)
+@export var update_interval = 0.2   # как часто пересчитывать (в секундах)
 @onready var _label: Label = $Label2
 
-const NAME_FLAGSHIP     := "FLAGSHIP"
-const NAME_SANDSTORM    := "SANDSTORM"
-const NAME_LOUIS_XIV    := "LOUIS XIV"
-const NAME_FIGHTER_WING := "FIGHTER WING"
-const TYPE_WING         := 4
+const NAME_FLAGSHIP = "FLAGSHIP"
+const NAME_SANDSTORM = "SANDSTORM"
+const NAME_LOUIS_XIV = "LOUIS XIV"
+const NAME_FIGHTER_WING = "FIGHTER WING"
+const TYPE_WING = 4
 
-var _accum := 0.0
-var _last_text := ""
-var _last_tooltip := ""
+var _accum = 0.0
+var _last_text = ""
+var _last_tooltip = ""
 
 func _ready() -> void:
 	set_process(true)
@@ -34,9 +34,9 @@ func _recompute(force: bool = false) -> void:
 
 	var ships: Array = bd.ships
 
-	var d6 := 0
-	var flat := 0
-	var src_count := {
+	var d6 = 0
+	var flat = 0
+	var src_count = {
 		"FLAGSHIP_d6": 0,
 		"LOUIS_XIV_d6": 0,
 		"FIGHTER_WING_flat": 0,
@@ -44,7 +44,7 @@ func _recompute(force: bool = false) -> void:
 	}
 
 	for ship in ships:
-		var sname := _canon_name(ship.get("name", ""))
+		var sname = _canon_name(ship.get("name", ""))
 
 		# HA LOUIS XIV–CLASS DREADNOUGHT → +1d6 за каждый
 		if sname.find(NAME_LOUIS_XIV) != -1:
@@ -53,8 +53,8 @@ func _recompute(force: bool = false) -> void:
 
 		# Опции/прикреплённые элементы к корпусу
 		for opt in ship.get("option", []):
-			var oname := _canon_name(opt.get("name", ""))
-			var otype := int(opt.get("type", -1))
+			var oname = _canon_name(opt.get("name", ""))
+			var otype = int(opt.get("type", -1))
 
 			# FLAGSHIP как опция
 			if oname.find(NAME_FLAGSHIP) != -1:
@@ -81,7 +81,7 @@ func _recompute(force: bool = false) -> void:
 	flat += fw_bonus
 
 	# Собираем текст в стиле 2d6+6
-	var text := ""
+	var text = ""
 	if d6 > 0 and flat != 0:
 		text = "%dd6%+d" % [d6, flat]
 	elif d6 > 0:
@@ -92,7 +92,7 @@ func _recompute(force: bool = false) -> void:
 		text = "0"
 
 	# Обновляем лейбл только если что-то реально поменялось
-	var tooltip := _build_tooltip(src_count, d6, flat)
+	var tooltip = _build_tooltip(src_count, d6, flat)
 	if _label and (text != _last_text or tooltip != _last_tooltip or force):
 		_last_text = text
 		_last_tooltip = tooltip
@@ -103,7 +103,7 @@ func _canon_name(raw: String) -> String:
 	return raw.replace("\n", " ").to_upper()
 
 func _build_tooltip(src: Dictionary, d6: int, flat: int) -> String:
-	var sum_line := ""
+	var sum_line = ""
 	if d6 > 0 and flat != 0:
 		sum_line = "%dd6 %+d" % [d6, flat]
 	elif d6 > 0:

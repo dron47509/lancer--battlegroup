@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 # Вызывай этот метод, когда цифры в Label-ах меняются,
 # например из другого скрипта или после загрузки данных.
 func refresh_visibility() -> void:
-	var any_container_visible := false
+	var any_container_visible = false
 
 	for container in get_children():
 		# Проверяем, что это действительно контейнер с дочерними узлами.
@@ -36,8 +36,8 @@ func refresh_visibility() -> void:
 			any_container_visible = true
 			continue
 
-		var number := int(label_to_check.text.strip_edges())
-		var show := number != 0
+		var number = int(label_to_check.text.strip_edges())
+		var show = number != 0
 		container.visible = show
 
 		if show:

@@ -45,7 +45,7 @@ grow_vertical = 2
 mouse_filter = 1
 flat = true
 
-[node name="NameComander" type="LineEdit" parent="VBoxContainer"]
+[node name="NameCommander" type="LineEdit" parent="VBoxContainer"]
 visible = false
 layout_mode = 2
 mouse_filter = 1
@@ -176,10 +176,10 @@ mouse_filter = 1
 text = "Редактировать предысторию"
 
 [connection signal="pressed" from="VBoxContainer/Label3/Button" to="VBoxContainer" method="_on_button_pressed"]
-[connection signal="focus_exited" from="VBoxContainer/NameComander" to="VBoxContainer" method="_on_NameComander_focus_exited"]
-[connection signal="mouse_exited" from="VBoxContainer/NameComander" to="VBoxContainer" method="_on_NameComander_mouse_exited"]
-[connection signal="text_changed" from="VBoxContainer/NameComander" to="." method="_on_name_comander_text_changed"]
-[connection signal="text_submitted" from="VBoxContainer/NameComander" to="VBoxContainer" method="_on_NameComander_text_submitted"]
+[connection signal="focus_exited" from="VBoxContainer/NameCommander" to="VBoxContainer" method="_on_NameCommander_focus_exited"]
+[connection signal="mouse_exited" from="VBoxContainer/NameCommander" to="VBoxContainer" method="_on_NameCommander_mouse_exited"]
+[connection signal="text_changed" from="VBoxContainer/NameCommander" to="." method="_on_name_commander_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/NameCommander" to="VBoxContainer" method="_on_NameCommander_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Positive1CheckBox" to="." method="_on_positive_1_check_box_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Label3/Button" to="VBoxContainer/HBoxContainer/Label3" method="_on_button_pressed"]
 [connection signal="focus_exited" from="VBoxContainer/HBoxContainer/Positive1" to="VBoxContainer/HBoxContainer/Label3" method="_on_name_focus_exited"]

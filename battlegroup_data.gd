@@ -10,14 +10,14 @@ var point = 0
 const SAVE_PATH = "user://battlegroup_save.json"
 
 # 1️⃣ максимумы
-const MAX_COUNTS := {
+const MAX_COUNTS = {
 	ShipClass.FRIGATE:    3,
 	ShipClass.CARRIER:    2,
 	ShipClass.BATTLESHIP: 1,
 }
 
 # 2️⃣ текущее количество взятых корпусов
-var class_counts := {
+var class_counts = {
 	ShipClass.FRIGATE:    0,
 	ShipClass.CARRIER:    0,
 	ShipClass.BATTLESHIP: 0,
@@ -27,7 +27,7 @@ var current_ship = -1
 
 var ships: Array = []
 
-var comander: Dictionary = {
+var commander: Dictionary = {
 	"name": "",
 	"positive_1": "",
 	"positive_2": "",
@@ -43,20 +43,20 @@ var comander: Dictionary = {
 
 # Добавление.  ➜ true — успех, false — отказ (лимит/неизвестный класс/уже есть).
 func add_hull(hull: Dictionary) -> bool:
-	var cls := int(hull.get("class", -1))
+        var cls = int(hull.get("class", -1))
 	if class_counts[cls] >= MAX_COUNTS[cls] or point + int(hull.get("points")) > 20:
 		return false
 
 	# 🔑 создаём глубокую копию, чтобы объект был уникален
-	var new_hull := hull.duplicate(true)   # true → deep copy
+        var new_hull = hull.duplicate(true)   # true → deep copy
 
 	# 1. находим первый свободный номер
-	var used := {}
+        var used = {}
 	for s in ships:
-		var parts := str(s.get("ship_name", "")).split(" ")
+                var parts = str(s.get("ship_name", "")).split(" ")
 		if parts.size() == 2 and parts[0] == "Имя":
 			used[int(parts[1])] = true
-	var idx := 1
+        var idx = 1
 	while used.has(idx):
 		idx += 1
 
@@ -77,7 +77,7 @@ func add_hull(hull: Dictionary) -> bool:
 # Удаление.  ➜ true — удалил, false — не нашёл.
 func remove_hull(hull: Dictionary) -> bool:
 	var target_name = hull.get("name", "")
-	var idx := -1
+        var idx = -1
 
 	# идём с конца в начало
 	for i in range(ships.size() - 1, -1, -1):
@@ -89,7 +89,7 @@ func remove_hull(hull: Dictionary) -> bool:
 		return false        # корпус с таким name не найден
 
 	# определяем класс удаляемого корпуса, чтобы корректно уменьшить счётчики
-	var cls := int(ships[idx].get("class", -1))
+        var cls = int(ships[idx].get("class", -1))
 
 	ships.remove_at(idx)
 	class_counts[cls] = max(class_counts[cls] - 1, 0)
@@ -109,7 +109,7 @@ func can_add(cls: int) -> bool:
 func refresh_point():
 	point = 0
 	for ship in ships:
-		var total := int(ship.get("points", 0))
+                var total = int(ship.get("points", 0))
 		var spec = 0
 		for opt in ship.get("option", []):
 			if ship.get("class") == 1.0 and (opt.get("type") == 5.0 or opt.get("type") == 4.0):
@@ -140,12 +140,12 @@ func refresh_point():
 		point += total + spec
 
 func will_exceed_20(opt: Dictionary) -> bool:
-	var total_points := 0
+        var total_points = 0
 	
 	for i in range(ships.size()):
 		var ship = ships[i]
-		var ship_total := 0
-		var spec := 0
+                var ship_total = 0
+                var spec = 0
 		
 		# Собираем список опций для подсчёта.
 		# Для целевого корабля добавляем "виртуально" новую опцию.
@@ -155,11 +155,11 @@ func will_exceed_20(opt: Dictionary) -> bool:
 		
 		# Подсчёт очков по правилам
 		for o in opts:
-			var o_points := int(o.get("points", 0))
-			var o_mod_points := int(o.get("modification", {}).get("point", 0))
-			var o_type = o.get("type")
-			var s_class = ship.get("class")
-			var s_name := String(ship.get("name", ""))
+                        var o_points = int(o.get("points", 0))
+                        var o_mod_points = int(o.get("modification", {}).get("point", 0))
+                        var o_type = o.get("type")
+                        var s_class = ship.get("class")
+                        var s_name = String(ship.get("name", ""))
 			
 			if s_class == 1.0 and (o_type == 5.0 or o_type == 4.0):
 				spec += o_points
@@ -199,10 +199,10 @@ func _enter_tree() -> void:
 	load_data()
 
 func save_data() -> void:
-	var data = {
-		"ships": ships,
-		"comander": comander
-	}
+        var data = {
+                "ships": ships,
+                "commander": commander
+        }
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file:
 		file.store_string(JSON.stringify(data))
@@ -216,8 +216,8 @@ func load_data() -> void:
 			file.close()
 			var result = JSON.parse_string(text)
 			if typeof(result) == TYPE_DICTIONARY:
-				ships = result.get("ships", [])
-				comander = result.get("comander", comander)
+                                ships = result.get("ships", [])
+                                commander = result.get("commander", commander)
 				class_counts[ShipClass.FRIGATE] = 0
 				class_counts[ShipClass.CARRIER] = 0
 				class_counts[ShipClass.BATTLESHIP] = 0

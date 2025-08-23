@@ -4,8 +4,8 @@ class_name PWAInstaller
 @export var install_button_path: NodePath = NodePath()
 var _install_button: Button
 
-var _poll_timer := 0.0
-var _ios_hint_shown := false
+var _poll_timer = 0.0
+var _ios_hint_shown = false
 
 func _ready() -> void:
 	if !OS.has_feature("web"):
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 		_poll_timer = 0.0
 		_update_button_visibility()
 
-func _update_button_visibility(force := false) -> void:
+func _update_button_visibility(force = false) -> void:
 	if !_install_button:
 		return
 
@@ -132,7 +132,7 @@ func _show_generic_help() -> void:
 	_show_toast("Нужно: HTTPS, валидный webmanifest, Service Worker и иконки. Тогда появится кнопка установки.")
 
 func _show_toast(msg: String, seconds: float = 4.0) -> void:
-	var label := Label.new()
+	var label = Label.new()
 	label.text = msg
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	label.theme_type_variation = "HeaderSmall"
@@ -141,7 +141,7 @@ func _show_toast(msg: String, seconds: float = 4.0) -> void:
 	label.add_theme_constant_override("outline_size", 2)
 
 	# фон
-	var panel := PanelContainer.new()
+	var panel = PanelContainer.new()
 	panel.add_theme_stylebox_override("panel", _toast_stylebox())
 	panel.add_child(label)
 
@@ -154,7 +154,7 @@ func _show_toast(msg: String, seconds: float = 4.0) -> void:
 	panel.offset_bottom = -24
 	panel.offset_top = -96
 
-	var parent := get_tree().current_scene if get_tree().current_scene else self
+	var parent = get_tree().current_scene if get_tree().current_scene else self
 	parent.add_child(panel)
 	panel.top_level = true
 
@@ -162,7 +162,7 @@ func _show_toast(msg: String, seconds: float = 4.0) -> void:
 	panel.queue_free()
 
 func _toast_stylebox() -> StyleBoxFlat:
-	var sb := StyleBoxFlat.new()
+	var sb = StyleBoxFlat.new()
 	sb.bg_color = Color(0,0,0,0.8)
 	sb.corner_radius_top_left = 12
 	sb.corner_radius_top_right = 12

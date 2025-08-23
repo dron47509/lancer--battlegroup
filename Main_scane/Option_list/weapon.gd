@@ -7,7 +7,7 @@ const Opt = preload("res://option_types.gd")
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
 @onready var _param: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Param
 @onready var _effect: RichTextLabel = $VBoxContainer/Effect/Effect
-@onready var _discription: RichTextLabel = $VBoxContainer/Discription/Discription
+@onready var _description: RichTextLabel = $VBoxContainer/Description/Description
 @onready var _add: MarginContainer = $VBoxContainer/Button
 @onready var _remove: MarginContainer = $VBoxContainer/Button2
 @onready var _add_special:    MarginContainer = $VBoxContainer/Button3
@@ -43,7 +43,7 @@ func _update_buttons() -> void:
 
 			# ----- SPECIAL UI (только для вспомогательных орудий) -----
 			var special_arr = ship.get("special", [])
-			var in_special := false
+			var in_special =  false
 			for o in special_arr:
 				if _is_same_template(o):
 					in_special = true
@@ -82,7 +82,7 @@ func _update_buttons() -> void:
 
 			# ----- SPECIAL UI (только для вспомогательных орудий) -----
 			var special_arr2 = ship.get("special", [])
-			var in_special2 := false
+			var in_special2 =  false
 			for o in special_arr2:
 				if _is_same_template(o):
 					in_special2 = true
@@ -129,7 +129,7 @@ func _is_same_template(o: Dictionary) -> bool:
 		return o.get("name") == _src.get("name")
 
 func _count_added(ship: Dictionary) -> int:
-		var n := 0
+		var n =  0
 		for o in ship.get("option", []):
 				if _is_same_template(o):
 						n += 1
@@ -157,7 +157,7 @@ func populate(weapon):
 		_param.text += "[Упорство " + weapon.get("tenacity") + "] "
 	_param.text += "[Очки " + str(int(weapon.get("points"))) + "]"
 	_effect.text = weapon.get("effect")
-	_discription.text = "[i]" + weapon.get("discription") + "[/i]"
+_description.text = "[i]" + weapon.get("discription") + "[/i]"
 
 
 func _on_add_pressed() -> void:
@@ -216,7 +216,7 @@ func _on_add_special_pressed() -> void:
 		if _is_same_template(o):
 			return
 
-	var opt := _src.duplicate(true)
+	var opt =  _src.duplicate(true)
 	ship["special"].append(opt)
 
 	# UI обновится через _process/_update_buttons, но подсветим намерение

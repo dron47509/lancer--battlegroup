@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-@export var ship_scene:= preload("res://Main_scane/Commander/ship.tscn") 
+@export var ship_scene = preload("res://Main_scane/Commander/ship.tscn")
 
 
 @onready var _point = $Inform_panel/Point_container/Label2

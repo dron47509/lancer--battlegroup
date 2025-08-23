@@ -7,7 +7,7 @@ extends PanelContainer
 @onready var _damage      : Label           = $Feat/Header/MarginContainer/Header/Damage_range_container/Damage
 @onready var _range       : Label           = $Feat/Header/MarginContainer/Header/Damage_range_container/Range
 @onready var _effect      : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Effect
-@onready var _discription : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Discription
+@onready var _description : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Description
 @onready var _header      : PanelContainer  = $Feat/Header
 
 # --- темы ---------------------------------------------------
@@ -51,8 +51,8 @@ func populate(data) -> void:
 		_damage.text = "[Урон %s]" % data.get("damage")
 	if data.get("range") != "":
 		_range.text = "[Дистанция %s]" % data.get("range")
-	_effect.text = data.get("effect")
-	_discription.text = data.get("discription")
+        _effect.text = data.get("effect")
+        _description.text = data.get("discription")
 	_change_theme()
 	_hide_if_text_empty(self)
 

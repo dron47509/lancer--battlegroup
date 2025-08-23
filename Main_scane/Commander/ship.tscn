@@ -261,10 +261,8 @@ horizontal_alignment = 1
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Options" type="GridContainer" parent="Ship_box/VBoxContainer"]
+[node name="Options" type="HFlowContainer" parent="Ship_box/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-columns = 4
 script = ExtResource("6_dp0u4")
 
 [node name="Superheavies" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
@@ -273,7 +271,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Superheavies"]
 layout_mode = 2
-text = "Сверхтяжёлое"
+text = "Сверхтяжёлые"
 horizontal_alignment = 1
 
 [node name="Superheavy" type="Label" parent="Ship_box/VBoxContainer/Options/Superheavies"]
@@ -287,7 +285,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Primaries"]
 layout_mode = 2
-text = "Основное"
+text = "Основные"
 horizontal_alignment = 1
 
 [node name="Primary" type="Label" parent="Ship_box/VBoxContainer/Options/Primaries"]

@@ -220,7 +220,7 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Description" type="RichTextLabel" parent="Hull/MarginContainer2"]
+[node name="Discription" type="RichTextLabel" parent="Hull/MarginContainer2"]
 layout_mode = 2
 mouse_filter = 2
 fit_content = true

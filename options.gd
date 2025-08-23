@@ -1,8 +1,8 @@
-extends GridContainer
+extends HFlowContainer
 
 const SlotUtils = preload("res://slot_utils.gd")
 
-@onready var _labels = {
+@onready var _labels := {
 	"point":$Points/Point,
 	"superheavy": $Superheavies/Superheavy,
 	"primaries": $Primaries/Primary,
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 
 func _update_from_ship() -> void:
-                var idx = int(BattlegroupData.current_ship)
+		var idx := int(BattlegroupData.current_ship)
 		if idx < 0 or idx >= BattlegroupData.ships.size():
 				return
 		var ship = BattlegroupData.ships[idx]
@@ -39,7 +39,7 @@ func _update_from_ship() -> void:
 		_refresh_visibility()
 
 func _refresh_visibility() -> void:
-        var any_visible = false
+	var any_visible := false
 	for c in get_children():
 		if c.get_child(1).text != "0/0":
 			c.visible = true

@@ -20,9 +20,8 @@ layout_mode = 2
 text = "Боевая группа:"
 label_settings = SubResource("LabelSettings_7nqf6")
 
-[node name="Inform_panel" type="GridContainer" parent="."]
+[node name="Inform_panel" type="HFlowContainer" parent="."]
 layout_mode = 2
-columns = 4
 
 [node name="Battleship_container" type="VBoxContainer" parent="Inform_panel"]
 layout_mode = 2

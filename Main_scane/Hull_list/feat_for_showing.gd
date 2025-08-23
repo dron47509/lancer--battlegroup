@@ -51,8 +51,8 @@ func populate(data) -> void:
 		_damage.text = "[Урон %s]" % data.get("damage")
 	if data.get("range") != "":
 		_range.text = "[Дистанция %s]" % data.get("range")
-        _effect.text = data.get("effect")
-        _description.text = data.get("discription")
+		_effect.text = data.get("effect")
+		_description.text = data.get("discription")
 	_change_theme()
 	_hide_if_text_empty(self)
 

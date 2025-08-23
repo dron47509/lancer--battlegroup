@@ -176,7 +176,7 @@ func populate(system):
 		_param.text += "[Упорство " + system.get("tenacity") + "] "
 	_param.text += "[Очки " + str(int(system.get("points"))) + "]"
 	_effect.text = system.get("effect")
-    _description.text = "[i]" + system.get("discription") + "[/i]"
+	_description.text = "[i]" + system.get("discription") + "[/i]"
 	if system.get("feats").size() > 0:
 		var feat1 = system.get("feats").get(0)
 		if feat1.get("type") == Opt.FEAT_TACTIC:
@@ -187,10 +187,10 @@ func populate(system):
 				_tactic1_range.text = "[Дистанция %s]" % feat1.get("range")
 			_tactic1_effect.text = feat1.get("effect")
 		else:
-                    _maneuver1.visible = true
-                    _maneuver1_name.text = feat1.get("name")
-                    _maneuver1_tag.text = feat1.get("tags")
-                    _maneuver1_effect.text = feat1.get("effect")
+					_maneuver1.visible = true
+					_maneuver1_name.text = feat1.get("name")
+					_maneuver1_tag.text = feat1.get("tags")
+					_maneuver1_effect.text = feat1.get("effect")
 	if system.get("feats").size() > 1:
 		var feat1 = system.get("feats").get(1)
 		if feat1.get("type") == Opt.FEAT_TACTIC:
@@ -201,10 +201,10 @@ func populate(system):
 				_tactic2_range.text = "[Дистанция %s]" % feat1.get("range")
 			_tactic2_effect.text = feat1.get("effect")
 		else:
-                    _maneuver1.visible = true
-                    _maneuver1_name.text = feat1.get("name")
-                    _maneuver1_tag.text = feat1.get("tags")
-                    _maneuver1_effect.text = feat1.get("effect")
+					_maneuver1.visible = true
+					_maneuver1_name.text = feat1.get("name")
+					_maneuver1_tag.text = feat1.get("tags")
+					_maneuver1_effect.text = feat1.get("effect")
 
 func _on_add_pressed() -> void:
 		var opt = _src.duplicate(true)

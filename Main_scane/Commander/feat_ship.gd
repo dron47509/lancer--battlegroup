@@ -21,7 +21,7 @@ const Opt                  = preload("res://option_types.gd")
 @onready var _tenacity    : Label           = $Feat/Header/MarginContainer/Header/Damage_range_container/Tenacity
 @onready var _hp          : Label           = $Feat/Header/MarginContainer/Header/Damage_range_container/HP
 @onready var _effect      : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Effect
-@onready var _discription : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Discription
+@onready var _description : RichTextLabel   = $Feat/MarginContainer/VBoxContainer/Description
 @onready var _header      : PanelContainer  = $Feat/Header
 @onready var _hide_btn    : Button          = $Feat/Header/MarginContainer/Header/Hide
 @onready var _remove_btn  : Button          = $Feat/MarginContainer/VBoxContainer/HBoxContainer/Remove
@@ -56,9 +56,9 @@ func set_context(removable: bool, host_ship: Dictionary, is_option_item: bool=fa
 	_update_remove_visibility()
 
 func _update_remove_visibility() -> void:
-	var t := int(_data.get("type", -999))
+	var t = int(_data.get("type", -999))
 	# Прятать Remove только для option-элементов, если это слоты 7/8 (Тактика/Манёвр как опция)
-	var is_tactic_or_maneuver_option := _is_option_item and (t == 7 or t == 8)
+	var is_tactic_or_maneuver_option = _is_option_item and (t == 7 or t == 8)
 	_remove_btn.visible = _removable and not is_tactic_or_maneuver_option and not _data.get("name") == "FLAGSHIP"
 
 func _on_hide_pressed() -> void:
@@ -70,8 +70,8 @@ func _on_remove_pressed() -> void:
 	if not _removable or _host_ship.is_empty():
 		return
 	
-	var removed := false
-	var removed_from := ""  # "special" | "option" (для логики отката бонусов)
+	var removed = false
+	var removed_from = ""  # "special" | "option" (для логики отката бонусов)
 
 	# Если эта карточка — ПОСЛЕДНЯЯ в своём контейнере, сперва пробуем удалить из special
 	if _is_last_in_parent() and _host_ship.has("special") and (_host_ship["special"] is Array):
@@ -93,7 +93,7 @@ func _on_remove_pressed() -> void:
 	_apply_on_remove_effects(_data.get("name", ""))
 	remove_overflow_by_sum()
 	# Обновляем UI/счётчики
-	var root := get_parent()
+	var root = get_parent()
 	if root and root.get_parent() and root.get_parent().get_parent() and root.get_parent().get_parent().get_parent():
 		root.get_parent().get_parent().get_parent()._refresh_option_buttons()
 
@@ -116,14 +116,14 @@ func set_context_for_option(ship_ref: Dictionary, option_ref: Dictionary) -> voi
 		_remove_btn.visible = true
 
 func _is_last_in_parent() -> bool:
-	var p := get_parent()
+	var p = get_parent()
 	if p == null:
 		return false
 	return p.get_child_count() > 0 and p.get_child(p.get_child_count() - 1) == self
 
 func _remove_from_array_by_template(arr: Array) -> bool:
 	# Пытаемся по точной ссылке
-	var idx := arr.find(_data)
+	var idx = arr.find(_data)
 	# Если не нашли — по имени (шаблонному совпадению)
 	if idx == -1:
 		for i in range(arr.size() - 1, -1, -1):
@@ -159,14 +159,14 @@ func _dec_support_slot(which: String, by: int) -> void:
 	if not _host_ship.has("support_slots"):
 		return
 	var ss = _host_ship.get("support_slots", {})
-	var cur := _to_int(ss.get(which, "0"))
+	var cur = _to_int(ss.get(which, "0"))
 	cur = max(cur - by, 0)
 	ss[which] = str(cur)
 	_host_ship["support_slots"] = ss
 
 func _dec_hp(by: int) -> void:
 	# HP не должен опуститься ниже 1 (страховка)
-	var cur_hp := _to_int(_host_ship.get("hp", "0"))
+	var cur_hp = _to_int(_host_ship.get("hp", "0"))
 	cur_hp = max(cur_hp - by, 1)
 	_host_ship["hp"] = str(cur_hp)
 
@@ -177,7 +177,7 @@ func _to_int(v) -> int:
 		TYPE_FLOAT:
 			return int(round(v))
 		TYPE_STRING:
-			var s := String(v).strip_edges()
+			var s = String(v).strip_edges()
 			if s == "":
 				return 0
 			return int(s)
@@ -231,12 +231,12 @@ func populate(data: Dictionary) -> void:
 	if str(data.get("hp", "")).strip_edges() != "":
 		_hp.text = "[HP %s]" % data.get("hp")
 
-	_effect.text = data.get("effect", "")
-	_discription.text = "[i]" + data.get("discription", "")
+		_effect.text = data.get("effect", "")
+		_description.text = "[i]" + data.get("discription", "")
 
-	_hide_if_text_empty(self)
-	_change_theme()
-	_update_remove_visibility()
+		_hide_if_text_empty(self)
+		_change_theme()
+		_update_remove_visibility()
 
 
 func remove_overflow_by_sum() -> bool:
@@ -244,10 +244,10 @@ func remove_overflow_by_sum() -> bool:
 	if opts.is_empty():
 		return false
 
-	var changed := false
+	var changed = false
 
 	# Берём суммы (должны содержать "wings" и "escorts")
-	var sums := SlotUtils.get_slot_sums(_host_ship)
+	var sums = SlotUtils.get_slot_sums(_host_ship)
 
 	# Если крыльев больше лимита → по одному снимаем последние, пока не станет неотрицательно
 	while sums.get("wing") < 0:
@@ -276,7 +276,7 @@ func remove_overflow_by_sum() -> bool:
 # Хелпер: удалить ПОСЛЕДНЮЮ опцию, у которой type совпадает с любым из types_to_match
 func _remove_last_by_types(arr: Array, types_to_match: Array) -> bool:
 	for i in range(arr.size() - 1, -1, -1):
-		var t := int(arr[i].get("type", -999))
+		var t = int(arr[i].get("type", -999))
 		if t in types_to_match:
 			arr.remove_at(i)
 			return true

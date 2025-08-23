@@ -7,7 +7,7 @@ const Opt = preload("res://option_types.gd")
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
 @onready var _param: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Param
 @onready var _effect: RichTextLabel = $VBoxContainer/Effect/Effect
-@onready var _discription: RichTextLabel = $VBoxContainer/Discription/Discription
+@onready var _description: RichTextLabel = $VBoxContainer/Description/Description
 @onready var _tactic1: MarginContainer = $VBoxContainer/Tactic1
 @onready var _tactic1_name: RichTextLabel = $VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label
 @onready var _tactic1_tag: RichTextLabel = $VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label2
@@ -18,10 +18,10 @@ const Opt = preload("res://option_types.gd")
 @onready var _tactic2_tag: RichTextLabel = $VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label2
 @onready var _tactic2_range: RichTextLabel = $VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label3
 @onready var _tactic2_effect: RichTextLabel = $VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/MarginContainer/RichTextLabel
-@onready var _maneveue1: MarginContainer = $VBoxContainer/Maneveue1
-@onready var _maneveue1_name: RichTextLabel = $VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label
-@onready var _maneveue1_tag: RichTextLabel = $VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label2
-@onready var _maneveue1_effect: RichTextLabel = $VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/MarginContainer/RichTextLabel
+@onready var _maneuver1: MarginContainer = $VBoxContainer/Maneuver1
+@onready var _maneuver1_name: RichTextLabel = $VBoxContainer/Maneuver1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label
+@onready var _maneuver1_tag: RichTextLabel = $VBoxContainer/Maneuver1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label2
+@onready var _maneuver1_effect: RichTextLabel = $VBoxContainer/Maneuver1/PanelContainer2/VBoxContainer/MarginContainer/RichTextLabel
 @onready var _add: MarginContainer = $VBoxContainer/Button
 @onready var _add_special: MarginContainer = $VBoxContainer/Button3
 @onready var _remove_special: MarginContainer = $VBoxContainer/Button4
@@ -57,7 +57,7 @@ func _update_buttons() -> void:
 
 			# ----- SPECIAL UI (ветка: опции НЕ пустые) -----
 			var special_arr = ship.get("special", [])
-			var in_special := false
+			var in_special =  false
 			for o in special_arr:
 				if _is_same_template(o):
 					in_special = true
@@ -96,7 +96,7 @@ func _update_buttons() -> void:
 
 			# ----- SPECIAL UI (ветка: опции пустые) -----
 			var special_arr2 = ship.get("special", [])
-			var in_special2 := false
+			var in_special2 =  false
 			for o in special_arr2:
 				if _is_same_template(o):
 					in_special2 = true
@@ -154,7 +154,7 @@ func _is_same_template(o: Dictionary) -> bool:
 		return o.get("name") == _src.get("name")
 
 func _count_added(ship: Dictionary) -> int:
-		var n := 0
+		var n =  0
 		for o in ship.get("option", []):
 				if _is_same_template(o):
 						n += 1
@@ -176,7 +176,7 @@ func populate(system):
 		_param.text += "[Упорство " + system.get("tenacity") + "] "
 	_param.text += "[Очки " + str(int(system.get("points"))) + "]"
 	_effect.text = system.get("effect")
-	_discription.text = "[i]" + system.get("discription") + "[/i]"
+    _description.text = "[i]" + system.get("discription") + "[/i]"
 	if system.get("feats").size() > 0:
 		var feat1 = system.get("feats").get(0)
 		if feat1.get("type") == Opt.FEAT_TACTIC:
@@ -187,10 +187,10 @@ func populate(system):
 				_tactic1_range.text = "[Дистанция %s]" % feat1.get("range")
 			_tactic1_effect.text = feat1.get("effect")
 		else:
-			_maneveue1.visible = true
-			_maneveue1_name.text = feat1.get("name")
-			_maneveue1_tag.text = feat1.get("tags")
-			_maneveue1_effect.text = feat1.get("effect")
+                    _maneuver1.visible = true
+                    _maneuver1_name.text = feat1.get("name")
+                    _maneuver1_tag.text = feat1.get("tags")
+                    _maneuver1_effect.text = feat1.get("effect")
 	if system.get("feats").size() > 1:
 		var feat1 = system.get("feats").get(1)
 		if feat1.get("type") == Opt.FEAT_TACTIC:
@@ -201,10 +201,10 @@ func populate(system):
 				_tactic2_range.text = "[Дистанция %s]" % feat1.get("range")
 			_tactic2_effect.text = feat1.get("effect")
 		else:
-			_maneveue1.visible = true
-			_maneveue1_name.text = feat1.get("name")
-			_maneveue1_tag.text = feat1.get("tags")
-			_maneveue1_effect.text = feat1.get("effect")
+                    _maneuver1.visible = true
+                    _maneuver1_name.text = feat1.get("name")
+                    _maneuver1_tag.text = feat1.get("tags")
+                    _maneuver1_effect.text = feat1.get("effect")
 
 func _on_add_pressed() -> void:
 		var opt = _src.duplicate(true)
@@ -232,7 +232,7 @@ func _on_add_special_pressed() -> void:
 		if _is_same_template(o):
 			return
 
-	var opt := _src.duplicate(true)
+	var opt =  _src.duplicate(true)
 	ship["special"].append(opt)
 
 	# Обновляем UI: у тебя _process → _update_buttons() всё равно перерисует,

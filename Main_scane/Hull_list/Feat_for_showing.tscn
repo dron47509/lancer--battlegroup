@@ -81,7 +81,7 @@ mouse_filter = 2
 bbcode_enabled = true
 fit_content = true
 
-[node name="Description" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
+[node name="Discription" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true

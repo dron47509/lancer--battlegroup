@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dfmnaxmwuyw7c"]
 
 [ext_resource type="Theme" uid="uid://ub8betb6ka2e" path="res://Main_scane/Commander/Battlegroup/Theme/Body/feat.tres" id="1_vw5js"]
-[ext_resource type="Script" uid="uid://dp2mxx4n6vamw" path="res://Main_scane/Commander/feat_ship.gd" id="2_vw5js"]
+[ext_resource type="Script" uid="uid://dtsuyxhrnu507" path="res://Main_scane/Commander/feat_ship.gd" id="2_vw5js"]
 [ext_resource type="Theme" uid="uid://baf7ven6bc8vi" path="res://Main_scane/Commander/Battlegroup/Theme/Header/feat.tres" id="4_bshel"]
 [ext_resource type="Theme" uid="uid://b0gpqephvhh8r" path="res://Main_scane/Commander/Battlegroup/Theme/Hide_button.tres" id="4_svja1"]
 
@@ -91,7 +91,7 @@ mouse_filter = 2
 bbcode_enabled = true
 fit_content = true
 
-[node name="Description" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
+[node name="Discription" type="RichTextLabel" parent="Feat/MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true

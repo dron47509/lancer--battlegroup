@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://ffwqq2icwm4n"]
 
-[ext_resource type="Script" uid="uid://cudpaegnohxmw" path="res://Main_scane/Commander/commander.gd" id="1_gds87"]
-[ext_resource type="Script" uid="uid://cs73pyiqul5mu" path="res://Main_scane/Commander/v_box_container1.gd" id="2_oxnjr"]
-[ext_resource type="Script" uid="uid://nhciubr6woel" path="res://Main_scane/Commander/label_3.gd" id="3_t88nq"]
-[ext_resource type="Script" uid="uid://dbqctuf01ipyq" path="res://Main_scane/Commander/label_4.gd" id="4_jgq5a"]
-[ext_resource type="Script" uid="uid://bmr6cqi1bjevy" path="res://Main_scane/Commander/label_5.gd" id="5_7bu4b"]
+[ext_resource type="Script" uid="uid://b8rwhxyag7lm0" path="res://Main_scane/Commander/commander.gd" id="1_gds87"]
+[ext_resource type="Script" uid="uid://bhgj8l20bvdj0" path="res://Main_scane/Commander/v_box_container1.gd" id="2_oxnjr"]
+[ext_resource type="Script" uid="uid://01ri5mx2am4l" path="res://Main_scane/Commander/label_3.gd" id="3_t88nq"]
+[ext_resource type="Script" uid="uid://31xiy5mfrhbu" path="res://Main_scane/Commander/label_4.gd" id="4_jgq5a"]
+[ext_resource type="Script" uid="uid://c267iioaofa1s" path="res://Main_scane/Commander/label_5.gd" id="5_7bu4b"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_t88nq"]
 font_size = 25

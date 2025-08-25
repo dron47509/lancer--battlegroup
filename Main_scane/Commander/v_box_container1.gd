@@ -14,19 +14,19 @@ func _on_button_pressed() -> void:
 	$NameComander.set_caret_column($NameComander.text.length())
 	$Label3.hide()
 
-func _on_name_comander_text_submitted(new_text: String) -> void:
+func _on_NameComander_text_submitted(new_text: String) -> void:
 	$Label3.text = $NameComander.text
 	$NameComander.hide()
 	$Label3.show()
 
 
-func _on_name_comander_focus_exited() -> void:
+func _on_NameComander_focus_exited() -> void:
 	$Label3.text = $NameComander.text
 	$NameComander.hide()
 	$Label3.show()
 
 
-func _on_name_comander_mouse_exited() -> void:
+func _on_NameComander_mouse_exited() -> void:
 	$Label3.text = $NameComander.text
 	$NameComander.hide()
 	$Label3.show()

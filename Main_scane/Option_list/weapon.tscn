@@ -66,11 +66,11 @@ fit_content = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Description" type="MarginContainer" parent="VBoxContainer"]
+[node name="Discription" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Description" type="RichTextLabel" parent="VBoxContainer/Description"]
+[node name="Discription" type="RichTextLabel" parent="VBoxContainer/Discription"]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true

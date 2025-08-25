@@ -1,4 +1,4 @@
-extends HFlowContainer
+extends GridContainer
 
 const SlotUtils = preload("res://slot_utils.gd")
 

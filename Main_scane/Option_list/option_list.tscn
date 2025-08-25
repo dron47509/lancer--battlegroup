@@ -93,8 +93,9 @@ item_count = 1
 popup/item_0/text = "Все"
 popup/item_0/id = 0
 
-[node name="Options" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Options" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+columns = 4
 script = ExtResource("4_knkwd")
 
 [node name="Points" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Options"]
@@ -118,7 +119,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options/Superheavies"]
 layout_mode = 2
-text = "Сверхтяжёлые"
+text = "Сверхтяжёлое"
 horizontal_alignment = 1
 
 [node name="Superheavy" type="Label" parent="MarginContainer/VBoxContainer/Options/Superheavies"]
@@ -132,7 +133,7 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Options/Primaries"]
 layout_mode = 2
-text = "Основные"
+text = "Основное"
 horizontal_alignment = 1
 
 [node name="Primary" type="Label" parent="MarginContainer/VBoxContainer/Options/Primaries"]

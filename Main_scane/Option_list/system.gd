@@ -7,7 +7,7 @@ const Opt = preload("res://option_types.gd")
 @onready var _tags: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Tags
 @onready var _param: RichTextLabel = $VBoxContainer/Head/MarginContainer/VBoxContainer/Param
 @onready var _effect: RichTextLabel = $VBoxContainer/Effect/Effect
-@onready var _description: RichTextLabel = $VBoxContainer/Description/Description
+@onready var _discription: RichTextLabel = $VBoxContainer/Discription/Discription
 @onready var _tactic1: MarginContainer = $VBoxContainer/Tactic1
 @onready var _tactic1_name: RichTextLabel = $VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label
 @onready var _tactic1_tag: RichTextLabel = $VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label2
@@ -17,10 +17,10 @@ const Opt = preload("res://option_types.gd")
 @onready var _tactic2_name: RichTextLabel = $VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label
 @onready var _tactic2_tag: RichTextLabel = $VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label2
 @onready var _tactic2_effect: RichTextLabel = $VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/MarginContainer/RichTextLabel
-@onready var _maneuver1: MarginContainer = $VBoxContainer/Maneuver1
-@onready var _maneuver1_name: RichTextLabel = $VBoxContainer/Maneuver1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label
-@onready var _maneuver1_tag: RichTextLabel = $VBoxContainer/Maneuver1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label2
-@onready var _maneuver1_effect: RichTextLabel = $VBoxContainer/Maneuver1/PanelContainer2/VBoxContainer/MarginContainer/RichTextLabel
+@onready var _maneveue1: MarginContainer = $VBoxContainer/Maneveue1
+@onready var _maneveue1_name: RichTextLabel = $VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label
+@onready var _maneveue1_tag: RichTextLabel = $VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Label2
+@onready var _maneveue1_effect: RichTextLabel = $VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/MarginContainer/RichTextLabel
 @onready var _add: MarginContainer = $VBoxContainer/Button
 @onready var _remove: MarginContainer = $VBoxContainer/Button2
 @onready var _add_special:    MarginContainer = $VBoxContainer/Button3
@@ -39,7 +39,7 @@ func _to_int(v) -> int:
 
 func _apply_option_side_effects(ship: Dictionary, opt: Dictionary, delta: int) -> void:
 	# delta: +1 при установке, -1 при демонтаже
-	var name =  str(opt.get("name", ""))
+	var name := str(opt.get("name", ""))
 
 	# безопасно достаём вложенные словари
 	if not ship.has("support_slots") or ship.get("support_slots") == null:
@@ -49,17 +49,17 @@ func _apply_option_side_effects(ship: Dictionary, opt: Dictionary, delta: int) -
 
 	# 1) FIGHTER LAUNCH CATAPULTS → +1 слот крыльев
 	if name == "FIGHTER LAUNCH CATAPULTS":
-		var wings =  _to_int(ship["support_slots"].get("wings", 0)) + delta
+		var wings := _to_int(ship["support_slots"].get("wings", 0)) + delta
 		ship["support_slots"]["wings"] = str(max(wings, 0))
 
 	# 2) SUBLINE BERTH → +1 слот эскортов
 	elif name == "SUBLINE BERTH":
-		var escorts =  _to_int(ship["support_slots"].get("escorts", 0)) + delta
+		var escorts := _to_int(ship["support_slots"].get("escorts", 0)) + delta
 		ship["support_slots"]["escorts"] = str(max(escorts, 0))
 
 	# 3) BULWARK REDUNDANCIES → +3 HP
 	elif name == "BULWARK REDUNDANCIES":
-		var hp =  _to_int(ship.get("hp", 0)) + (3 * delta)
+		var hp := _to_int(ship.get("hp", 0)) + (3 * delta)
 		ship["hp"] = str(max(hp, 0))
 
 	# при изменении конфигурации слотов может влиять на доступность кнопок
@@ -98,7 +98,7 @@ func _update_buttons() -> void:
 
 			# SPECIAL блок для Farragut
 			var special_arr = ship.get("special", [])
-			var in_special =  false
+			var in_special := false
 			for o in special_arr:
 				if _is_same_template(o):
 					in_special = true
@@ -125,7 +125,7 @@ func _update_buttons() -> void:
 
 			# SPECIAL блок для Farragut
 			var special_arr2 = ship.get("special", [])
-			var in_special2 =  false
+			var in_special2 := false
 			for o in special_arr2:
 				if _is_same_template(o):
 					in_special2 = true
@@ -167,7 +167,7 @@ func _is_same_template(o: Dictionary) -> bool:
 	return o.get("name") == _src.get("name")
 
 func _count_added(ship: Dictionary) -> int:
-	var n =  0
+	var n := 0
 	for o in ship.get("option", []):
 		if _is_same_template(o):
 			n += 1
@@ -184,7 +184,7 @@ func populate(system):
 		_param.text = "[Упорство " + system.get("tenacity") + "] "
 	_param.text += "[Очки " + str(int(system.get("points"))) + "]"
 	_effect.text = system.get("effect")
-	_description.text = "[i]" + system.get("discription") + "[/i]"
+	_discription.text = "[i]" + system.get("discription") + "[/i]"
 	if system.get("feats").size() > 0:
 		var feat1 = system.get("feats").get(0)
 		if feat1.get("type") == Opt.FEAT_TACTIC:
@@ -195,10 +195,10 @@ func populate(system):
 				_range.text = "[Дистанция %s]" % feat1.get("range")
 			_tactic1_effect.text = feat1.get("effect")
 		else:
-					_maneuver1.visible = true
-					_maneuver1_name.text = feat1.get("name")
-					_maneuver1_tag.text = feat1.get("tags")
-					_maneuver1_effect.text = feat1.get("effect")
+			_maneveue1.visible = true
+			_maneveue1_name.text = feat1.get("name")
+			_maneveue1_tag.text = feat1.get("tags")
+			_maneveue1_effect.text = feat1.get("effect")
 	if system.get("feats").size() > 1:
 		var feat2 = system.get("feats").get(1)
 		if feat2.get("type") == Opt.FEAT_TACTIC:
@@ -207,10 +207,10 @@ func populate(system):
 			_tactic2_tag.text = feat2.get("tags")
 			_tactic2_effect.text = feat2.get("effect")
 		else:
-					_maneuver1.visible = true
-					_maneuver1_name.text = feat2.get("name")
-					_maneuver1_tag.text = feat2.get("tags")
-					_maneuver1_effect.text = feat2.get("effect")
+			_maneveue1.visible = true
+			_maneveue1_name.text = feat2.get("name")
+			_maneveue1_tag.text = feat2.get("tags")
+			_maneveue1_effect.text = feat2.get("effect")
 
 
 # ───────────────────────────────────────────
@@ -258,7 +258,7 @@ func _on_add_special_pressed() -> void:
 		if _is_same_template(o):
 			return
 
-	var opt =  _src.duplicate(true)
+	var opt := _src.duplicate(true)
 	ship["special"].append(opt)
 
 	# ← эффекты тоже применим (если вдруг эти названия попадут в special)
@@ -287,10 +287,10 @@ func remove_overflow_by_sum() -> bool:
 	if opts.is_empty():
 		return false
 
-	var changed =  false
+	var changed := false
 
 	# Берём суммы (должны содержать "wings" и "escorts")
-	var sums =  SlotUtils.get_slot_sums(BattlegroupData.ships[BattlegroupData.current_ship])
+	var sums := SlotUtils.get_slot_sums(BattlegroupData.ships[BattlegroupData.current_ship])
 
 	# Если крыльев больше лимита → по одному снимаем последние, пока не станет неотрицательно
 	while sums.get("wing") < 0:
@@ -319,7 +319,7 @@ func remove_overflow_by_sum() -> bool:
 # Хелпер: удалить ПОСЛЕДНЮЮ опцию, у которой type совпадает с любым из types_to_match
 func _remove_last_by_types(arr: Array, types_to_match: Array) -> bool:
 	for i in range(arr.size() - 1, -1, -1):
-		var t =  int(arr[i].get("type", -999))
+		var t := int(arr[i].get("type", -999))
 		if t in types_to_match:
 			arr.remove_at(i)
 			return true

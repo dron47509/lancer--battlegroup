@@ -85,7 +85,7 @@ wrap_mode = 1
 scroll_fit_content_height = true
 use_default_word_separators = false
 
-[node name="Feat_description_text_edit" type="TextEdit" parent="."]
+[node name="Feat_discription_text_edit" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 placeholder_text = "Описание"

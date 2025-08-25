@@ -1,7 +1,7 @@
 extends PanelContainer
 # class_name ShipCard
 
-const FLAGSHIP_OPTION =  {
+const FLAGSHIP_OPTION := {
 	"description":  "",
 	"effect":       "",
 	"feats":        [],
@@ -18,9 +18,9 @@ const FLAGSHIP_OPTION =  {
 		"wing":        "0",
 	},
 	"name":     "FLAGSHIP",
-	"points":   "0",
-	"tags":     "Уникальное",
-	"tenacity": "0",
+	"points":   "",
+	"tags":     "",
+	"tenacity": "",
 	"type":     6.0,
 }
 
@@ -43,7 +43,7 @@ const Opt                  = preload("res://option_types.gd")
 @onready var _def_lbl     : Label         = $Ship_box/VBoxContainer/Atributs/Defence/Defence
 
 # Контейнеры слотов для опций
-@onready var _slot_containers =  {
+@onready var _slot_containers := {
 	0.0: $Ship_box/VBoxContainer/Superheavy,   # Superheavy
 	1.0: $Ship_box/VBoxContainer/Primary,      # Primaries
 	2.0: $Ship_box/VBoxContainer/Auxiliary,    # Auxiliaries
@@ -77,12 +77,12 @@ func _ready() -> void:
 # ───────────────────────────────────────────
 
 func _inc_hp(by: int) -> void:
-	var hp =  _to_int(ship_cur.get("hp", 0)) + by
+	var hp := _to_int(ship_cur.get("hp", 0)) + by
 	ship_cur["hp"] = str(max(hp, 1))  # защита от нуля
 
 func _inc_system_slots(by: int) -> void:
 	var ss = ship_cur.get("support_slots", {})
-	var cur =  _to_int(ss.get("systems", 0)) + by
+	var cur := _to_int(ss.get("systems", 0)) + by
 	ss["systems"] = str(max(cur, 0))
 	ship_cur["support_slots"] = ss
 
@@ -138,7 +138,7 @@ func _on_name_changed(new_name : String) -> void:
 
 func _on_flagman_toggled(on : bool) -> void:
 	var ship = BattlegroupData.ships[_index]
-
+	
 	if on:
 		# Если на этом корабле ещё нет FLAGSHIP — ставим
 		if _has_flagship_option() == -1:
@@ -152,7 +152,7 @@ func _on_flagman_toggled(on : bool) -> void:
 		_refresh_option_buttons()
 	else:
 		# Снимаем только если FLAGSHIP действительно стоит на ЭТОМ корабле
-		var idx =  _has_flagship_option()
+		var idx := _has_flagship_option()
 		if idx != -1:
 			ship["option"].remove_at(idx)
 			_inc_system_slots(-1)  # -1 слот систем
@@ -162,14 +162,15 @@ func _on_flagman_toggled(on : bool) -> void:
 		BattlegroupData.refresh_point()
 		change_hp()
 		_refresh_option_buttons()
+	BattlegroupData.save_data()
 
 func _on_option_pressed() -> void:
 	BattlegroupData.current_ship = _index
 	BattlegroupData.change_on_option()
 
 func _on_delete_pressed() -> void:
-	var cls =  int(ship_cur.get("class", -1))
-	var idx =  BattlegroupData.ships.find(ship_cur)
+	var cls := int(ship_cur.get("class", -1))
+	var idx := BattlegroupData.ships.find(ship_cur)
 	if idx == -1:
 		return
 
@@ -206,9 +207,9 @@ func _clear_containers_keep_titles() -> void:
 			n.queue_free()
 
 func _add_button_with_card(to_container: VBoxContainer, data: Dictionary, removable: bool) -> void:
-	var btn =  Button.new()
-	var marg =  MarginContainer.new()
-	var panel =  PanelContainer.new()
+	var btn := Button.new()
+	var marg := MarginContainer.new()
+	var panel := PanelContainer.new()
 	panel.add_child(marg)
 	marg.add_child(btn)
 	to_container.add_child(panel)
@@ -235,13 +236,13 @@ func _add_button_with_card(to_container: VBoxContainer, data: Dictionary, remova
 	)
 
 func _add_button_with_card_special(to_container: VBoxContainer, data: Dictionary, removable: bool) -> void:
-	var btn =  Button.new()
+	var btn := Button.new()
 	btn.mouse_filter = Control.MOUSE_FILTER_PASS
 	btn.flat = true
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.theme = hide_theme
-	var marg =  MarginContainer.new()
-	var panel =  PanelContainer.new()
+	var marg := MarginContainer.new()
+	var panel := PanelContainer.new()
 	marg.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	btn.text = str(data.get("name", ""))
@@ -327,9 +328,9 @@ func _refresh_option_buttons() -> void:
 # 6.  Пересчёт характеристик + рендер
 # ───────────────────────────────────────────
 func _recalc_and_update_display() -> void:
-	var hp      =  int(ship_cur["hp"])
-	var defence =  int(ship_cur["defense"])
-	var points  =  int(ship_cur["points"])
+	var hp      := int(ship_cur["hp"])
+	var defence := int(ship_cur["defense"])
+	var points  := int(ship_cur["points"])
 
 	var weapon  = ship_cur["weapon_slots"].duplicate()
 	var support = ship_cur["support_slots"].duplicate()
@@ -382,10 +383,10 @@ func _is_apeiron() -> bool:
 func _range_plus_one_capped(r: String) -> String:
 	if r == null:
 		return ""
-	var s =  String(r).strip_edges().replace("–", "-")  # на случай en dash
+	var s := String(r).strip_edges().replace("–", "-")  # на случай en dash
 	if s == "" or (not s[0].is_valid_int() and "-" not in s):
 		return s
-	var parts =  s.split("-")
+	var parts := s.split("-")
 	if parts.size() == 1:
 		var a = clamp(_to_int(parts[0]) + 1, 0, 5)
 		return str(a)
@@ -397,18 +398,18 @@ func _range_plus_one_capped(r: String) -> String:
 func _range_in_text_plus_one_capped(text: String) -> String:
 	if text == null:
 		return ""
-	var s =  String(text)
-	var re =  RegEx.new()
+	var s := String(text)
+	var re := RegEx.new()
 	# Матчим одиночные/двузначные числа по обе стороны дефиса/эн-даша, но не как часть других чисел/слов.
 	re.compile(r"(?<!\d)(\d+)\s*(?:-|–)\s*(\d+)(?!\d)")
-	var matches =  re.search_all(s)
+	var matches := re.search_all(s)
 	if matches == null or matches.is_empty():
 		return s
-	var out =  ""
-	var pos =  0
+	var out := ""
+	var pos := 0
 	for m in matches:
-		var a_str =  m.get_string(1)
-		var b_str =  m.get_string(2)
+		var a_str := m.get_string(1)
+		var b_str := m.get_string(2)
 		var a = clamp(_to_int(a_str) + 1, 0, 5)
 		var b = clamp(_to_int(b_str) + 1, 0, 5)
 		out += s.substr(pos, m.get_start() - pos)
@@ -434,18 +435,18 @@ func _apply_range_bonus_in_dict(d: Dictionary) -> void:
 					_apply_range_bonus_in_dict(i)
 
 func _apply_range_bonus_if_wing(data: Dictionary) -> Dictionary:
-	var copy =  data.duplicate(true)
+	var copy := data.duplicate(true)
 	_apply_range_bonus_in_dict(copy)
 	return copy
 
 func _to_int(v) -> int:
-	var t =  typeof(v)
+	var t := typeof(v)
 	if t == TYPE_INT:
 		return v
 	if t == TYPE_FLOAT:
 		return int(round(v))
 	if t == TYPE_STRING:
-		var s =  String(v).strip_edges()
+		var s := String(v).strip_edges()
 		if s == "":
 			return 0
 		if s.is_valid_int():
@@ -457,14 +458,14 @@ func _to_int(v) -> int:
 
 func _dec_support_slot(slot_key: String, by: int) -> void:
 	var ss = ship_cur.get("support_slots", {})
-	var cur =  _to_int(ss.get(slot_key, 0))
+	var cur := _to_int(ss.get(slot_key, 0))
 	ss[slot_key] = str(max(cur - by, 0))
 	ship_cur["support_slots"] = ss
 
 # удалить ПОСЛЕДНИЙ элемент нужного типа и вернуть его ({} если не найден)
 func _remove_last_and_get(arr: Array, types_to_match: Array) -> Dictionary:
 	for i in range(arr.size() - 1, -1, -1):
-		var t =  int(arr[i].get("type", -999))
+		var t := int(arr[i].get("type", -999))
 		if t in types_to_match:
 			var removed = arr[i]
 			arr.remove_at(i)
@@ -474,7 +475,7 @@ func _remove_last_and_get(arr: Array, types_to_match: Array) -> Dictionary:
 # оставить, если где-то ещё используется
 func _remove_last_by_types(arr: Array, types_to_match: Array) -> bool:
 	for i in range(arr.size() - 1, -1, -1):
-		var t =  int(arr[i].get("type", -999))
+		var t := int(arr[i].get("type", -999))
 		if t in types_to_match:
 			arr.remove_at(i)
 			return true
@@ -491,22 +492,22 @@ func remove_overflow_by_sum() -> bool:
 	if opts.is_empty():
 		return false
 
-	var changed =  false
-	var guard =  0
+	var changed := false
+	var guard := 0
 
 	while true:
 		guard += 1
 		if guard > 64:
 			break
 
-		var sums =  SlotUtils.get_slot_sums(ship_cur)
-		var wing_sum   =  _to_int(sums.get("wing",   0))
-		var escort_sum =  _to_int(sums.get("escort", 0))
-		var system_sum =  _to_int(sums.get("system", 0))
+		var sums := SlotUtils.get_slot_sums(ship_cur)
+		var wing_sum   := _to_int(sums.get("wing",   0))
+		var escort_sum := _to_int(sums.get("escort", 0))
+		var system_sum := _to_int(sums.get("system", 0))
 
 		# 1) Крылья
 		if wing_sum < 0:
-			var rem_w =  _remove_last_and_get(opts, [Opt.Support.WING, Opt.SlotIndex.WINGS])
+			var rem_w := _remove_last_and_get(opts, [Opt.Support.WING, Opt.SlotIndex.WINGS])
 			if rem_w.size() == 0:
 				break
 			changed = true
@@ -515,7 +516,7 @@ func remove_overflow_by_sum() -> bool:
 
 		# 2) Эскорты
 		if escort_sum < 0:
-			var rem_e =  _remove_last_and_get(opts, [Opt.Support.ESCORT, Opt.SlotIndex.ESCORTS])
+			var rem_e := _remove_last_and_get(opts, [Opt.Support.ESCORT, Opt.SlotIndex.ESCORTS])
 			if rem_e.size() == 0:
 				break
 			changed = true
@@ -524,12 +525,12 @@ func remove_overflow_by_sum() -> bool:
 
 		# 3) Системы
 		if system_sum < 0:
-			var rem_s =  _remove_last_and_get(opts, [Opt.SlotIndex.SYSTEMS])
+			var rem_s := _remove_last_and_get(opts, [Opt.SlotIndex.SYSTEMS])
 			if rem_s.size() == 0:
 				break
 			changed = true
 
-			var rname =  String(rem_s.get("name", ""))
+			var rname := String(rem_s.get("name", ""))
 			# если сняли систему, которая добавляла кап — срежем его тоже
 			if rname == "SUBLINE BERTH":
 				_dec_support_slot("escorts", 1)

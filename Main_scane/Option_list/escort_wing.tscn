@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bd12b47v8mtru" path="res://Main_scane/Option_list/Theme/Escort_Wing.tres" id="1_urvui"]
 [ext_resource type="Theme" uid="uid://cxk0yo6uun4hc" path="res://Main_scane/Option_list/Theme/Escort_Wing_head.tres" id="2_ea7tr"]
-[ext_resource type="Script" uid="uid://bwtrc57j3o3is" path="res://Main_scane/Option_list/escort_wing.gd" id="2_sujst"]
+[ext_resource type="Script" uid="uid://b6joh8sn780dt" path="res://Main_scane/Option_list/escort_wing.gd" id="2_sujst"]
 [ext_resource type="Theme" uid="uid://bv15hsbarh0ee" path="res://Main_scane/Option_list/Theme/maneveue.tres" id="3_ylkxv"]
 [ext_resource type="Theme" uid="uid://qqtlvkypad6c" path="res://Main_scane/Option_list/Theme/for_label.tres" id="4_jxlbm"]
 [ext_resource type="Theme" uid="uid://ihkj5ctm6n8p" path="res://Main_scane/Option_list/Theme/maneveue_head.tres" id="4_sujst"]
@@ -70,11 +70,11 @@ fit_content = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Description" type="MarginContainer" parent="VBoxContainer"]
+[node name="Discription" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Description" type="RichTextLabel" parent="VBoxContainer/Description"]
+[node name="Discription" type="RichTextLabel" parent="VBoxContainer/Discription"]
 layout_mode = 2
 mouse_filter = 2
 bbcode_enabled = true

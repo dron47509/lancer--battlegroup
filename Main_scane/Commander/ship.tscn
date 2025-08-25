@@ -150,6 +150,7 @@ mouse_filter = 2
 
 [node name="Flagman" type="CheckBox" parent="Ship_box/Ship_image/MarginContainer"]
 layout_mode = 2
+mouse_filter = 1
 button_group = ExtResource("3_8tv7i")
 text = "Флагман"
 alignment = 2

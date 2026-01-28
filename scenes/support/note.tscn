@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://ojgah8706lmh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ho5m"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Note" type="VBoxContainer"]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Заметки:"
+label_settings = SubResource("LabelSettings_6ho5m")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2

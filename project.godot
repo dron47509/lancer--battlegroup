@@ -8,16 +8,20 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="Lancer_battlegroup"
-run/main_scene="uid://cpb3nqlbj36ba"
-config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/name="Lancer_battlegroup (4.5)"
+run/main_scene="res://scenes/main/Main.tscn"
+config/features=PackedStringArray("4.6", "Forward Plus")
+config/icon="res://assets/icons/icon.svg"
 
 [autoload]
 
-BattlegroupData="*res://battlegroup_data.gd"
+BattlegroupData="*res://scripts/core/battlegroup_data.gd"
 
 [display]
 
@@ -34,3 +38,4 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_2d=2

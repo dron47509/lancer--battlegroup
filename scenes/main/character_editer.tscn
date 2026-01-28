@@ -1,0 +1,352 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkuii5nokbvcq"]
+
+[ext_resource type="Script" uid="uid://e2361rc72ifr" path="res://scripts/main/character_editer.gd" id="1_wn01w"]
+[ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://assets/icons/close-svgrepo-com.svg" id="2_lyp5m"]
+[ext_resource type="Script" uid="uid://01ri5mx2am4l" path="res://scripts/commander/label_3.gd" id="3_4lyw1"]
+[ext_resource type="Script" uid="uid://31xiy5mfrhbu" path="res://scripts/commander/label_4.gd" id="4_7dxni"]
+[ext_resource type="Script" uid="uid://c267iioaofa1s" path="res://scripts/commander/label_5.gd" id="5_n6aen"]
+[ext_resource type="Script" uid="uid://c731r48nyy5vv" path="res://scripts/commander/label_6.gd" id="6_2x5vd"]
+[ext_resource type="Script" uid="uid://pc3i3ug0rgvm" path="res://scripts/commander/label_7.gd" id="7_jr1wq"]
+[ext_resource type="Theme" uid="uid://byhyvda0o1ht5" path="res://themes/commander/battlegroup/Header/reputation.tres" id="8_br76i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vyary"]
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_4cd65"]
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.631373)
+LineEdit/font_sizes/font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_flfe5"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lyp5m"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wn01w"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="character_editer" type="VBoxContainer"]
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wn01w")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Имя персонажа"
+label_settings = SubResource("LabelSettings_vyary")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/Label3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/Label3/Button"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+mouse_filter = 1
+icon = ExtResource("2_lyp5m")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="NameComander" type="LineEdit" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+theme = SubResource("Theme_4cd65")
+placeholder_text = "Имя персонажа"
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Черты:"
+label_settings = SubResource("LabelSettings_flfe5")
+
+[node name="Traits" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Positive1Row" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Traits"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/Traits/Positive1Row"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer/Traits/Positive1Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Положительная"
+vertical_alignment = 1
+script = ExtResource("3_4lyw1")
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/Traits/Positive1Row/Label3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+
+[node name="Positive1" type="LineEdit" parent="ScrollContainer/VBoxContainer/Traits/Positive1Row"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+placeholder_text = "Положительная"
+
+[node name="Positive2Row" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Traits"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/Traits/Positive2Row"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer/Traits/Positive2Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Положительная"
+vertical_alignment = 1
+script = ExtResource("4_7dxni")
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/Traits/Positive2Row/Label4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+
+[node name="Positive2" type="LineEdit" parent="ScrollContainer/VBoxContainer/Traits/Positive2Row"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+placeholder_text = "Положительная"
+
+[node name="Positive3Row" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Traits"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/Traits/Positive3Row"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="ScrollContainer/VBoxContainer/Traits/Positive3Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Новая положительная"
+vertical_alignment = 1
+script = ExtResource("6_2x5vd")
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/Traits/Positive3Row/Label5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+
+[node name="Positive3" type="LineEdit" parent="ScrollContainer/VBoxContainer/Traits/Positive3Row"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+placeholder_text = "Положительная"
+
+[node name="Negative1Row" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Traits"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/Traits/Negative1Row"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer/Traits/Negative1Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Отрицательная"
+vertical_alignment = 1
+script = ExtResource("5_n6aen")
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/Traits/Negative1Row/Label4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+
+[node name="Negative" type="LineEdit" parent="ScrollContainer/VBoxContainer/Traits/Negative1Row"]
+visible = false
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+placeholder_text = "Отрицательная"
+
+[node name="Negative2Row" type="HBoxContainer" parent="ScrollContainer/VBoxContainer/Traits"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="CheckBox" type="CheckBox" parent="ScrollContainer/VBoxContainer/Traits/Negative2Row"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="ScrollContainer/VBoxContainer/Traits/Negative2Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Новая отрицательная"
+vertical_alignment = 1
+script = ExtResource("7_jr1wq")
+
+[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/Traits/Negative2Row/Label5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+
+[node name="Negative2" type="LineEdit" parent="ScrollContainer/VBoxContainer/Traits/Negative2Row"]
+visible = false
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+placeholder_text = "Отрицательная"
+
+[node name="HSeparator2" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Репутация:"
+label_settings = SubResource("LabelSettings_lyp5m")
+
+[node name="Reputations" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("8_br76i")
+
+[node name="Reputaton" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить репутацию"
+
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Способности:"
+label_settings = SubResource("LabelSettings_lyp5m")
+
+[node name="Advances" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("8_br76i")
+
+[node name="Advance" type="Button" parent="ScrollContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить способность"
+
+[node name="HSeparator3" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label1" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Предыстория:"
+label_settings = SubResource("LabelSettings_wn01w")
+
+[node name="TextEdit" type="TextEdit" parent="ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+wrap_mode = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Label3/Button" to="." method="_on_name_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Label3/Button/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Traits/Positive1Row/Label3/Button" to="ScrollContainer/VBoxContainer/Traits/Positive1Row/Label3" method="_on_button_pressed"]
+[connection signal="focus_exited" from="ScrollContainer/VBoxContainer/Traits/Positive1Row/Positive1" to="ScrollContainer/VBoxContainer/Traits/Positive1Row/Label3" method="_on_name_focus_exited"]
+[connection signal="mouse_exited" from="ScrollContainer/VBoxContainer/Traits/Positive1Row/Positive1" to="ScrollContainer/VBoxContainer/Traits/Positive1Row/Label3" method="_on_positive_1_mouse_exited"]
+[connection signal="text_submitted" from="ScrollContainer/VBoxContainer/Traits/Positive1Row/Positive1" to="ScrollContainer/VBoxContainer/Traits/Positive1Row/Label3" method="_on_name_text_submitted"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Traits/Positive2Row/Label4/Button" to="ScrollContainer/VBoxContainer/Traits/Positive2Row/Label4" method="_on_button_pressed"]
+[connection signal="focus_exited" from="ScrollContainer/VBoxContainer/Traits/Positive2Row/Positive2" to="ScrollContainer/VBoxContainer/Traits/Positive2Row/Label4" method="_on_positive_2_focus_exited"]
+[connection signal="mouse_exited" from="ScrollContainer/VBoxContainer/Traits/Positive2Row/Positive2" to="ScrollContainer/VBoxContainer/Traits/Positive2Row/Label4" method="_on_positive_2_mouse_exited"]
+[connection signal="text_submitted" from="ScrollContainer/VBoxContainer/Traits/Positive2Row/Positive2" to="ScrollContainer/VBoxContainer/Traits/Positive2Row/Label4" method="_on_name_text_submitted"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Traits/Positive3Row/Label5/Button" to="ScrollContainer/VBoxContainer/Traits/Positive3Row/Label5" method="_on_button_pressed"]
+[connection signal="focus_exited" from="ScrollContainer/VBoxContainer/Traits/Positive3Row/Positive3" to="ScrollContainer/VBoxContainer/Traits/Positive3Row/Label5" method="_on_name_focus_exited"]
+[connection signal="mouse_exited" from="ScrollContainer/VBoxContainer/Traits/Positive3Row/Positive3" to="ScrollContainer/VBoxContainer/Traits/Positive3Row/Label5" method="_on_positive_3_mouse_exited"]
+[connection signal="text_submitted" from="ScrollContainer/VBoxContainer/Traits/Positive3Row/Positive3" to="ScrollContainer/VBoxContainer/Traits/Positive3Row/Label5" method="_on_name_text_submitted"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Traits/Negative1Row/Label4/Button" to="ScrollContainer/VBoxContainer/Traits/Negative1Row/Label4" method="_on_button_pressed"]
+[connection signal="focus_exited" from="ScrollContainer/VBoxContainer/Traits/Negative1Row/Negative" to="ScrollContainer/VBoxContainer/Traits/Negative1Row/Label4" method="_on_name_focus_exited"]
+[connection signal="mouse_exited" from="ScrollContainer/VBoxContainer/Traits/Negative1Row/Negative" to="ScrollContainer/VBoxContainer/Traits/Negative1Row/Label4" method="_on_positive_1_mouse_exited"]
+[connection signal="text_submitted" from="ScrollContainer/VBoxContainer/Traits/Negative1Row/Negative" to="ScrollContainer/VBoxContainer/Traits/Negative1Row/Label4" method="_on_name_text_submitted"]
+[connection signal="pressed" from="ScrollContainer/VBoxContainer/Traits/Negative2Row/Label5/Button" to="ScrollContainer/VBoxContainer/Traits/Negative2Row/Label5" method="_on_button_pressed"]
+[connection signal="focus_exited" from="ScrollContainer/VBoxContainer/Traits/Negative2Row/Negative2" to="ScrollContainer/VBoxContainer/Traits/Negative2Row/Label5" method="_on_name_focus_exited"]
+[connection signal="mouse_exited" from="ScrollContainer/VBoxContainer/Traits/Negative2Row/Negative2" to="ScrollContainer/VBoxContainer/Traits/Negative2Row/Label5" method="_on_negative_2_mouse_exited"]
+[connection signal="text_submitted" from="ScrollContainer/VBoxContainer/Traits/Negative2Row/Negative2" to="ScrollContainer/VBoxContainer/Traits/Negative2Row/Label5" method="_on_name_text_submitted"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/TextEdit" to="." method="_on_text_edit_text_changed"]

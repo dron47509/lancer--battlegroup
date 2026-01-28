@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://ffwqq2icwm4n"]
+
+[ext_resource type="Script" uid="uid://b8rwhxyag7lm0" path="res://scripts/commander/commander.gd" id="1_gds87"]
+[ext_resource type="Script" uid="uid://bhgj8l20bvdj0" path="res://scripts/commander/v_box_container1.gd" id="2_oxnjr"]
+[ext_resource type="Theme" uid="uid://cdmbbl0moitlc" path="res://themes/commander/battlegroup/Header/commendation.tres" id="3_i5w55"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t88nq"]
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_oxnjr"]
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.631373)
+LineEdit/font_sizes/font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_oxnjr"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Commander" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gds87")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_oxnjr")
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Имя персонажа"
+label_settings = SubResource("LabelSettings_t88nq")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/Label3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+
+[node name="NameComander" type="LineEdit" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+theme = SubResource("Theme_oxnjr")
+placeholder_text = "Имя персонажа"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+text = "Открыть/Редактировать персонажа"
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Поощрения:"
+label_settings = SubResource("LabelSettings_oxnjr")
+
+[node name="Commendations" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_i5w55")
+
+[node name="Commendation" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Добавить поощрение"
+
+[connection signal="pressed" from="VBoxContainer/Label3/Button" to="VBoxContainer" method="_on_button_pressed"]
+[connection signal="focus_exited" from="VBoxContainer/NameComander" to="VBoxContainer" method="_on_name_comander_focus_exited"]
+[connection signal="mouse_exited" from="VBoxContainer/NameComander" to="VBoxContainer" method="_on_name_comander_mouse_exited"]
+[connection signal="text_changed" from="VBoxContainer/NameComander" to="." method="_on_name_comander_text_changed"]
+[connection signal="text_submitted" from="VBoxContainer/NameComander" to="VBoxContainer" method="_on_name_comander_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,467 @@
+[gd_scene format=3]
+
+[node name="Card" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Header" type="PanelContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Header"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Hide" type="Button" parent="VBoxContainer/Header/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+flat = true
+alignment = 0
+expand_icon = true
+
+[node name="Head" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Head"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Head/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Hide" type="Button" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 1
+flat = true
+alignment = 0
+expand_icon = true
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="Tags" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Param" type="RichTextLabel" parent="VBoxContainer/Head/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Effect" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Effect"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Discription" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Discription" type="RichTextLabel" parent="VBoxContainer/Discription"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="Advances" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Advances" type="RichTextLabel" parent="VBoxContainer/Advances"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Advance1" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Advance1"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Advance1/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Advance1/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Advance2" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Advance2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Advance2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Advance2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Advance3" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Advance3"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Advance3/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Advance3/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Advance4" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Advance4"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Advance4/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Advance4/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="HSeparator5" type="HSeparator" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Advance5" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Advance5"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Advance5/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Advance5/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Maneveue1" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Maneveue1"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Maneveue1/PanelContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Maneveue1/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Tactic1" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Tactic1"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tactic1/PanelContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Label3" type="RichTextLabel" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Tactic1/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Tactic2" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/Tactic2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tactic2/PanelContainer2"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="RichTextLabel" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Label2" type="RichTextLabel" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Label3" type="RichTextLabel" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Tactic2/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+fit_content = true
+text = ""
+
+[node name="Button3" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Add_special" type="Button" parent="VBoxContainer/Button3"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+text = ""
+
+[node name="Button4" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Remove_special" type="Button" parent="VBoxContainer/Button4"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+text = ""
+
+[node name="Button" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Add" type="Button" parent="VBoxContainer/Button"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+text = ""
+
+[node name="Button2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Remove" type="Button" parent="VBoxContainer/Button2"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+text = ""
+
+[node name="Body" type="MarginContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="Effect" type="RichTextLabel" parent="VBoxContainer/Body/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+fit_content = true
+text = ""
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer/Body/VBoxContainer"]
+layout_mode = 2
+
+[node name="Add" type="Button" parent="VBoxContainer/Body/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = ""
+
+[node name="Remove" type="Button" parent="VBoxContainer/Body/VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = ""

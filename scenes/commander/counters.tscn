@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://bridd62r5oggr"]
+
+[ext_resource type="Script" uid="uid://dnd5l63kixdu" path="res://scenes/commander/counters.gd" id="1_snsj6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qdggq"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[node name="Counters" type="VBoxContainer"]
+script = ExtResource("1_snsj6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Счетчики:"
+label_settings = SubResource("LabelSettings_qdggq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Заряд:"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Боезаряд:"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer3"]
+layout_mode = 2
+text = "Обновление:"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer4"]
+layout_mode = 2
+text = "Greywash:"
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer5"]
+layout_mode = 2
+text = "Перегрузка:"
+
+[node name="VBoxContainer6" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer6"]
+layout_mode = 2
+text = "Залп:"
+
+[node name="VBoxContainer7" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer7"]
+layout_mode = 2
+text = "Прочее:"

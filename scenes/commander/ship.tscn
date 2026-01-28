@@ -1,0 +1,540 @@
+[gd_scene load_steps=32 format=3 uid="uid://1yxsler2mri0"]
+
+[ext_resource type="Script" uid="uid://6bke0ib6ets0" path="res://scripts/commander/ship.gd" id="1_vlw5j"]
+[ext_resource type="Theme" uid="uid://dt88e5xvcdgje" path="res://themes/commander/ship_box.tres" id="2_vybui"]
+[ext_resource type="ButtonGroup" uid="uid://padp71yc23j7" path="res://resources/commander/ship.tres" id="3_8tv7i"]
+[ext_resource type="Texture2D" uid="uid://blxwxulg2rue4" path="res://assets/icons/close-svgrepo-com.svg" id="3_dp0u4"]
+[ext_resource type="Script" uid="uid://bmfcqvcwgep5d" path="res://scripts/commander/h_box_container.gd" id="3_ydlah"]
+[ext_resource type="Script" uid="uid://cbdusbxpcg3oy" path="res://scripts/commander/option_ship.gd" id="6_dp0u4"]
+[ext_resource type="Script" uid="uid://4dy820cijymt" path="res://scripts/commander/feat_label.gd" id="7_k5gai"]
+[ext_resource type="Script" uid="uid://d4cxx0h3uck2j" path="res://scripts/commander/legacy_label.gd" id="7_la7xv"]
+[ext_resource type="Theme" uid="uid://baf7ven6bc8vi" path="res://themes/commander/battlegroup/Header/feat.tres" id="8_sfabn"]
+[ext_resource type="Script" uid="uid://ql7xw70aaw3u" path="res://scripts/commander/superheavy_label.gd" id="8_vtu8k"]
+[ext_resource type="Script" uid="uid://cjfeu0lo1750w" path="res://scripts/commander/primary_label.gd" id="9_3an0d"]
+[ext_resource type="Theme" uid="uid://jy753ghwi2ql" path="res://themes/commander/battlegroup/Header/weapon.tres" id="9_swqo0"]
+[ext_resource type="Script" uid="uid://0vnugqssdld5" path="res://scripts/commander/auxiliary_label.gd" id="10_87s0o"]
+[ext_resource type="Script" uid="uid://dq6bcmbieahpd" path="res://scripts/commander/wing_label.gd" id="11_knt00"]
+[ext_resource type="Script" uid="uid://c2uv8tspr8k0b" path="res://scripts/commander/escort_label.gd" id="12_w82g7"]
+[ext_resource type="Theme" uid="uid://xnf7kkxfshyx" path="res://themes/commander/battlegroup/Header/wing_escort.tres" id="13_j5he1"]
+[ext_resource type="Script" uid="uid://cku44jurxrl5f" path="res://scripts/commander/system_label.gd" id="13_w82g7"]
+[ext_resource type="Script" uid="uid://7nhq7kr25kdt" path="res://scripts/commander/tactic_label.gd" id="14_swqo0"]
+[ext_resource type="Script" uid="uid://dqeg2tfik4wm2" path="res://scripts/commander/maneuver_label.gd" id="15_j5he1"]
+[ext_resource type="Theme" uid="uid://cwdx2nv5p1ill" path="res://themes/commander/battlegroup/Header/system.tres" id="17_ydlah"]
+[ext_resource type="Theme" uid="uid://d31dmyser3qbo" path="res://themes/support/Hull_theme.tres" id="18_dp0u4"]
+[ext_resource type="Theme" uid="uid://bof78g7t4nfsq" path="res://themes/commander/battlegroup/Header/tactic.tres" id="19_la7xv"]
+[ext_resource type="Theme" uid="uid://b7ty2gvkpksm5" path="res://themes/commander/battlegroup/Header/maneuver.tres" id="21_ckx55"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_la7xv"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_vqb6t"]
+LineEdit/font_sizes/font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_closebtn"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydlah"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.909804, 0.909804, 0.909804, 0)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_la7xv"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ckx55"]
+bg_color = Color(0.909804, 0.909804, 0.909804, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.909804, 0.909804, 0.909804, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_ydlah"]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_ydlah")
+Button/styles/normal = SubResource("StyleBoxFlat_la7xv")
+Button/styles/pressed = SubResource("StyleBoxFlat_ckx55")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jurnl"]
+content_margin_left = 4.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="Ship" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_vybui")
+script = ExtResource("1_vlw5j")
+
+[node name="Ship_box" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Ship_box"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ship_box/MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("3_ydlah")
+
+[node name="Label" type="Label" parent="Ship_box/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_la7xv")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Ship_box/MarginContainer2/HBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+flat = true
+
+[node name="Name" type="LineEdit" parent="Ship_box/MarginContainer2/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_vqb6t")
+
+[node name="Delete_ship" type="Button" parent="Ship_box/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 1
+theme_override_constants/outline_size = 0
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_closebtn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_closebtn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_closebtn")
+theme_override_styles/focus = SubResource("StyleBoxFlat_closebtn")
+icon = ExtResource("3_dp0u4")
+flat = true
+expand_icon = true
+
+[node name="Ship_image" type="TextureRect" parent="Ship_box"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 5
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Ship_box/Ship_image"]
+layout_mode = 0
+offset_right = 10.0
+offset_bottom = 10.0
+mouse_filter = 2
+
+[node name="Flagman" type="CheckBox" parent="Ship_box/Ship_image/MarginContainer"]
+layout_mode = 2
+mouse_filter = 1
+button_group = ExtResource("3_8tv7i")
+text = "Флагман"
+alignment = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="Ship_box"]
+layout_mode = 2
+
+[node name="Hulls_name" type="Button" parent="Ship_box/MarginContainer3"]
+layout_mode = 2
+mouse_filter = 1
+theme = SubResource("Theme_ydlah")
+text = "Name"
+flat = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ship_box"]
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Atributs" type="HBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Point" type="VBoxContainer" parent="Ship_box/VBoxContainer/Atributs"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Atributs/Point"]
+layout_mode = 2
+text = "Очки"
+horizontal_alignment = 1
+
+[node name="Point" type="Label" parent="Ship_box/VBoxContainer/Atributs/Point"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+horizontal_alignment = 1
+
+[node name="HP" type="VBoxContainer" parent="Ship_box/VBoxContainer/Atributs"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Atributs/HP"]
+layout_mode = 2
+text = "HP"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ship_box/VBoxContainer/Atributs/HP"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Current_HP" type="LineEdit" parent="Ship_box/VBoxContainer/Atributs/HP/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0"
+alignment = 1
+
+[node name="Max_HP" type="Label" parent="Ship_box/VBoxContainer/Atributs/HP/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "16"
+horizontal_alignment = 1
+
+[node name="Overshild" type="VBoxContainer" parent="Ship_box/VBoxContainer/Atributs"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Atributs/Overshild"]
+layout_mode = 2
+text = "Сверхщиты"
+horizontal_alignment = 1
+
+[node name="Overshild" type="LineEdit" parent="Ship_box/VBoxContainer/Atributs/Overshild"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "0"
+alignment = 1
+
+[node name="Defence" type="VBoxContainer" parent="Ship_box/VBoxContainer/Atributs"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Atributs/Defence"]
+layout_mode = 2
+text = "Защита"
+horizontal_alignment = 1
+
+[node name="Defence" type="Label" parent="Ship_box/VBoxContainer/Atributs/Defence"]
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Options" type="HFlowContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("6_dp0u4")
+
+[node name="Superheavies" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Superheavies"]
+layout_mode = 2
+text = "Сверхтяжёлые"
+horizontal_alignment = 1
+
+[node name="Superheavy" type="Label" parent="Ship_box/VBoxContainer/Options/Superheavies"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Primaries" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Primaries"]
+layout_mode = 2
+text = "Основные"
+horizontal_alignment = 1
+
+[node name="Primary" type="Label" parent="Ship_box/VBoxContainer/Options/Primaries"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Auxiliaries" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Auxiliaries"]
+layout_mode = 2
+text = "Вспом."
+horizontal_alignment = 1
+
+[node name="Auxiliary" type="Label" parent="Ship_box/VBoxContainer/Options/Auxiliaries"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Systems" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Systems"]
+layout_mode = 2
+text = "Системы"
+horizontal_alignment = 1
+
+[node name="System" type="Label" parent="Ship_box/VBoxContainer/Options/Systems"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Wings" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Wings"]
+layout_mode = 2
+text = "Крылья"
+horizontal_alignment = 1
+
+[node name="Wing" type="Label" parent="Ship_box/VBoxContainer/Options/Wings"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Escorts" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Escorts"]
+layout_mode = 2
+text = "Эскорты"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Escort" type="Label" parent="Ship_box/VBoxContainer/Options/Escorts"]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="Special" type="VBoxContainer" parent="Ship_box/VBoxContainer/Options"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/Options/Special"]
+layout_mode = 2
+text = "Особый"
+horizontal_alignment = 1
+
+[node name="Special" type="Label" parent="Ship_box/VBoxContainer/Options/Special"]
+layout_mode = 2
+text = "0/0"
+horizontal_alignment = 1
+
+[node name="HSeparator3" type="HSeparator" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Feat_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Черты:"
+script = ExtResource("7_k5gai")
+
+[node name="Feat" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("8_sfabn")
+
+[node name="Superheavy_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Сверхтяжелые орудия:"
+script = ExtResource("8_vtu8k")
+
+[node name="Superheavy" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("9_swqo0")
+
+[node name="Primary_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Основные орудия:"
+script = ExtResource("9_3an0d")
+
+[node name="Primary" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("9_swqo0")
+
+[node name="Auxiliary_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Вспомогательные орудия:"
+script = ExtResource("10_87s0o")
+
+[node name="Auxiliary" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("9_swqo0")
+
+[node name="Wing_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Крылья:"
+script = ExtResource("11_knt00")
+
+[node name="Wing" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("13_j5he1")
+
+[node name="Escort_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Эскорты:"
+script = ExtResource("12_w82g7")
+
+[node name="Escort" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("13_j5he1")
+
+[node name="System_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Системы:"
+script = ExtResource("13_w82g7")
+
+[node name="System" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("17_ydlah")
+
+[node name="Legacy_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Наследия:"
+script = ExtResource("7_la7xv")
+
+[node name="Legacy" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("8_sfabn")
+
+[node name="Tactic_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Тактики:"
+script = ExtResource("14_swqo0")
+
+[node name="Tactic" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("19_la7xv")
+
+[node name="Maneuver_label" type="Label" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jurnl")
+text = "Маневры:"
+script = ExtResource("15_j5he1")
+
+[node name="Maneuver" type="VBoxContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("21_ckx55")
+
+[node name="MarginContainer" type="MarginContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("18_dp0u4")
+theme_override_constants/margin_bottom = 0
+
+[node name="Add_option" type="Button" parent="Ship_box/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme = ExtResource("18_dp0u4")
+text = "Модифицировать"
+
+[node name="MarginContainer_Legacy" type="MarginContainer" parent="Ship_box/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("18_dp0u4")
+theme_override_constants/margin_top = 0
+
+[node name="Add_legacy" type="Button" parent="Ship_box/VBoxContainer/MarginContainer_Legacy"]
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 1
+theme = ExtResource("18_dp0u4")
+text = "Добавить наследие"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Ship_box/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Note" type="VBoxContainer" parent="Ship_box/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Ship_box/VBoxContainer/MarginContainer2/Note"]
+layout_mode = 2
+text = "Заметки:"
+
+[node name="TextEdit" type="TextEdit" parent="Ship_box/VBoxContainer/MarginContainer2/Note"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+
+[connection signal="pressed" from="Ship_box/MarginContainer2/HBoxContainer/Label/Button" to="Ship_box/MarginContainer2/HBoxContainer" method="_on_button_pressed"]
+[connection signal="focus_exited" from="Ship_box/MarginContainer2/HBoxContainer/Name" to="Ship_box/MarginContainer2/HBoxContainer" method="_on_name_focus_exited"]
+[connection signal="mouse_exited" from="Ship_box/MarginContainer2/HBoxContainer/Name" to="Ship_box/MarginContainer2/HBoxContainer" method="_on_name_mouse_exited"]
+[connection signal="text_submitted" from="Ship_box/MarginContainer2/HBoxContainer/Name" to="Ship_box/MarginContainer2/HBoxContainer" method="_on_name_text_submitted"]
+[connection signal="toggled" from="Ship_box/Ship_image/MarginContainer/Flagman" to="." method="_on_flagman_toggled"]
+[connection signal="pressed" from="Ship_box/MarginContainer3/Hulls_name" to="." method="_on_hulls_name_pressed"]
+[connection signal="text_changed" from="Ship_box/VBoxContainer/Atributs/Overshild/Overshild" to="." method="_on_overshild_text_changed"]

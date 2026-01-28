@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://do6b57fnvbbep"]
+
+[ext_resource type="Script" uid="uid://d3qudt6ng55a6" path="res://scripts/support/phase.gd" id="1_0e5xn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_phase"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ycwuu"]
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+
+[node name="Phase" type="VBoxContainer"]
+script = ExtResource("1_0e5xn")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Фаза:"
+label_settings = SubResource("LabelSettings_phase")
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="."]
+visible = false
+layout_mode = 2
+text = "Маневры и тактики:"
+label_settings = SubResource("LabelSettings_ycwuu")
+
+[node name="Maneuver" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Tactic" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+visible = true
